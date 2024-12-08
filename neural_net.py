@@ -1,0 +1,47 @@
+import torch
+import torch.nn as nn
+import torch.optim.lr_scheduler as lrs
+from torch.utils.data import DataLoader
+import torchvision
+from torchvision import datasets
+from torchvision import transforms
+import matplotlib.pyplot as plt
+from tqdm import tqdm
+
+import os
+from pathlib import Path
+import numpy as np
+
+
+class Network(nn.Module):
+    def __init__(self, num_classes=10, dropout=0.5):
+        super(Network, self).__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
+            nn.Conv2d(64, 256, kernel_size=5, padding=2),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
+            nn.Conv2d(256, 256, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
+        )
+
+        self.avgpool = nn.AdaptiveAvgPool2d((6, 6))
+        self.classifier = nn.Sequential(
+            nn.Dropout(p=dropout),
+            nn.Linear(256 * 6 * 6, 512),
+            nn.ReLU(inplace=True),
+            nn.Dropout(p=dropout),
+            nn.Linear(512, 512),
+            nn.ReLU(inplace=True),
+            nn.Linear(512, num_classes),
+        )
+
+    def forward(self, x):
+        N, c, H, W = x.shape
+        features = self.features(x)
+        pooled_features = self.avgpool(features)
+        output = self.classifier(torch.flatten(pooled_features, 1))
+        return output
