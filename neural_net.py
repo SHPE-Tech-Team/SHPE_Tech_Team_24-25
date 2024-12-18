@@ -47,6 +47,57 @@ class Network(nn.Module):
         return output
 
 
+model = Network(num_classes=37)
+
+
+def train(train_loader, model, criterion, optimizer):
+    model.train()
+    loss_ = 0.0
+    losses = []
+
+    it_train = tqdm(
+        enumerate(train_loader),
+        total=len(train_loader),
+        desc="Training ...",
+        position=0,
+    )  # progress bar
+    for i, (images, labels) in it_train:
+        optimizer.zero_grad()
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        losses.append(loss)
+        it_train.set_description(f"loss: {loss:.3f}")
+    return torch.stack(losses).mean().item()
+
+
+def test(test_loader, model, criterion):
+    model.eval()
+    losses = []
+    correct = 0
+    total = 0
+    it_test = tqdm(
+        enumerate(test_loader),
+        total=len(test_loader),
+        desc="Validating ...",
+        position=0,
+    )
+    for i, (images, labels) in it_test:
+        output = model(images)  
+        preds = torch.argmax(output, dim=-1)
+        loss = criterion(output, labels)
+        losses.append(loss.item())
+        correct += (preds == labels).sum().item()
+        total += len(labels)
+
+    mean_accuracy = correct / total
+    test_loss = np.mean(losses)
+    print("Mean Accuracy: {0:.4f}".format(mean_accuracy))
+    print("Avg loss: {}".format(test_loss))
+    return mean_accuracy, test_loss
+
+
 train_transform = transforms.Compose(
     [
         transforms.Resize(256),
