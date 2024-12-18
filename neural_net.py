@@ -7,10 +7,26 @@ from torchvision import datasets
 from torchvision import transforms
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-
+import pytesseract
+from PIL import Image
 import os
 from pathlib import Path
 import numpy as np
+
+
+def text_extract(image):
+    return pytesseract.image_to_string(image)
+
+
+class Dataset_SetUp(dataset):
+    def __init__(self, image_dir, image_transform=None, text_tokenizer=None):
+        self.image_dir = image_dir
+        self.image_transform = image_transform
+        self.text_tokenizer = text_tokenizer
+        self.image_paths = []
+        for file_name in os.listdir(image_dir):
+            if file_name.endswith(".jpeg"):
+                self.image_paths.append(os.pardir.join(image_dir, file_name))
 
 
 class Network(nn.Module):
@@ -47,74 +63,14 @@ class Network(nn.Module):
         return output
 
 
-model = Network(num_classes=37)
+class text_net(nn.Module):
+    def __init__(self, vocab_size, embedding_dim, hidden_dim, output_size):
+        super(text_net, self).__init__()
+        self.embedding = nn.Embedding(vocab_size, embedding_dim)
+        self.lstm = nn.LSTM(embedding_dim, hidden_dim, batch_first=True)
+        self.fc = nn.Linear(hidden_dim, output_size)
 
-
-def train(train_loader, model, criterion, optimizer):
-    model.train()
-    loss_ = 0.0
-    losses = []
-
-    it_train = tqdm(
-        enumerate(train_loader),
-        total=len(train_loader),
-        desc="Training ...",
-        position=0,
-    )  # progress bar
-    for i, (images, labels) in it_train:
-        optimizer.zero_grad()
-        outputs = model(images)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
-        losses.append(loss)
-        it_train.set_description(f"loss: {loss:.3f}")
-    return torch.stack(losses).mean().item()
-
-
-def test(test_loader, model, criterion):
-    model.eval()
-    losses = []
-    correct = 0
-    total = 0
-    it_test = tqdm(
-        enumerate(test_loader),
-        total=len(test_loader),
-        desc="Validating ...",
-        position=0,
-    )
-    for i, (images, labels) in it_test:
-        output = model(images)  
-        preds = torch.argmax(output, dim=-1)
-        loss = criterion(output, labels)
-        losses.append(loss.item())
-        correct += (preds == labels).sum().item()
-        total += len(labels)
-
-    mean_accuracy = correct / total
-    test_loss = np.mean(losses)
-    print("Mean Accuracy: {0:.4f}".format(mean_accuracy))
-    print("Avg loss: {}".format(test_loss))
-    return mean_accuracy, test_loss
-
-
-train_transform = transforms.Compose(
-    [
-        transforms.Resize(256),
-        transforms.RandomCrop(224),
-        transforms.RandomHorizontalFlip(),
-        transforms.RandomRotation(degrees=15),
-        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-    ]
-)
-
-test_transform = transforms.Compose(
-    [
-        transforms.Resize(224),
-        transforms.CenterCrop(224),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-    ]
-)
+        def forward(self, x):
+            x = self.embedding(x)
+            _, (hidden, _) = self.lstm(x) 
+            return self.fc(hidden[-1])
