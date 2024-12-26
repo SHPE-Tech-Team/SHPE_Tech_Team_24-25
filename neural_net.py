@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim.lr_scheduler as lrs
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Dataset
 import torchvision
 from torchvision import datasets
 from torchvision import transforms
@@ -17,33 +17,7 @@ from tqdm.auto import tqdm
 import torch.optim as optim
 from torch.nn.utils.rnn import pad_sequence
 from torch.nn import functional as F
-
-
-class Dataset_Setup:
-    def __init__(self, image_dir, image_transform=None, text_tokenizer=None):
-        self.image_dir = image_dir
-        self.image_transform = image_transform
-        self.text_tokenizer = text_tokenizer
-        self.image_paths = []
-        for file_name in os.listdir(image_dir):
-            if file_name.endswith(".jpeg"):
-                self.image_paths.append(os.path.join(image_dir, file_name))
-
-    def __len__(self):
-        return len(self.image_paths)
-
-    def __getitem__(self, idx):
-        image_path = self.image_paths[idx]
-        image = Image.open(image_path).convert("RGB")
-        text = pytesseract.image_to_string(image)
-
-        if self.image_transform:
-            image = self.image_transform(image)
-
-        if self.text_tokenizer:
-            text = self.text_tokenizer(text)
-
-        return image, text
+import pandas as pd
 
 
 class Network(nn.Module):
@@ -80,45 +54,77 @@ class Network(nn.Module):
         return output
 
 
-class text_net(nn.Module):
-    def __init__(
-        self, vocab_size, embedding_dim, hidden_dim, output_size, max_text_length
-    ):
-        super(text_net, self).__init__()
-        self.embedding = nn.Embedding(vocab_size, embedding_dim)
-        self.lstm = nn.LSTM(embedding_dim, hidden_dim, batch_first=True)
-        self.fc = nn.Linear(hidden_dim, output_size)
-        self.max_text_length = max_text_length
+def train(train_loader, model, criterion, optimizer):
+    model.train()
+    loss_ = 0.0
+    losses = []
 
-    def forward(self, x):
-        x = self.embedding(x)
-        x = F.pad(
-            x, (0, self.max_text_length - x.size(1))
-        )  # Pad sequence to max length
-        _, (hidden, _) = self.lstm(x)
-        return self.fc(hidden[-1])
+    it_train = tqdm(
+        enumerate(train_loader),
+        total=len(train_loader),
+        desc="Training ...",
+        position=0,
+    )  # progress bar
+    for i, (images, labels) in it_train:
+        print(f"Image type: {type(images)}, Label type: {type(labels)}")
+        images, labels = images.to(device), labels.to(device)
+
+        # zero the gradient
+        # TO DO
+        optimizer.zero_grad()
+        # predict labels
+        # TO DO
+        outputs = model(images)
+        # compute loss
+        # TO DO
+        loss = criterion(outputs, labels)
+        # compute gradients
+        # TO DO
+        loss.backward()
+        # update weights
+        # TO DO
+        optimizer.step()
+        # keep track of losses
+        losses.append(loss)
+
+        # set text to display
+        it_train.set_description(f"loss: {loss:.3f}")
+
+    return torch.stack(losses).mean().item()
 
 
-class HybridNetwork(nn.Module):
-    def __init__(self, image_model, text_model, combined_output_size, num_classes):
-        super(HybridNetwork, self).__init__()
-        self.image_model = image_model
-        self.text_model = text_model
-        self.fc = nn.Sequential(
-            nn.Linear(combined_output_size, 512), nn.ReLU(), nn.Linear(512, num_classes)
-        )
+class LoteriaDataset(Dataset):
+    def __init__(self, csv_file, img_dir, transform=None):
+        self.data = pd.read_csv(csv_file)
+        self.img_dir = img_dir
+        self.transform = transform
+        self.label_map = {
+            label: idx for idx, label in enumerate(self.data["label"].unique())
+        }
 
-    def forward(self, image, text):
-        image_features = self.image_model(image)
-        text_features = self.text_model(text)
-        combined_features = torch.cat((image_features, text_features), dim=-1)
-        return self.fc(combined_features)
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        img_name = self.data.iloc[idx, 0]
+        img_path = os.path.join(self.img_dir, img_name)
+        image = Image.open(img_path).convert("RGB")
+        label = self.data.iloc[idx, 1]
+        label = self.label_map[label]
+
+        ## to show the image
+        # plt.imshow(image)
+        # plt.axis('off')
+        # plt.show()
+
+        if self.transform:
+            image = self.transform(image)
+        label = torch.tensor(label)
+
+        return image, label
 
 
 if __name__ == "__main__":
-
-    def simple_tokenizer(text):
-        return text.split()
 
     train_transform = transforms.Compose(
         [
@@ -134,85 +140,34 @@ if __name__ == "__main__":
         ]
     )
 
-    train_set = Dataset_Setup(
-        image_dir="/Users/laflame/SHPE TECH TEAM AI/AI_Loteria_24-25/loteria_dataset",
-        image_transform=train_transform,
-        text_tokenizer=simple_tokenizer,
+    csv_file = "loteria_dataset/loteria.csv"
+
+    img_dir = "loteria_dataset"
+    train_set = LoteriaDataset(
+        csv_file=csv_file, img_dir=img_dir, transform=train_transform
     )
 
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    print(f"Using device: {device}")
 
-    vocab_size = 5000  # Example size, adjust according to your tokenizer
-    embedding_dim = 128
-    hidden_dim = 256
-    num_classes = 100
-    combined_output_size = num_classes + hidden_dim
-
-    image_model = Network(num_classes=num_classes)
-    text_model = text_net(
-        vocab_size=vocab_size,
-        embedding_dim=embedding_dim,
-        hidden_dim=hidden_dim,
-        output_size=num_classes,
-        max_text_length=50,
-    )
-
-    model = HybridNetwork(
-        image_model=image_model,
-        text_model=text_model,
-        combined_output_size=combined_output_size,
-        num_classes=num_classes,
-    )
+    num_classes = len(train_set.data['label'].unique())
+    model = Network(num_classes=num_classes)
+    model.to(device)
     batch_size = 32
+
     train_loader = DataLoader(
-        train_set, batch_size=batch_size, shuffle=True, num_workers=0
+        train_set, batch_size=batch_size, shuffle=True, num_workers=1
     )
-    num_epochs = 10
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     lr_scheduler = lrs.StepLR(optimizer, step_size=5, gamma=0.1)
     criterion = nn.CrossEntropyLoss()
 
-    for epoch in range(num_epochs):  # Make sure `num_epochs` is defined
-        model.train()
+    # print(f"Dataset size: {len(train_set)}")
+    # print(f"Sample image shape: {train_set[0][1].shape}")
+    # print(f"Sample label: {train_set[0][1]}")
 
-        it_train = tqdm(
-            enumerate(train_loader),
-            total=len(train_loader),
-            desc="Training ...",
-            position=0,
-        )
-
-        for batch_idx, (images, texts) in it_train:
-            # Preprocess text (tokenize it)
-            # Ensure tokenization function is appropriate
-            tokenized_texts = [simple_tokenizer(text) for text in texts]
-
-            # Convert tokenized texts to tensor format if necessary
-            # For example, you could use padding or embeddings for your text
-            tokenized_texts = [
-                torch.tensor(text) for text in tokenized_texts
-            ]  # Example, adjust as needed
-
-            # Move data to device (GPU/CPU)
-            images = images.to(device)  # Make sure `device` is defined
-            tokenized_texts = [text.to(device) for text in tokenized_texts]
-
-            # Forward pass through the hybrid model
-            outputs = model(images, tokenized_texts)
-
-            # Assuming labels are provided in the dataset
-            labels = texts  # Example, change as per your actual dataset structure
-
-            # Compute the loss
-            loss = criterion(outputs, labels)
-
-            # Backpropagation and optimization
-            optimizer.zero_grad()  # Zero gradients from the previous step
-            loss.backward()  # Backpropagate the loss
-            optimizer.step()  # Update model weights
-
-            # Update learning rate
-            lr_scheduler.step()  # Step the learning rate scheduler
-
-            # Print loss for tracking progress
-            it_train.set_description(f"Epoch {epoch + 1}, Loss: {loss.item():.4f}")
+    num_epochs = 20
+    for epoch in tqdm(
+        range(num_epochs), total=num_epochs, desc="Training ...", position=1
+    ):
+        train_loss = train(train_loader, model, criterion, optimizer)
