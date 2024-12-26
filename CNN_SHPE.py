@@ -131,7 +131,12 @@ if __name__ == "__main__":
         csv_file=csv_file, img_dir=img_dir, transform=train_transform
     )
 
-    device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+    device = torch.device(
+        "cuda"
+        if torch.cuda.is_available()
+        else "mps" if torch.backends.mps.is_available() else "cpu"
+    )
+
     print(f"Using device: {device}")
 
     num_classes = len(train_set.data["label"].unique())
@@ -151,8 +156,8 @@ if __name__ == "__main__":
     # print(f"Sample image shape: {train_set[0][1].shape}")
     # print(f"Sample label: {train_set[0][1]}")
 
-    num_epochs = 20
-    for epoch in tqdm(
-        range(num_epochs), total=num_epochs, desc="Training ...", position=1
-    ):
-        train_loss = train(train_loader, model, criterion, optimizer)
+    # num_epochs = 20
+    # for epoch in tqdm(
+    #     range(num_epochs), total=num_epochs, desc="Training ...", position=1
+    # ):
+    #     train_loss = train(train_loader, model, criterion, optimizer)
