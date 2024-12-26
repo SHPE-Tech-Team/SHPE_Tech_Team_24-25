@@ -58,7 +58,6 @@ def train(train_loader, model, criterion, optimizer):
     model.train()
     loss_ = 0.0
     losses = []
-
     it_train = tqdm(
         enumerate(train_loader),
         total=len(train_loader),
@@ -68,28 +67,13 @@ def train(train_loader, model, criterion, optimizer):
     for i, (images, labels) in it_train:
         print(f"Image type: {type(images)}, Label type: {type(labels)}")
         images, labels = images.to(device), labels.to(device)
-
-        # zero the gradient
-        # TO DO
         optimizer.zero_grad()
-        # predict labels
-        # TO DO
         outputs = model(images)
-        # compute loss
-        # TO DO
         loss = criterion(outputs, labels)
-        # compute gradients
-        # TO DO
         loss.backward()
-        # update weights
-        # TO DO
         optimizer.step()
-        # keep track of losses
         losses.append(loss)
-
-        # set text to display
         it_train.set_description(f"loss: {loss:.3f}")
-
     return torch.stack(losses).mean().item()
 
 
@@ -141,8 +125,8 @@ if __name__ == "__main__":
     )
 
     csv_file = "loteria_dataset/loteria.csv"
-
     img_dir = "loteria_dataset"
+
     train_set = LoteriaDataset(
         csv_file=csv_file, img_dir=img_dir, transform=train_transform
     )
@@ -150,7 +134,7 @@ if __name__ == "__main__":
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    num_classes = len(train_set.data['label'].unique())
+    num_classes = len(train_set.data["label"].unique())
     model = Network(num_classes=num_classes)
     model.to(device)
     batch_size = 32
@@ -158,6 +142,7 @@ if __name__ == "__main__":
     train_loader = DataLoader(
         train_set, batch_size=batch_size, shuffle=True, num_workers=1
     )
+
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     lr_scheduler = lrs.StepLR(optimizer, step_size=5, gamma=0.1)
     criterion = nn.CrossEntropyLoss()
