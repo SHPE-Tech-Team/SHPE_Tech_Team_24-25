@@ -21,59 +21,28 @@ import pandas as pd
 
 
 class Network(nn.Module):
-    def __init__(self, num_classes=10, dropout=0.3):
+    def __init__(self, num_classes=54, dropout=0.5):
         super(Network, self).__init__()
-        self.features = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2),
-            nn.ReLU(inplace=True),
-            nn.MaxPool2d(kernel_size=3, stride=2),
-            nn.Conv2d(64, 256, kernel_size=5, padding=2),
-            nn.ReLU(inplace=True),
-            nn.MaxPool2d(kernel_size=3, stride=2),
-            nn.Conv2d(256, 256, kernel_size=3, padding=1),
-            nn.ReLU(inplace=True),
-            nn.MaxPool2d(kernel_size=3, stride=2),
-        )
+        # ResNet50 for feature extractor
+        self.backbone = resnet50(pretrained=True)
+        self.backbone.fc = nn.Identity()
 
-        self.avgpool = nn.AdaptiveAvgPool2d((6, 6))
         self.classifier = nn.Sequential(
             nn.Dropout(p=dropout),
-            nn.Linear(256 * 6 * 6, 512),
+            nn.Linear(2048, 1024),
             nn.ReLU(inplace=True),
+            nn.BatchNorm1d(1024),
             nn.Dropout(p=dropout),
-            nn.Linear(512, 512),
+            nn.Linear(1024, 512),
             nn.ReLU(inplace=True),
+            nn.BatchNorm1d(512),
             nn.Linear(512, num_classes),
         )
 
     def forward(self, x):
-        N, c, H, W = x.shape
-        features = self.features(x)
-        pooled_features = self.avgpool(features)
-        output = self.classifier(torch.flatten(pooled_features, 1))
-        return output
-
-
-def train(train_loader, model, criterion, optimizer):
-    model.train()
-    loss_ = 0.0
-    losses = []
-    it_train = tqdm(
-        enumerate(train_loader),
-        total=len(train_loader),
-        desc="Training ...",
-        position=0,
-    )  # progress bar
-    for i, (images, labels) in it_train:
-        images, labels = images.to(device), labels.to(device)
-        optimizer.zero_grad()
-        outputs = model(images)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
-        losses.append(loss)
-        it_train.set_description(f"loss: {loss:.3f}")
-    return torch.stack(losses).mean().item()
+        x = self.backbone(x)
+        x = self.classifier(x)
+        return x
 
 
 def train_model(
@@ -84,9 +53,8 @@ def train_model(
     val_losses = []
     train_accs = []
     val_accs = []
-
     for epoch in range(num_epochs):
-        # Training phase
+        # training phase
         model.train()
         running_loss = 0.0
         correct = 0
@@ -111,7 +79,7 @@ def train_model(
         train_losses.append(epoch_loss)
         train_accs.append(epoch_acc)
 
-        # Validation phase
+        # validation phase
         model.eval()
         val_loss = 0.0
         correct = 0
@@ -137,12 +105,39 @@ def train_model(
         print(f"Training Loss: {epoch_loss:.4f}, Training Accuracy: {epoch_acc:.2f}%")
         print(f"Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_acc:.2f}%")
 
-        # Save best model
+        # saving the best model
         if val_acc > best_val_acc:
             best_val_acc = val_acc
-            torch.save(model.state_dict(), "best_model.pth")
-
+            torch.save(
+                {
+                    "batch_size": batch_size,
+                    "epoch": num_epochs,
+                    "model_state_dict": model.state_dict(),
+                    "optimizer_state_dict": optimizer.state_dict(),
+                    "train_losses": train_losses,
+                    "val_losses": val_losses,
+                    "train_accs": train_accs,
+                    "val_accs": val_accs,
+                },
+                "best_model.pth",
+            )
     return train_losses, train_accs, val_losses, val_accs
+
+
+# plot accuracy
+def plot_accuracy(train, val, test_frequency, num_epochs):
+    indices = [
+        i
+        for i in range(num_epochs)
+        if ((i + 1) % test_frequency == 0 or i == 0 or i == 1)
+    ]
+    plt.plot(indices, train, label="train")
+    plt.plot(indices, val, label="val")
+    plt.title("Accuracy Plot")
+    plt.ylabel("Accuracy")
+    plt.xlabel("Epoch")
+    plt.legend()
+    plt.show()
 
 
 class LoteriaDataset(Dataset):
@@ -172,7 +167,6 @@ class LoteriaDataset(Dataset):
         if self.transform:
             image = self.transform(image)
         label = torch.tensor(label)
-
         return image, label
 
 
@@ -180,11 +174,14 @@ if __name__ == "__main__":
 
     train_transform = transforms.Compose(
         [
-            transforms.RandomResizedCrop(224),
+            transforms.Resize((256, 256)),  # Resize larger then crop
+            transforms.RandomCrop(224),
             transforms.RandomHorizontalFlip(),
+            transforms.RandomRotation(15),
             transforms.ColorJitter(
                 brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1
             ),
+            transforms.RandomAffine(degrees=0, translate=(0.1, 0.1)),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         ]
@@ -207,26 +204,31 @@ if __name__ == "__main__":
     num_classes = len(train_set.data["label"].unique())
     batch_size = 32
 
-    train_size = int(0.8 * len(train_set))
-    val_size = len(train_set) - train_size
-    train_dataset, val_dataset = random_split(train_set, [train_size, val_size])
-
+    # shuffle
     train_loader = DataLoader(
-        train_dataset, batch_size=batch_size, shuffle=True, num_workers=2
+        train_set,
+        batch_size=batch_size,
+        shuffle=True,
+        num_workers=3,
     )
+    # no shuffle
     val_loader = DataLoader(
-        val_dataset, batch_size=batch_size, shuffle=False, num_workers=2
+        train_set,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=3,
     )
 
     model = Network(num_classes=num_classes).to(device)
-    optimizer = optim.Adam(model.parameters(), lr=0.0001)
-    lr_scheduler = lrs.StepLR(optimizer, step_size=5, gamma=0.1)
+    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    lr_scheduler = lrs.StepLR(optimizer, step_size=10, gamma=0.5)
     criterion = nn.CrossEntropyLoss()
 
     num_epochs = 50
     train_losses, train_accs, val_losses, val_accs = train_model(
         model, train_loader, val_loader, criterion, optimizer, num_epochs, device
     )
+    plot_accuracy(train_accs, val_accs, 1, num_epochs)
 
     torch.save(
         {
