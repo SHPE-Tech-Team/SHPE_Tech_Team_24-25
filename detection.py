@@ -79,7 +79,7 @@ classes = [
     "LA SIRENA",
 ]
 
-
+# checking device
 device = torch.device(
     "cuda"
     if torch.cuda.is_available()
@@ -88,10 +88,7 @@ device = torch.device(
 print(f"Using device: {device}")
 model = Network(num_classes=54)
 checkpoint = torch.load("final_model.pth", weights_only=True)
-# Extract the model state dict
 model_state_dict = checkpoint["model_state_dict"]
-
-# Load the state dict into your model
 model.load_state_dict(model_state_dict)
 model.to(device)
 model.eval()
@@ -109,60 +106,91 @@ transform = transforms.Compose(
 )
 
 
+#
 def __draw_label(img, text, pos, bg_color):
     font_face = cv2.FONT_HERSHEY_SIMPLEX
     scale = 1
     color = (0, 0, 0)
-    thickness = 10
-    margin = 2
+    thickness = 2
+    margin = 5
     txt_size = cv2.getTextSize(text, font_face, scale, thickness)
 
-    end_x = pos[0] + txt_size[0][0] + margin
-    end_y = pos[1] - txt_size[0][1] - margin
+    end_x = pos[0] + txt_size[0][0] + margin * 2
+    end_y = pos[1] - txt_size[0][1] - margin * 2
 
-    cv2.rectangle(img, pos, (end_x, end_y), bg_color, thickness)
-    cv2.putText(img, text, pos, font_face, scale, color, 1, cv2.LINE_AA)
+    cv2.rectangle(img, (pos[0], end_y), (end_x, pos[1]), bg_color, -1)
+    text_pos = (pos[0] + margin, pos[1] - margin)
+
+    cv2.putText(img, text, text_pos, font_face, scale, color, thickness, cv2.LINE_AA)
+
+
+def frame_proccessing(frame, model, transform, device, min_confidence=0.2):
+    # convert to grayscale
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    # apply adaptive thresholding
+    blurred = cv2.GaussianBlur(gray, (7, 7), 0)
+    thresh = cv2.adaptiveThreshold(
+        blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 2
+    )
+
+    # find contours
+    contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    # sort contours by area (largest first)
+    contours = sorted(contours, key=cv2.contourArea, reverse=True)
+
+    # only process the largest contour that meets minimum size requirements
+    for contour in contours[:1]:  # only look at the largest contour
+        area = cv2.contourArea(contour)
+        if area < 1000:  # minimum area threshold
+            continue
+
+        # bounding rectangle
+        x, y, w, h = cv2.boundingRect(contour)
+
+        # checking aspect ratio
+        aspect_ratio = w / h
+        if not (0.5 <= aspect_ratio <= 2.0):  # Skip if aspect ratio is too extreme
+            continue
+
+        # expanding the box
+        padding = 20
+        x1 = max(0, x - padding)
+        y1 = max(0, y - padding)
+        x2 = min(frame.shape[1], x + w + padding)
+        y2 = min(frame.shape[0], y + h + padding)
+
+        # cropping image
+        cropped = frame[y1:y2, x1:x2]
+        if cropped.size == 0:
+            continue
+
+        # preparing input tensor for model
+        input_tensor = transform(cropped).unsqueeze(0).to(device)
+
+        # model predicts
+        with torch.no_grad():
+            outputs = model(input_tensor)
+            probabilities = F.softmax(outputs, dim=1)
+            confidence, predicted_idx = torch.max(probabilities, 1)
+
+            # only display prediction if confidence is high enough
+            if confidence.item() > min_confidence:
+                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                label = f"{classes[predicted_idx.item()]} ({confidence.item():.2f})"
+                __draw_label(frame, label, (x1, y1 - 10), (255, 255, 255))
+    return frame
+
+
 while True:
     ret, frame = cam.read()
-
     if not ret:
         break
 
-    # covert it to grayscale
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+    processed_frame = frame_proccessing(frame, model, transform, device)
+    cv2.imshow("preview", processed_frame)
 
-    # edge detection
-    edges = cv2.Canny(blurred, 50, 150)
-
-    # contours in the frame
-    contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-    # looping through contours and drawing bounding boxes
-    for contour in contours:
-        # Filter by contour size (optional)
-        if cv2.contourArea(contour) > 500:  # Adjust the area threshold as needed
-            x, y, w, h = cv2.boundingRect(contour)
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-
-            # Crop the detected region and preprocess it for the model
-            cropped = frame[y : y + h, x : x + w]
-            input_tensor = transform(cropped).unsqueeze(0).to(device)
-
-            # Make prediction
-            with torch.no_grad():
-                prediction = model(input_tensor)
-
-            _, predicted_idx = torch.max(prediction, 1)
-            predicted_label = f"Class {classes[predicted_idx.item()]}"
-
-            # drawing label on the box
-            __draw_label(frame, predicted_label, (x, y - 10), (255, 255, 255))
-
-    # update framw
-    cv2.imshow("preview", frame)
-
-    # breaking loop
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
