@@ -18,6 +18,7 @@ import torch.optim as optim
 from torch.nn.utils.rnn import pad_sequence
 from torch.nn import functional as F
 import pandas as pd
+from torchvision.models import resnet50
 
 
 class Network(nn.Module):
@@ -106,21 +107,21 @@ def train_model(
         print(f"Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_acc:.2f}%")
 
         # saving the best model
-        if val_acc > best_val_acc:
-            best_val_acc = val_acc
-            torch.save(
-                {
-                    "batch_size": batch_size,
-                    "epoch": num_epochs,
-                    "model_state_dict": model.state_dict(),
-                    "optimizer_state_dict": optimizer.state_dict(),
-                    "train_losses": train_losses,
-                    "val_losses": val_losses,
-                    "train_accs": train_accs,
-                    "val_accs": val_accs,
-                },
-                "best_model.pth",
-            )
+        # if val_acc > best_val_acc:
+        #     best_val_acc = val_acc
+        #     torch.save(
+        #         {
+        #             "batch_size": batch_size,
+        #             "epoch": num_epochs,
+        #             "model_state_dict": model.state_dict(),
+        #             "optimizer_state_dict": optimizer.state_dict(),
+        #             "train_losses": train_losses,
+        #             "val_losses": val_losses,
+        #             "train_accs": train_accs,
+        #             "val_accs": val_accs,
+        #         },
+        #         "best_model.pth",
+        #     )
     return train_losses, train_accs, val_losses, val_accs
 
 
