@@ -138,7 +138,7 @@ def plot_accuracy(train, val, test_frequency, num_epochs):
     plt.ylabel("Accuracy")
     plt.xlabel("Epoch")
     plt.legend()
-    plt.show()
+    plt.show(block=False)
 
 
 class LoteriaDataset(Dataset):
