@@ -106,7 +106,7 @@ transform = transforms.Compose(
 )
 
 
-#
+
 def __draw_label(img, text, pos, bg_color):
     font_face = cv2.FONT_HERSHEY_SIMPLEX
     scale = 1
