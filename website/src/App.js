@@ -1,18 +1,11 @@
-import React,{ useState, useEffect, use }from "react";
-
+import React,{ useState, useEffect, useRef }from "react";
+import ObjectDetection from './camera';
 
 function App() {
-  const [data, setData] = useState([{}]);
-  useEffect(() => {
-    fetch("/predict")
-      .then((res) => res.json())
-      .then((data) => {setData(data)
-      console.log(data)
-      });
-  }, []);
   return (
     <div>
       <h1>Hello, World!</h1>
+      <ObjectDetection />
     </div>
   );
 }

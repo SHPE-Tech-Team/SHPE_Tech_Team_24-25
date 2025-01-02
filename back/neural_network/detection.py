@@ -19,7 +19,8 @@ from torch.nn.utils.rnn import pad_sequence
 from torch.nn import functional as F
 import pandas as pd
 import cv2
-from CNN_SHPE import Network
+# from teddy_AI import Network
+from back.neural_network.teddy_AI import Network
 
 
 classes = [
@@ -87,7 +88,8 @@ device = torch.device(
 )
 print(f"Using device: {device}")
 model = Network(num_classes=54)
-checkpoint = torch.load("final_model.pth", weights_only=True)
+model_path = os.path.join(os.path.dirname(__file__), "final_model.pth")
+checkpoint = torch.load(model_path, weights_only=True)
 model_state_dict = checkpoint["model_state_dict"]
 model.load_state_dict(model_state_dict)
 model.to(device)
@@ -104,7 +106,6 @@ transform = transforms.Compose(
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ]
 )
-
 
 
 def __draw_label(img, text, pos, bg_color):
@@ -182,17 +183,26 @@ def frame_proccessing(frame, model, transform, device, min_confidence=0.2):
                 __draw_label(frame, label, (x1, y1 - 10), (255, 255, 255))
     return frame
 
+def camera_feed():
+    while True:
+        ret, frame = cam.read()
+        if not ret:
+            break
 
-while True:
-    ret, frame = cam.read()
-    if not ret:
-        break
+        processed_frame = frame_proccessing(frame, model, transform, device)
+        # cv2.imshow("preview", processed_frame)
 
-    processed_frame = frame_proccessing(frame, model, transform, device)
-    cv2.imshow("preview", processed_frame)
+        ret, buffer = cv2.imencode('.jpg', processed_frame)
+        frame_bytes = buffer.tobytes()
+        
+        # Yield the frame in the format expected by Flask
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
-    if cv2.waitKey(1) & 0xFF == ord("q"):
-        break
+        if cv2.waitKey(1) & 0xFF == ord("q"):
+            break
 
-cam.release()
-cv2.destroyAllWindows()
+        
+
+    cam.release()
+    cv2.destroyAllWindows()
