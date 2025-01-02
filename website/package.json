@@ -36,11 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-<<<<<<< HEAD
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
-=======
->>>>>>> 421467b46deeb0ff91f615eedf861c478ec918bf
   }
 }

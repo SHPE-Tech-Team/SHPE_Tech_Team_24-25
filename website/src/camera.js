@@ -4,9 +4,18 @@ import React, { useEffect, useRef } from 'react';
 const ObjectDetection = () => {
   const videoRef = useRef(null);
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.src = 'http://localhost:5000/predict';
+    const load_video =  () => {
+      if (videoRef.current) {
+        videoRef.current.src = 'http://localhost:5000/predict';
+
+
+        videoRef.current.onerror = () => {
+          console.error("Error loading video feed. Check the backend stream.");
+          setTimeout(load_video, 5000);
+        };
+      }
     }
+    load_video();
   }, []);
 
   return (

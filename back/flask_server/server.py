@@ -8,7 +8,7 @@ import back.neural_network.detection as detection
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.route("/predict")
