@@ -18,14 +18,15 @@ import torch.optim as optim
 from torch.nn.utils.rnn import pad_sequence
 from torch.nn import functional as F
 import pandas as pd
-from torchvision.models import resnet50
+from torchvision.models import resnet50, ResNet50_Weights
 
 
 class Network(nn.Module):
     def __init__(self, num_classes=54, dropout=0.5):
         super(Network, self).__init__()
         # ResNet50 for feature extractor
-        self.backbone = resnet50(pretrained=True)
+        # self.backbone = resnet50(pretrained=True)
+        self.backbone = resnet50(weights=ResNet50_Weights.DEFAULT)
         self.backbone.fc = nn.Identity()
 
         self.classifier = nn.Sequential(

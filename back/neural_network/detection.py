@@ -18,7 +18,9 @@ import torch.optim as optim
 from torch.nn.utils.rnn import pad_sequence
 from torch.nn import functional as F
 import pandas as pd
+import time
 import cv2
+
 # from teddy_AI import Network
 from back.neural_network.teddy_AI import Network
 
@@ -124,8 +126,11 @@ def __draw_label(img, text, pos, bg_color):
 
     cv2.putText(img, text, text_pos, font_face, scale, color, thickness, cv2.LINE_AA)
 
+prediction_data = {}
+def frame_proccessing(frame, model, transform, device, min_confidence=1):
+    global prediction_data
+    current_prediction = None
 
-def frame_proccessing(frame, model, transform, device, min_confidence=0.2):
     # convert to grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -175,13 +180,43 @@ def frame_proccessing(frame, model, transform, device, min_confidence=0.2):
             outputs = model(input_tensor)
             probabilities = F.softmax(outputs, dim=1)
             confidence, predicted_idx = torch.max(probabilities, 1)
+            print("probabilities: ", probabilities) 
 
             # only display prediction if confidence is high enough
             if confidence.item() > min_confidence:
+                # cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                # label = f"{classes[predicted_idx.item()]} ({confidence.item():.2f})"
+                # __draw_label(frame, label, (x1, y1 - 10), (255, 255, 255))
+                current_prediction = {
+                    "probabilities": probabilities.cpu().numpy().tolist(),
+                    "predicted_idx": predicted_idx.item(),
+                    "confidence": confidence.item(),
+                    "class": classes[predicted_idx.item()],
+                }
+                print(f"Prediction: {current_prediction}")
+
+                # Draw the label on the frame
+                label = (
+                    f"{current_prediction['class']} ({current_prediction['confidence']:.2f})"
+                )
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                label = f"{classes[predicted_idx.item()]} ({confidence.item():.2f})"
                 __draw_label(frame, label, (x1, y1 - 10), (255, 255, 255))
+
+            # Save the prediction data outside the contour loop
+            if current_prediction:
+                prediction_data[time.time()] = current_prediction
+                print(f"Prediction added: {current_prediction}")
+  
+            if not prediction_data:
+                timestamp = time.time()
+                prediction_data[timestamp] = {
+                    "probabilities": [0] * len(classes),  # Assuming 'classes' is defined
+                    "predicted_idx": 0,
+                    "confidence": 0,
+                    "class": 'none',
+                }
     return frame
+
 
 def camera_feed():
     while True:
@@ -192,17 +227,16 @@ def camera_feed():
         processed_frame = frame_proccessing(frame, model, transform, device)
         # cv2.imshow("preview", processed_frame)
 
-        ret, buffer = cv2.imencode('.jpg', processed_frame)
+        ret, buffer = cv2.imencode(".jpg", processed_frame)
         frame_bytes = buffer.tobytes()
-        
+
         # Yield the frame in the format expected by Flask
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+        yield (
+            b"--frame\r\n" b"Content-Type: image/jpeg\r\n\r\n" + frame_bytes + b"\r\n"
+        )
 
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
-
-        
 
     cam.release()
     cv2.destroyAllWindows()

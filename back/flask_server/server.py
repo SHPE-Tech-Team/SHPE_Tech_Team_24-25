@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, Response
+from flask_cors import CORS
 import sys
 import os
 
@@ -7,6 +8,7 @@ import back.neural_network.detection as detection
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/predict")
@@ -14,6 +16,11 @@ def predict():
     return Response(
         detection.camera_feed(), mimetype="multipart/x-mixed-replace; boundary=frame"
     )
+
+
+# @app.route("/predict/data")
+# def predict_data():
+#     return jsonify(detection.prediction_data)
 
 
 if __name__ == "__main__":
