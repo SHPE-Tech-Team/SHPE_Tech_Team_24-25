@@ -32,14 +32,20 @@
   from {
     transform: rotate(0deg);
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 421467b46deeb0ff91f615eedf861c478ec918bf
   to {
     transform: rotate(360deg);
   }
 }
+<<<<<<< HEAD
 
 
 .video-container {
   height: 100px;
   width: 100px;
 }
+=======
+>>>>>>> 421467b46deeb0ff91f615eedf861c478ec918bf
