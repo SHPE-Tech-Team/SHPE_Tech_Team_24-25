@@ -2,21 +2,25 @@ import React,{ useState, useEffect }from "react";
 import ObjectDetection from './camera';
 
 function App() {
-  // const [data, setData] = useState(null);
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await fetch("http://localhost:8080/data");
+      result.json().then(json => {
+        console.log(json.data)
+        setData(json.data)
 
-  // useEffect(() => {
-  //   fetch("/predict/data")
-  //     .then(response => response.json())
-  //     .then(data => {console.log("Received data:", data)
-  //       setData(data)})
-
-  //     .catch(error => console.error('Error fetching data:', error));
-  // });
+      })
+    };
+    fetchData();
+  }, []);
   return (
     <div>
       <h1>Hello, World!</h1>
       <ObjectDetection />
-      {/* <p>{data.probabilities}</p> */}
+      <p style={{ color: "blue", fontSize: "18px" }}>
+        {data && data.confidence !== undefined ? data.confidence : "Loading data..."}
+      </p>
     </div>
   );
 }

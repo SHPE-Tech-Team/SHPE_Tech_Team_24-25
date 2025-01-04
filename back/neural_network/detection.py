@@ -20,6 +20,7 @@ from torch.nn import functional as F
 import pandas as pd
 import time
 import cv2
+import requests
 
 # from teddy_AI import Network
 from back.neural_network.teddy_AI import Network
@@ -126,8 +127,11 @@ def __draw_label(img, text, pos, bg_color):
 
     cv2.putText(img, text, text_pos, font_face, scale, color, thickness, cv2.LINE_AA)
 
+
 prediction_data = {}
-def frame_proccessing(frame, model, transform, device, min_confidence=1):
+
+
+def frame_proccessing(frame, model, transform, device, min_confidence=0.5):
     global prediction_data
     current_prediction = None
 
@@ -180,51 +184,39 @@ def frame_proccessing(frame, model, transform, device, min_confidence=1):
             outputs = model(input_tensor)
             probabilities = F.softmax(outputs, dim=1)
             confidence, predicted_idx = torch.max(probabilities, 1)
-            print("probabilities: ", probabilities) 
 
             # only display prediction if confidence is high enough
             if confidence.item() > min_confidence:
-                # cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                # label = f"{classes[predicted_idx.item()]} ({confidence.item():.2f})"
-                # __draw_label(frame, label, (x1, y1 - 10), (255, 255, 255))
-                current_prediction = {
-                    "probabilities": probabilities.cpu().numpy().tolist(),
-                    "predicted_idx": predicted_idx.item(),
-                    "confidence": confidence.item(),
-                    "class": classes[predicted_idx.item()],
-                }
-                print(f"Prediction: {current_prediction}")
-
+                predicted_class = classes[predicted_idx.item()]
                 # Draw the label on the frame
-                label = (
-                    f"{current_prediction['class']} ({current_prediction['confidence']:.2f})"
-                )
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                # label = f"{current_prediction['class']} ({current_prediction['confidence']:.2f})"
+                label = f"{classes[predicted_idx.item()]} ({confidence.item():.2f})"
                 __draw_label(frame, label, (x1, y1 - 10), (255, 255, 255))
 
-            # Save the prediction data outside the contour loop
-            if current_prediction:
-                prediction_data[time.time()] = current_prediction
-                print(f"Prediction added: {current_prediction}")
-  
-            if not prediction_data:
-                timestamp = time.time()
-                prediction_data[timestamp] = {
-                    "probabilities": [0] * len(classes),  # Assuming 'classes' is defined
-                    "predicted_idx": 0,
-                    "confidence": 0,
-                    "class": 'none',
-                }
+                try:
+                    requests.post(
+                        "http://localhost:5000/update_prediction",
+                        json={
+                            "confidence": confidence.item(),
+                            "class": predicted_class,
+                            "predicted_idx": predicted_idx.item(),
+                        },
+                    )
+                except Exception as e:
+                    print(f"Failed to update prediction: {e}")
     return frame
 
 
-def camera_feed():
+def camera_feed(sheesh):
     while True:
         ret, frame = cam.read()
         if not ret:
             break
 
-        processed_frame = frame_proccessing(frame, model, transform, device)
+        processed_frame = None
+        if sheesh:
+            processed_frame = frame_proccessing(frame, model, transform, device)
         # cv2.imshow("preview", processed_frame)
 
         ret, buffer = cv2.imencode(".jpg", processed_frame)

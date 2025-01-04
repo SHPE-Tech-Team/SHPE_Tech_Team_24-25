@@ -1,21 +1,31 @@
-import React, { useEffect, useRef } from 'react';
-
+import React, { useEffect, useRef, useState } from 'react';
 
 const ObjectDetection = () => {
   const videoRef = useRef(null);
+  const [detectionResult, setDetectionResult] = useState(null);
+
   useEffect(() => {
-    const load_video =  () => {
+    const fetchVideoStream = () => {
       if (videoRef.current) {
-        videoRef.current.src = 'http://localhost:5000/predict';
-
-
-        videoRef.current.onerror = () => {
-          console.error("Error loading video feed. Check the backend stream.");
-          setTimeout(load_video, 5000);
-        };
+        videoRef.current.src = 'http://localhost:8080/predict';
       }
-    }
-    load_video();
+    };
+
+    fetchVideoStream();
+
+    const fetchDetectionData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/data');
+        const data = await response.json();
+        setDetectionResult(data.data);
+      } catch (error) {
+        console.error('Error fetching detection data:', error);
+      }
+    };
+
+    const intervalId = setInterval(fetchDetectionData, 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
@@ -24,9 +34,15 @@ const ObjectDetection = () => {
       <img
         ref={videoRef}
         alt="Video feed"
-        width="50%" 
-        height="auto" 
+        width="720"
+        height="480"
       />
+      {detectionResult && (
+        <div>
+          <p>Detected: {detectionResult.class}</p>
+          <p>Confidence: {detectionResult.confidence.toFixed(2)}</p>
+        </div>
+      )}
     </div>
   );
 };
