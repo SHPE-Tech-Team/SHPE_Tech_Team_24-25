@@ -231,7 +231,7 @@ def camera_feed():
 
         ret, buffer = cv2.imencode(".jpg", processed_frame)
         frame_bytes = buffer.tobytes()
-
+##SHEHEHS
         # Yield the frame in the format expected by Flask
         yield (
             b"--frame\r\n" b"Content-Type: image/jpeg\r\n\r\n" + frame_bytes + b"\r\n"
