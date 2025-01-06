@@ -1,6 +1,9 @@
-from flask import Flask, request, jsonify, Response,current_app
+from flask import Flask, request, jsonify, Response, current_app
 from flask_cors import CORS
 import sys
+from flask_socketio import SocketIO, emit
+import socketio
+import threading
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -19,19 +22,21 @@ CORS(
     },
 )
 
-# prediction_data = {
-#     "data": {
-#         "confidence": 0.0,
-#         "class": "none",
-#         "predicted_idx": -1,
-#     }
-# }
+prediction_data = {
+    "data": {
+        "confidence": 0.0,
+        "class": "none",
+        "predicted_idx": -1,
+    }
+}
+socketio = SocketIO(app, cors_allowed_origins="http://localhost:3000")
 
 
+# @socketio.on("/predict")
 @app.route("/predict")
 def predict():
     return Response(
-        detection.camera_feed(True),
+        detection.camera_feed(),
         mimetype="multipart/x-mixed-replace; boundary=frame",
         headers={
             "Cache-Control": "no-cache, no-store, must-revalidate",
@@ -42,45 +47,17 @@ def predict():
     )
 
 
-# @app.route("/data")
-# def fetch_data():
-# return jsonify(prediction_data)
-
-
 @app.route("/data")
 def fetch_data():
-    if hasattr(current_app, "prediction_data"):
-        return jsonify(current_app.prediction_data)
-    else:
-        return jsonify(
-            {"data": {"confidence": 0.0, "class": "none", "predicted_idx": -1}}
-        )
+    return jsonify(prediction_data)
 
 
-@app.route("/update_prediction", methods=["POST", "GET"])
-def update_prediction():
-    if request.method == "POST":
-        try:
-            data = request.json
-            app.logger.info(f"Received POST data: {data}")
-
-            # Store the updated data in the application context
-            if not hasattr(current_app, "prediction_data"):
-                current_app.prediction_data = {"data": {}}
-            current_app.prediction_data["data"].update(data)
-
-            return jsonify({"status": "success"})
-        except Exception as e:
-            app.logger.error(f"Error processing POST request: {e}")
-            return jsonify({"status": "error", "message": str(e)}), 400
-    else:
-        # Handle GET request - return current prediction data
-        app.logger.info("Received GET request to update_prediction")
-        if hasattr(current_app, "prediction_data"):
-            return jsonify(current_app.prediction_data)
-        else:
-            return jsonify({"data": {}})
+@socketio.on("connect")
+def handle_connect():
+    print("Client connected")
+    socketio.send("Connected")
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8080)
+    # app.run(debug=True, host="0.0.0.0", port=8080)
+    socketio.run(app, debug=True, host="0.0.0.0", port=8080)

@@ -21,6 +21,9 @@ import pandas as pd
 import time
 import cv2
 import requests
+import socketio
+
+
 
 # from teddy_AI import Network
 from back.neural_network.teddy_AI import Network
@@ -133,7 +136,7 @@ prediction_data = {}
 
 def frame_proccessing(frame, model, transform, device, min_confidence=0.5):
     global prediction_data
-    current_prediction = None
+    prediction_data = {}
 
     # convert to grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -194,30 +197,37 @@ def frame_proccessing(frame, model, transform, device, min_confidence=0.5):
                 label = f"{classes[predicted_idx.item()]} ({confidence.item():.2f})"
                 __draw_label(frame, label, (x1, y1 - 10), (255, 255, 255))
 
-                try:
-                    requests.post(
-                        "http://localhost:5000/update_prediction",
-                        json={
-                            "confidence": confidence.item(),
-                            "class": predicted_class,
-                            "predicted_idx": predicted_idx.item(),
-                        },
-                    )
-                except Exception as e:
-                    print(f"Failed to update prediction: {e}")
+                # try:
+                #     requests.post(
+                #         "http://localhost:5000/update_prediction",
+                #         json={
+                #             "confidence": confidence.item(),
+                #             "class": predicted_class,
+                #             "predicted_idx": predicted_idx.item(),
+                #         },
+                #     )
+                # except Exception as e:
+                #     print(f"Failed to update prediction: {e}")
+                prediction_data = {
+                    "confidence": confidence.item(),
+                    "class": predicted_class,
+                    "predicted_idx": predicted_idx.item(),
+                }
     return frame
 
 
-def camera_feed(sheesh):
+
+def camera_feed():
     while True:
         ret, frame = cam.read()
         if not ret:
             break
 
-        processed_frame = None
-        if sheesh:
-            processed_frame = frame_proccessing(frame, model, transform, device)
+        processed_frame = frame_proccessing(frame, model, transform, device)
         # cv2.imshow("preview", processed_frame)
+        # if prediction_data:
+        #     # Emit predictions via WebSocket
+        #     socketio.emit("prediction_data", prediction_data)
 
         ret, buffer = cv2.imencode(".jpg", processed_frame)
         frame_bytes = buffer.tobytes()
