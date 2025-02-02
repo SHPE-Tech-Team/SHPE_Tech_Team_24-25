@@ -1,0 +1,15 @@
+torch
+torchvision
+matplotlib
+tqdm
+pytesseract
+Pillow
+numpy
+tokenizers
+pandas
+opencv-python
+requests
+python-socketio
+Flask
+Flask-CORS
+Flask-SocketIO
