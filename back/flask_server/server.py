@@ -7,11 +7,12 @@ import threading
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+import back.neural_network.detection as detection
+
+
 
 ## for docker purposes
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-import back.neural_network.detection as detection
-
 # for docker purposes
 # from neural_network import detection
 

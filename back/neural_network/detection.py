@@ -27,7 +27,7 @@ import socketio
 # from teddy_AI import Network
 from back.neural_network.teddy_AI import Network
 
-#for docker purposes
+# for docker purposes
 # from neural_network.teddy_AI import Network
 
 
@@ -90,17 +90,19 @@ classes = [
 
 # checking device
 device = torch.device(
-    "cuda"
-    if torch.cuda.is_available()
-    else "mps" if torch.backends.mps.is_available() else "cpu"
+    "cuda" if torch.cuda.is_available() else
+    "mps" if torch.backends.mps.is_available() else
+    "cpu"
 )
 
+### for docker purposes line below
 # device = torch.device("cpu")
 print(f"Using device: {device}")
 model = Network(num_classes=54)
 model_path = os.path.join(os.path.dirname(__file__), "final_model.pth")
-# checkpoint = torch.load(model_path, weights_only=True)
-checkpoint = torch.load(model_path, map_location=torch.device("cpu"), weights_only=True)
+checkpoint = torch.load(model_path, map_location=device, weights_only=True)
+
+
 model_state_dict = checkpoint["model_state_dict"]
 model.load_state_dict(model_state_dict)
 model.to(device)
