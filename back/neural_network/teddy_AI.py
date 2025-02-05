@@ -201,6 +201,7 @@ if __name__ == "__main__":
         if torch.cuda.is_available()
         else "mps" if torch.backends.mps.is_available() else "cpu"
     )
+    # device = torch.device("cpu")
     print(f"Using device: {device}")
 
     num_classes = len(train_set.data["label"].unique())

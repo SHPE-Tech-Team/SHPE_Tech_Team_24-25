@@ -84,7 +84,7 @@ const ObjectDetection = () => {
 
   return (
     <div>
-      <h2>Object Detection</h2>
+      <h2>Card Detection</h2>
       <img
         ref={videoRef}
         alt="Video feed"

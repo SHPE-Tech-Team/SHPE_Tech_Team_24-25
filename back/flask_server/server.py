@@ -10,6 +10,13 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 import back.neural_network.detection as detection
 
 
+
+## for docker purposes
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# for docker purposes
+# from neural_network import detection
+
+
 app = Flask(__name__)
 CORS(
     app,
@@ -59,5 +66,5 @@ def handle_connect():
 
 
 if __name__ == "__main__":
-    # app.run(debug=True, host="0.0.0.0", port=8080)
-    socketio.run(app, debug=True, host="0.0.0.0", port=8080)
+    app.run(debug=True, host="0.0.0.0", port=8080)
+    # socketio.run(app, debug=True, host="0.0.0.0", port=8080)

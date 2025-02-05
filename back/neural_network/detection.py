@@ -24,9 +24,11 @@ import requests
 import socketio
 
 
-
 # from teddy_AI import Network
 from back.neural_network.teddy_AI import Network
+
+# for docker purposes
+# from neural_network.teddy_AI import Network
 
 
 classes = [
@@ -88,14 +90,19 @@ classes = [
 
 # checking device
 device = torch.device(
-    "cuda"
-    if torch.cuda.is_available()
-    else "mps" if torch.backends.mps.is_available() else "cpu"
+    "cuda" if torch.cuda.is_available() else
+    "mps" if torch.backends.mps.is_available() else
+    "cpu"
 )
+
+### for docker purposes line below
+# device = torch.device("cpu")
 print(f"Using device: {device}")
 model = Network(num_classes=54)
 model_path = os.path.join(os.path.dirname(__file__), "final_model.pth")
-checkpoint = torch.load(model_path, weights_only=True)
+checkpoint = torch.load(model_path, map_location=device, weights_only=True)
+
+
 model_state_dict = checkpoint["model_state_dict"]
 model.load_state_dict(model_state_dict)
 model.to(device)
@@ -216,7 +223,6 @@ def frame_proccessing(frame, model, transform, device, min_confidence=0.5):
     return frame
 
 
-
 def camera_feed():
     while True:
         ret, frame = cam.read()
@@ -231,7 +237,7 @@ def camera_feed():
 
         ret, buffer = cv2.imencode(".jpg", processed_frame)
         frame_bytes = buffer.tobytes()
-
+        ##SHEHEHS
         # Yield the frame in the format expected by Flask
         yield (
             b"--frame\r\n" b"Content-Type: image/jpeg\r\n\r\n" + frame_bytes + b"\r\n"
