@@ -5,9 +5,9 @@ import RealtimePrediction from './data_predi';
 function App() {
   return (
     <div>
-      <h1>Hello, World!</h1>
+      <h1>AI LOTERIA - LA FLAME 🔥</h1>
       <ObjectDetection />
-      <RealtimePrediction />
+      <RealtimePrediction /> 
     </div>
   );
 }
