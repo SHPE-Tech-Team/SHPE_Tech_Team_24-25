@@ -7,7 +7,8 @@ import threading
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-import back.neural_network.detection as detection
+# import back.neural_network.detection as detection
+from back.neural_network import detection
 
 
 app = Flask(__name__)
