@@ -50,7 +50,7 @@ cd back/flask_server
 ```
 python3 server.py
 ```
-**Option 2:** Alternatively, you can open server.py in an IDE like VSCode and simply click the play button on the top right corner to run the server.
+**Option 2:** Alternatively, you can open server.py in an IDE like VSCode and click the play button on the top right corner.
 
 ## Frontend Setup
 
