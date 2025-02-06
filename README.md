@@ -58,6 +58,11 @@ python3 server.py
 
 Make sure Docker is installed on your machine.
 
+**Step 2** Change Directory
+```
+cd website
+```
+
 **Step 2:** Build the Frontend Docker Image
 
 Once Docker is installed, open another terminal window and navigate to your project directory. Then build the Docker image for the frontend:
