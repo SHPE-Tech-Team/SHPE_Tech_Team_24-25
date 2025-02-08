@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  react-app:
+    image: loteria_backend:l_back
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/user/src/Loteria_frontend:delegated
+      - /user/src/Loteria_frontend/node_modules/
+    stdin_open: true
