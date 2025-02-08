@@ -68,7 +68,7 @@ docker build -t loteria_frontend:l_front .
 
 Start the frontend container by running the following command:
 ```
-docker run -p 3000:3000 loteria_frontend:l_front
+docker compose up 
 ```
 **Step 4:** Access the Frontend in Your Browser
 
