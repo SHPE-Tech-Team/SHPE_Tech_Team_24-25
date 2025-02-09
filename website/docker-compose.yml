@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   react-app:
-    image: loteria_backend:l_back
+    image: loteria_front:l_front
     ports:
       - "3000:3000"
     volumes:
