@@ -11,9 +11,9 @@ This guide will walk you through setting up the backend and frontend of the proj
 ## Backend Setup
 **Step 1:** Create a Python Virtual Environment
 
-Open a terminal and create a Python virtual environment. Replace `<myenvpath>` with your desired environment name (e.g., myenv):
+Open a terminal and create a Python virtual environment. We recommend using venv for the directory name for consistency with .gitignore:
 ```
-python3 -m venv <myenvpath>
+python3 -m venv venv
 ```
 
 **Step 2:** Activate Python Enviroment
@@ -22,13 +22,13 @@ python3 -m venv <myenvpath>
 
 Activate the virtual environment with the following command:
 ```
-source `<myenvpath>`/bin/activate
+source venv/bin/activate
 ```
 **On Windows:**
 
 Activate the virtual environment with this command:
 ```
-`<myenvpath>`\Scripts\activate
+venv\Scripts\activate
 ```
 Once activated, your terminal should show the virtual environment's name in the prompt.
 
@@ -36,7 +36,7 @@ Once activated, your terminal should show the virtual environment's name in the 
 
 Once the virtual environment is set up, activate it (see below for activation commands depending on your OS) and install the required dependencies:
 ```
-pip install -r requirements.txt
+pip install -r back/requirements.txt
 ```
 
 **Step 4:** Run the Backend Server
