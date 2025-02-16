@@ -6,6 +6,8 @@ function App() {
   return (
     <div>
       <h1>AI LOTERIA - LA FLAME🔥</h1>
+      <h1>Alonso is a better programmer than Kevin</h1>
+
       <ObjectDetection />
       <RealtimePrediction /> 
     </div>
