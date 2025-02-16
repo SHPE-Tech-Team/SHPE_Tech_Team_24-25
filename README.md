@@ -8,6 +8,23 @@ This project brings a new approach to the popular Latin American game Lotería. 
 
 This guide will walk you through setting up the backend and frontend of the project. For the backend, we'll skip the Docker setup for Mac users due to limitations, and instead focus on Docker for the frontend.
 
+## Repository Setup
+**Step 1:** Install [Git](https://git-scm.com/downloads) and install [VSCode](https://code.visualstudio.com/download)
+
+Git needs to be installed on your system to be able to clone the repository and commit/push your changes.
+
+VSCode is our recommended IDE, as our team has more familiarity with it. It has excellent functionality with Git Bash.
+
+**Step 2:** Login to GitHub via terminal
+
+Open a terminal (in VSCode via *Ctrl+Shift+`* or *Terminal->New Terminal* or on your system with Git Bash/Terminal) and run the following:
+```
+git config --global user.name "your_github_username"
+git config --global user.email "your_email@domain.com"
+```
+This will allow you to commit changes and push them to the repository.
+
+
 ## Backend Setup
 **Step 1:** Create a Python Virtual Environment
 
@@ -58,24 +75,28 @@ python3 server.py
 
 Make sure Docker is installed on your machine.
 
-**Step 2** Change Directory
+**On Windows:**
+
+Install WSL on your system. Installing Docker should prompt this by itself, but WSL is necessary to run Docker containers.
+
+**Step 2:** Change Directory
 ```
 cd website
 ```
 
-**Step 2:** Build the Frontend Docker Image
+**Step 3:** Build the Frontend Docker Image
 
 Once Docker is installed, open another terminal window and navigate to your project directory. Then build the Docker image for the frontend:
 ```
 docker build -t loteria_frontend:l_front .
 ```
-**Step 3:** Run the Frontend Docker Container
+**Step 4:** Run the Frontend Docker Container
 
 Start the frontend container by running the following command:
 ```
 docker compose up 
 ```
-**Step 4:** Access the Frontend in Your Browser
+**Step 5:** Access the Frontend in Your Browser
 
 Open your web browser and go to the following URL to view the frontend:
 ```
