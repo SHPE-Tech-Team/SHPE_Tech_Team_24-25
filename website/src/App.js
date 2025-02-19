@@ -20,11 +20,12 @@ function Myvideo() {
 
 function App() {
   return (
-    <div>
       <div style = {{textAlign: 'center'}}>
         <h1>SHPE TECH TEAM - AI Loteria</h1>
-        <MyComponent />
-        <Myvideo />
+
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+          <MyComponent />
+          <Myvideo />
       </div>
 
       
