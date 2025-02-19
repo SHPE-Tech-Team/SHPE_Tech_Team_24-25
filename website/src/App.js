@@ -3,10 +3,12 @@ import ObjectDetection from './camera';
 import RealtimePrediction from './data_predi';
 import myImage from "./loteria.png";
 import myVid from "./print.mp4";
+import './App.css';
+
 
 
 function MyComponent() {
-  return <img src={myImage} alt = "3D Printing" width = '900' height = '500' />;
+  return <img src="https://www.google.com/logos/doodles/2019/celebrating-loteria-6753651837108226.3-2xa.gif" alt = "3D Printing" width = '900' height = '500' />;
 }
 
 function Myvideo() {
@@ -19,17 +21,18 @@ function Myvideo() {
 
 function App() {
   return (
-      <div style = {{textAlign: 'center', backgroundColor: '#041E42', color: 'white', minHeight: '100vh', padding: '20px'}}>
-        <h1 style = {{fontSize: '50px'}}>SHPE TECH TEAM - AI Loteria</h1>
+      <div style = {{textAlign: 'center'}}>
 
+        <h1>SHPE TECH TEAM - AI Loteria</h1>
+        <MyComponent />
+        <div className="video-container">
+          <ObjectDetection />
+          {/* <RealtimePrediction />  */}
+        </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-          <MyComponent />
-          <h1>This project brings a new approach to the popular Latin American game Lotería. With using Python libraries that utilize convolutional neural networks and deep learning, Lotería can become fully automized.</h1>
+          
           <Myvideo />
-      </div>
-
-      <ObjectDetection />
-      <RealtimePrediction /> 
+        </div>      
     </div>
   );
 }
