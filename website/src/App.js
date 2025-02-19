@@ -1,13 +1,13 @@
 import React,{ useState, useEffect }from "react";
 import ObjectDetection from './camera';
 import RealtimePrediction from './data_predi';
-import myImage from "./dlt.png";
+import myImage from "./loteria.png";
 import myVid from "./print.mp4";
 
 
 
 function MyComponent() {
-  return <img src={myImage} alt = "3D Printing" width = '500' height = '400' />;
+  return <img src={myImage} alt = "3D Printing" width = '900' height = '500' />;
 }
 
 function Myvideo() {
