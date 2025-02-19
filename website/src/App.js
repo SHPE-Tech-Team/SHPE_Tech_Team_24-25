@@ -6,10 +6,15 @@ function App() {
   return (
     <div>
       <h1>AI LOTERIA - LA FLAME🔥</h1>
+      <button class ="button_style" onClick={() => window.location.reload()}>Daddy</button>
+
       <ObjectDetection />
       <RealtimePrediction /> 
     </div>
   );
 }
+
+
+
 
 export default App;
