@@ -19,10 +19,25 @@ function Myvideo() {
   );
 }
 
+function Navbar() {
+  return (
+  <nav className="navbar">
+    <ul className="nav-links">
+      <li><a href="#">Members</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Hand Project</a></li>
+    </ul>
+</nav>
+);
+}
+
 function App() {
   return (
+    <div>
+    <Navbar></Navbar>
       <div style = {{textAlign: 'center'}}>
-
+        
         <h1>SHPE TECH TEAM - AI Loteria</h1>
         <MyComponent />
         <div className="video-container">
@@ -33,6 +48,7 @@ function App() {
           
           <Myvideo />
         </div>      
+    </div>
     </div>
   );
 }
