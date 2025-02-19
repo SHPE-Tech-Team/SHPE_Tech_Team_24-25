@@ -39,6 +39,14 @@
 
 
 .video-container {
-  height: 100px;
-  width: 100px;
+  /* background-color: blue; */
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 50px;
+  height: 600px;
+  width: 1000px;
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
+
+

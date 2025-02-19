@@ -91,12 +91,12 @@ const ObjectDetection = () => {
         width="720"
         height="480"
       />
-      {detectionResult && (
+      {/* {detectionResult && (
         <div>
           <p>Detected: {detectionResult.class}</p>
           <p>Confidence: {detectionResult.confidence.toFixed(2)}</p>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
