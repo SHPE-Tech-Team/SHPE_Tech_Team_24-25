@@ -23,10 +23,13 @@ function Navbar() {
   return (
   <nav className="navbar">
     <ul className="nav-links">
+      <li><a href="#">Home</a></li>
       <li><a href="#">Members</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
       <li><a href="#">Hand Project</a></li>
+      <li><a href="#">AI Loteria</a></li>
+
     </ul>
 </nav>
 );
