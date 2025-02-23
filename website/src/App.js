@@ -41,7 +41,7 @@ function Navbar() {
 
 
 function App() {
-  return (    
+  return (   
      <div>
      <Navbar></Navbar>
        <div style = {{textAlign: 'center'}}>

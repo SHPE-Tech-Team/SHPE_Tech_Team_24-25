@@ -3,8 +3,11 @@ import React from "react";
 function MyMembers() {
   return (
     <div>
-      <h1>Programmers</h1>
-      <h1>Mechanical</h1>
+       <div style = {{textAlign: 'center'}}>
+         <h1>Programmers:</h1>
+        <h1>Mechanical:</h1>
+
+       </div> 
     </div>
   );
 }
