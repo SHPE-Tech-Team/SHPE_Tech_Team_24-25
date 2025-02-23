@@ -4,7 +4,11 @@ import RealtimePrediction from './data_predi';
 import myImage from "./loteria.png";
 import myVid from "./print.mp4";
 import './App.css';
-
+import MyMembers from "./members.js";
+import MyAbout from "./about.js";
+import MyContact from "./contact.js";
+import MyHand from "./hand_project.js";
+import MyAI from "./ai_loteria.js"
 
 
 function MyComponent() {
@@ -35,24 +39,26 @@ function Navbar() {
 );
 }
 
+
 function App() {
-  return (
-    <div>
-    <Navbar></Navbar>
-      <div style = {{textAlign: 'center'}}>
+  return (    
+     <div>
+     <Navbar></Navbar>
+       <div style = {{textAlign: 'center'}}>
         
-        <h1>SHPE TECH TEAM - AI Loteria</h1>
-        <MyComponent />
-        <div className="video-container">
-          <ObjectDetection />
-          {/* <RealtimePrediction />  */}
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+         <h1>SHPE TECH TEAM - AI Loteria</h1>
+         <MyComponent />
+         <div className="video-container">
+           <ObjectDetection />
+           {/* <RealtimePrediction />  */}
+         </div>
+         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
           
-          <Myvideo />
-        </div>      
-    </div>
-    </div>
+           <Myvideo />
+         </div>      
+     </div>
+     </div>
+    
   );
 }
 
