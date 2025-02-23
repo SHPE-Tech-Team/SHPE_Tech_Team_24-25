@@ -1,4 +1,5 @@
 import React,{ useState, useEffect }from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ObjectDetection from './camera';
 import RealtimePrediction from './data_predi';
 import myImage from "./loteria.png";
