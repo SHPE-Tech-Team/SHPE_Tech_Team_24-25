@@ -90,6 +90,7 @@ const ObjectDetection = () => {
         alt="Video feed"
         width="720"
         height="480"
+        className='video'
       />
       {/* {detectionResult && (
         <div>
