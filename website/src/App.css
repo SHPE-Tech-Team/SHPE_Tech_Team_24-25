@@ -13,7 +13,12 @@
   }
 }
 
+h3 {
+  color: rgb(197, 120, 214)
+}
+
 .App-header {
+
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -35,6 +40,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+html, body {
+  font-family: sans-serif;
 }
 
 
