@@ -25,7 +25,7 @@ import socketio
 
 
 # from teddy_AI import Network
-from back.neural_network.teddy_AI import Network
+from flask_backend.neural_network.teddy_AI import Network
 
 # for docker purposes
 # from neural_network.teddy_AI import Network

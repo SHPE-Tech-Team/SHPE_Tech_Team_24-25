@@ -53,7 +53,7 @@ Once activated, your terminal should show the virtual environment's name in the 
 
 Once the virtual environment is set up, activate it (see below for activation commands depending on your OS) and install the required dependencies:
 ```
-pip install -r back/requirements.txt
+pip install -r flask_backend/requirements.txt
 ```
 
 **Step 4:** Run the Backend Server
@@ -62,7 +62,7 @@ You have two options to run the backend server:
 
 **Option 1:** Use the command line to navigate to the flask_server directory and run the server:
 ```
-cd back/flask_server
+cd flask_backend/flask_server
 ```
 ```
 python3 server.py
