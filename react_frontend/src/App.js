@@ -1,21 +1,19 @@
 import React,{ useState, useEffect }from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import ObjectDetection from './camera';
-import RealtimePrediction from './data_predi';
-import myImage from "./loteria.png";
-import myVid from "./print.mp4";
-import './App.css';
-import MyMembers from "./members.js";
-import MyAbout from "./about.js";
-import MyContact from "./contact.js";
-import MyHand from "./hand_project.js";
-import MyAI from "./ai_loteria.js"
+import ObjectDetection from './pages/card_detection/camera.js';
+import RealtimePrediction from './pages/card_detection/data_predi.js';
+import './styles/App.css';
+import MyMembers from "./pages/members.js";
+import MyAbout from "./pages/about.js";
+import MyContact from "./pages/contact.js";
+import MyHand from "./pages/hand_project.js";
+import MyAI from "./pages/ai_loteria.js"
 
 
-function Myvideo() {
+function Printvid() {
   return (
   <video width = "750" height = "500" controls>
-    <source src={myVid} type = "video/mp4"/>
+    <source src={"/home_media/print.mp4"} type = "video/mp4"/>
   </video>
   );
 }
@@ -54,7 +52,7 @@ function App() {
          </div>
          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
           
-           <Myvideo />
+           <Printvid />
 
            <h3>Made by SHPE UIUC Tech Team</h3>
          </div>      
