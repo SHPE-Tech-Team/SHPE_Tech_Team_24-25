@@ -81,7 +81,7 @@ Install WSL on your system. Installing Docker should prompt this by itself, but 
 
 **Step 2:** Change Directory
 ```
-cd website
+cd react_frontend
 ```
 
 **Step 3:** Build the Frontend Docker Image
