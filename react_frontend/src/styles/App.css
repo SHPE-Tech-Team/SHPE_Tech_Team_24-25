@@ -92,3 +92,296 @@ html, body {
   border-radius: 5px;
 }
 
+/* Hero CSS */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+}
+
+.hero-images {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-image {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(50%);
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  color: white;
+  margin: 0;
+  font-size: 4rem; /* Adjust as needed */
+}
+
+.hero-text h2 {
+  color: #C578D6;
+  margin: 0;
+  font-size: 1.5rem; /* Adjust as needed */
+  font-style: italic;
+}
+
+/* Loteria CSS */
+.loteria-background {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background-color: #13294B;
+  color: white;
+  gap: 30px;
+}
+
+.loteria > * {
+  flex: 1 100%;
+}
+
+.loteria-text {
+  padding-top: 25px;
+  width: 40%;
+  order: 0;
+}
+
+.loteria-text h2 {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.loteria-text h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.loteria-text p {
+  padding-top: 20px;
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: 300;
+  text-align: left;
+}
+
+.loteria-video {
+  align-items: center;
+  margin-top: 50px;
+  padding-top: 20px;
+  order: 1;
+  color: black;
+  background-color: white;
+  height: 500px;
+  width: 55%;
+  border-radius: 25px;
+}
+
+/* Robot CSS */
+.robot-background {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background-color: white;
+  color: black;
+  gap: 30px;
+}
+
+.robot > * {
+  flex: 1 100%;
+}
+
+.robot-text {
+  padding-top: 25px;
+  width: 40%;
+  order: 1;
+}
+
+.robot-text h2 {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.robot-text h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.robot-text p {
+  padding-top: 20px;
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: 300;
+  text-align: left;
+}
+
+.robot-video {
+  align-items: center;
+  margin-bottom: 100px;
+  padding-top: 20px;
+  order: 0;
+  color: white;
+  height: 500px;
+  width: 55%;
+  border-radius: 25px;
+}
+
+/* Team CSS */
+.team-background {
+  display: flex;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background-color: #FF5F05;
+  color: white;
+  gap: 30px;
+}
+
+.team > * {
+  flex: 1 100%;
+}
+
+.team-text {
+  padding-top: 25px;
+  width: 100%;
+  order: 1;
+}
+
+.team-text h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.team-text h2 {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.members {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  gap: 30px;
+  font-weight: 300;
+}
+
+/* About CSS */
+.about-background {
+  display: flex;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background-color: #E5E5E5;
+  color: black;
+  gap: 30px;
+}
+
+.about > * {
+  flex: 1 100%;
+}
+
+.about-text {
+  padding-top: 25px;
+  width: 100%;
+  order: 1;
+}
+
+.about-text h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.about-text h2 {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+/* Contact CSS */
+.contact-background {
+  display: flex;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background-color: #212020;
+  color: white;
+  gap: 30px;
+}
+
+.contact > * {
+  flex: 1 100%;
+}
+
+.contact-text {
+  padding-top: 25px;
+  width: 100%;
+  order: 1;
+}
+
+.contact-text h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.contact-text h2 {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+/* Footer CSS */
+.footer-background {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  background-color: #13294B;
+  color: white;
+  gap: 30px;
+}
+
+.footer > * {
+  flex: 1 100%;
+}
+
+.footer-nav {
+  width: 100%;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.social-links img {
+  height: 30px;
+  width: 30px;
+}
