@@ -93,6 +93,7 @@ html, body {
 }
 
 /* Hero CSS */
+
 .hero {
   position: relative;
   width: 100%;
@@ -139,6 +140,35 @@ html, body {
   margin: 0;
   font-size: 1.5rem; /* Adjust as needed */
   font-style: italic;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 100px;
+}
+
+.loteria-button {
+  background-color: #C578D6;
+  color: white;
+  font-size: 20px;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 25px;
+}
+
+.robot-button {
+  background-color: white;
+  color: #C578D6;
+  font-size: 20px;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 25px;
 }
 
 /* Loteria CSS */
@@ -373,6 +403,11 @@ html, body {
   display: flex;
   justify-content: center;
   gap: 30px;
+}
+
+.footer-nav a {
+  color: white;
+  text-decoration: none;
 }
 
 .social-links {
