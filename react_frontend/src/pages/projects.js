@@ -1,6 +1,7 @@
 import React from "react";
 import ObjectDetection from "./card_detection/camera.js";
 import RealtimePrediction from "./card_detection/data_predi.js";
+import { Link } from "react-router-dom";
 import "../styles/App.css";
 
 function Printvid() {
@@ -55,6 +56,11 @@ function Hero() {
       <div className="hero-text">
         <h1>Engineering Open House 2025</h1>
         <h2>The Age of Innovation</h2>
+        {/* To-Do: Add 2 buttons to explore each project  */}
+        <div className="hero-buttons">
+          <a href="#loteria"><button className="loteria-button">AI Loteria</button></a>
+          <a href="#robot"><button className="robot-button">ASL Robot</button></a>
+        </div>
       </div>
     </div>
   )
@@ -62,7 +68,7 @@ function Hero() {
 
 function ProjectLoteria() {
   return (
-    <div className="loteria">
+    <div className="loteria" id="loteria">
       <div className="loteria-background">
         <div className="loteria-text">
           <h2>Project 1</h2>
@@ -80,7 +86,7 @@ function ProjectLoteria() {
 
 function ProjectRobot() {
   return (
-    <div className="robot">
+    <div className="robot" id="robot">
       <div className="robot-background">
         <div className="robot-text">
           <h2>Project 2</h2>
@@ -149,15 +155,15 @@ function Footer() {
     <div className="footer">
       <div className="footer-background">
         <div className="footer-nav">
-          <p>Projects</p>
-          <p>Team</p>
-          <p>About</p>
-          <p>Contact</p>
+          <Link to="/projects">Projects</Link>
+          <Link to="/about">About</Link>
+          <Link to="/members">Members</Link>
+          <Link to="/contact">Contact</Link>
         </div>
         <div className="social-links">
-          <a href="https://www.instagram.com/shpe_uiuc/?hl=en"><img src="https://img.icons8.com/win10/512/FFFFFF/instagram-new.png" alt="Instagram Logo in white"></img></a>
-          <a href="https://github.com/SHPE-Tech-Team/AI_Loteria_24-25"><img src="https://img.icons8.com/ios11/512/FFFFFF/github.png" alt="Github Logo in white"></img></a>
-          <a href="https://www.linkedin.com/groups/13627278/"><img src="https://img.icons8.com/?size=100&id=44914&format=png&color=FFFFFF" alt="LinkedIn Logo in white"></img></a>
+          <a rel="noreferrer" href="https://www.instagram.com/shpe_uiuc/?hl=en" target="_blank"><img src="https://img.icons8.com/win10/512/FFFFFF/instagram-new.png" alt="Instagram Logo in white"></img></a>
+          <a rel="noreferrer" href="https://github.com/SHPE-Tech-Team/AI_Loteria_24-25" target="_blank"><img src="https://img.icons8.com/ios11/512/FFFFFF/github.png" alt="Github Logo in white"></img></a>
+          <a rel="noreferrer" href="https://www.linkedin.com/groups/13627278/" target="_blank"><img src="https://img.icons8.com/?size=100&id=44914&format=png&color=FFFFFF" alt="LinkedIn Logo in white"></img></a>
         </div>
       </div>
     </div>
