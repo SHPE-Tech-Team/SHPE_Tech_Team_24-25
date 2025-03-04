@@ -1,9 +1,9 @@
 import React from "react";
-import ObjectDetection from "./card_detection/camera.js";
-import RealtimePrediction from "./card_detection/data_predi.js";
+import ObjectDetection from "./card_detection/camera.jsx";
+import RealtimePrediction from "./card_detection/data_predi.jsx";
 import { Link } from "react-router-dom";
 import "../styles/App.css";
-import Footer from "../components/footer.js"
+import Footer from "../components/footer.jsx"
 
 function Printvid() {
   return (

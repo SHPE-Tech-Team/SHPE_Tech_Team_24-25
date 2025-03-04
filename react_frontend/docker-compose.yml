@@ -1,10 +1,26 @@
+# version: '3.8'
+# services:
+#   react-app:
+#     image: loteria_frontend:l_front
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - ./:/user/src/Loteria_frontend:delegated
+#     stdin_open: true
+
+
 version: '3.8'
 services:
   react-app:
-    image: loteria_frontend:l_front
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "5173:5173" # Vite's default port is 5173
     volumes:
-      - ./:/user/src/Loteria_frontend:delegated
-      # - /user/src/Loteria_frontend/node_modules/
+      - ./:/user/src/Loteria_frontend
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    command: npm start # Use Vite's dev command
     stdin_open: true
+    tty: true

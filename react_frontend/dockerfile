@@ -1,16 +1,32 @@
-FROM node:18.16.0-alpine
+# FROM node:20-alpine
+
+# WORKDIR /user/src/Loteria_frontend
+
+# COPY ./package.json .
+# COPY ./package-lock.json .
+
+# RUN npm install --include=dev
+
+# COPY . .
+
+# EXPOSE 3000
+
+# CMD ["npm", "run", "start-watch"]
+
+
+
+FROM node:20-slim
 
 WORKDIR /user/src/Loteria_frontend
 
 COPY ./package.json .
 COPY ./package-lock.json .
 
-# COPY . .
-
-RUN npm install
+RUN npm config set force true
+RUN npm install --omit=optional 
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 5173
 
-CMD ["npm", "run", "start-watch"]
+CMD ["npm", "run", "start"]
