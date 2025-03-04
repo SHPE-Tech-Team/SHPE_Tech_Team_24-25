@@ -3,6 +3,7 @@ import ObjectDetection from "./card_detection/camera.js";
 import RealtimePrediction from "./card_detection/data_predi.js";
 import { Link } from "react-router-dom";
 import "../styles/App.css";
+import Footer from "../components/footer.js"
 
 function Printvid() {
   return (
@@ -102,6 +103,7 @@ function ProjectRobot() {
   )
 }
 
+// EDIT: Added Software Team Names
 function Team() {
   return (
     <div className="team">
@@ -111,8 +113,9 @@ function Team() {
           <h2>Software</h2>
           <div className="members">
             <p>Jorge Becerra</p>
-            <p>John Doe</p>
-            <p>Jane Doe</p>
+            <p>Daniel Quillo</p>
+            <p>Kevin "LaFlame" Cruz</p>
+            <p>Antonio Tapia</p>
           </div>
           <h2>Hardware</h2>
           <div className="members">
@@ -150,26 +153,7 @@ function Contact() {
   )
 }
 
-function Footer() {
-  return (
-    <div className="footer">
-      <div className="footer-background">
-        <div className="footer-nav">
-          <Link to="/projects">Projects</Link>
-          <Link to="/about">About</Link>
-          <Link to="/members">Members</Link>
-          <Link to="/contact">Contact</Link>
-        </div>
-        <div className="social-links">
-          <a rel="noreferrer" href="https://www.instagram.com/shpe_uiuc/?hl=en" target="_blank"><img src="https://img.icons8.com/win10/512/FFFFFF/instagram-new.png" alt="Instagram Logo in white"></img></a>
-          <a rel="noreferrer" href="https://github.com/SHPE-Tech-Team/AI_Loteria_24-25" target="_blank"><img src="https://img.icons8.com/ios11/512/FFFFFF/github.png" alt="Github Logo in white"></img></a>
-          <a rel="noreferrer" href="https://www.linkedin.com/groups/13627278/" target="_blank"><img src="https://img.icons8.com/?size=100&id=44914&format=png&color=FFFFFF" alt="LinkedIn Logo in white"></img></a>
-        </div>
-      </div>
-    </div>
-  )
-}
-
+//EDIT: Removed Team, About, and Contact pages from main page
 function Projects() {
   return (
     <div>
@@ -177,10 +161,7 @@ function Projects() {
         <Hero />
         <ProjectLoteria />
         <ProjectRobot />
-        <Team />
-        <About />
-        <Contact />
-        <Footer />
+        <Footer></Footer>
       </div>
     </div>
   );
