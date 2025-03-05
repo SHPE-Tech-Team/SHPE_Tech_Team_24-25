@@ -10,6 +10,7 @@ function NavBar() {
   };
   return (
     <header>
+      <img className="logo" src="SHPE_logo.avif" alt="SHPE Logo" />
       <h1>SHPE</h1>
       <nav ref={useNav}>
         <Link to="/projects">Projects</Link>
