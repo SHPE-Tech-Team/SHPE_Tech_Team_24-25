@@ -46,6 +46,11 @@ nav a:hover {
     color: var(--secondaryColor);
 }
 
+nav a.active-link {
+    color: var(--secondaryColor);
+    border-bottom: 2px solid var(--secondaryColor);
+}
+
 header .nav-btn {
     padding: 5px;
     cursor: pointer;
