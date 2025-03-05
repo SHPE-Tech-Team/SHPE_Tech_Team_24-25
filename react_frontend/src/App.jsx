@@ -16,7 +16,7 @@ import NavBar from "./components/nav.jsx";
 function App() {
   return (
     <Router>
-      <div>
+      <div className="App">
         <NavBar/>
         <Routes>
           <Route path="/" element={<Navigate to="/projects" />} />

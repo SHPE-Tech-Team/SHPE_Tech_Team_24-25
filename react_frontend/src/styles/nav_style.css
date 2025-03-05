@@ -1,4 +1,6 @@
-
+body {
+    font-family: 'Montserrat', sans-serif;
+}
 
 *{
     padding: 0;
@@ -22,6 +24,11 @@ header {
     color: var(--textColor);
 }
 
+header .logo {
+    height: 70px;
+    width: 70px;
+}
+
 nav {
     margin-left: auto;
     /* move to the right */
@@ -31,11 +38,17 @@ nav a {
     margin: 0 2rem;
     color: var(--textColor);
     text-decoration: none;
+    font-weight: bold;
    
 }
 
 nav a:hover {
     color: var(--secondaryColor);
+}
+
+nav a.active-link {
+    color: var(--secondaryColor);
+    border-bottom: 2px solid var(--secondaryColor);
 }
 
 header .nav-btn {
