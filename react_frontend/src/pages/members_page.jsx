@@ -10,13 +10,15 @@ function MembersPage() {
             <h2>Software</h2>
             <div className="members">
               <p>Jorge Becerra</p>
-              <p>Daniel Quillo</p>
+              <p>Alonso Tinoco</p>
               <p>Kevin "LaFlame" Cruz</p>
+              <p>Daniel Quillo</p>
               <p>Antonio Tapia</p>
             </div>
             <h2>Hardware</h2>
             <div className="members">
               <p>Jorge Becerra</p>
+              <p>Alonso Tinoco</p>
               <p>John Doe</p>
               <p>Jane Doe</p>
             </div>
