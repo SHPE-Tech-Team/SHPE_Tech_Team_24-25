@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../components/footer.js"
+import Footer from "../components/footer.jsx"
 
 function ContactPage() {
     return (
