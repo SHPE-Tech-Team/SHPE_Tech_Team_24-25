@@ -1,5 +1,6 @@
 import React from "react";
 import CardDeckDetection from "./card_detection/card_deck_prediction.jsx";
+import Toggle from "../components/toggle.jsx";
 import "../styles/ai_loteria_style.css";
 
 
@@ -10,10 +11,10 @@ function AI_loteria() {
         <h1>AI Loteria - TEDDY AI</h1>
       </div>
       <div className="layout">
-        <div className="one">
+        <div className="container-one">
           <CardDeckDetection />
         </div>
-        <div className="two">
+        <div className="container-two">
           <CardDeckDetection />
         </div>
       </div>

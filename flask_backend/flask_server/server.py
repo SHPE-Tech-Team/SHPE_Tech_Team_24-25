@@ -64,6 +64,7 @@ def fetch_data():
     return jsonify(prediction_data)
 
 
+
 @socketio.on("connect")
 def handle_connect():
     print("Client connected")
