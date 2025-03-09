@@ -6,7 +6,7 @@ const CardDeckPrediction = () => {
   return (
     <div>
       <h2>Card Deck Prediction</h2>
-      <div className="video-container">
+      <div >
         <img
           src="http://localhost:8080/predict_card_deck"
           alt="Video feed"
