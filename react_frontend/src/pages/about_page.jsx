@@ -9,10 +9,6 @@ function AboutPage() {
       <div className="about-background">
         <div className="about-text">
           <h1>About</h1>
-          <div className="loteria-video">
-            <CardDeckPrediction/>
-          </div>
-         
         </div>
       </div>
       <Footer></Footer>
