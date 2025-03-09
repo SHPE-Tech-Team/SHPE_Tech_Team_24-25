@@ -8,7 +8,7 @@ import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 import flask_backend.neural_network.detection as detection
-
+import megatron as mg
 
 ## for docker purposes
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -40,16 +40,22 @@ socketio = SocketIO(app, cors_allowed_origins="http://localhost:3000")
 
 # @socketio.on("/predict")
 @app.route("/predict")
-def predict():
+# def predict():
+#     return Response(
+#         detection.camera_feed(),
+#         mimetype="multipart/x-mixed-replace; boundary=frame",
+#         headers={
+#             "Cache-Control": "no-cache, no-store, must-revalidate",
+#             "Pragma": "no-cache",
+#             "Expires": "0",
+#             "Access-Control-Allow-Origin": "http://localhost:3000",
+#         },
+#     )
+
+@app.route("/predict_card_deck")
+def predict_card_deck():
     return Response(
-        detection.camera_feed(),
-        mimetype="multipart/x-mixed-replace; boundary=frame",
-        headers={
-            "Cache-Control": "no-cache, no-store, must-revalidate",
-            "Pragma": "no-cache",
-            "Expires": "0",
-            "Access-Control-Allow-Origin": "http://localhost:3000",
-        },
+        mg.get_loteria(), mimetype="multipart/x-mixed-replace; boundary=frame"
     )
 
 

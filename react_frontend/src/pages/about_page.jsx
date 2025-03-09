@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../components/footer.jsx";
-
+import CardDeckPrediction from "./card_detection/card_deck_prediction.jsx";
 // alonso pg to do
 /// Do figma concept before programming  !!!!!!!!!!!!
 function AboutPage() {
@@ -9,6 +9,10 @@ function AboutPage() {
       <div className="about-background">
         <div className="about-text">
           <h1>About</h1>
+          <div className="loteria-video">
+            <CardDeckPrediction/>
+          </div>
+         
         </div>
       </div>
       <Footer></Footer>
