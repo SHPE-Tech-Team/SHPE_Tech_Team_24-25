@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../components/footer.jsx";
-
+import CardDeckPrediction from "./card_detection/card_deck_prediction.jsx";
 // alonso pg to do
 /// Do figma concept before programming  !!!!!!!!!!!!
 function AboutPage() {
