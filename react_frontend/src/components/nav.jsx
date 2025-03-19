@@ -8,10 +8,15 @@ function NavBar() {
   const showNav = () => {
     useNav.current.classList.toggle("res_nav");
   };
+
+  const goHome = () => {
+    window.location.href = "/";
+    // navigate("/");
+  }
   return (
     <header>
       <img className="logo" src="SHPE_logo.avif" alt="SHPE Logo" />
-      <h1>SHPE</h1>
+      <h1 onClick={goHome}>SHPE</h1>
       <nav ref={useNav}>
         <NavLink to="/projects" className={({ isActive }) => (isActive ? 'active-link' : '')} >Projects</NavLink>
         <NavLink to="/about" className={({ isActive }) => (isActive ? 'active-link' : '')}>About</NavLink>
