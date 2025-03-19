@@ -13,9 +13,16 @@ function Home() {
             professional development, and community engagement.
           </p>
           <div>
-            <button className="button-join">Join Us</button>
-            <button className="button-team">Join Us</button>
+            <button className="button-projects">Projects</button>
+            <button className="button-team">Team</button>
           </div>
+        </div>
+        <div className="welcome-image">
+          <img
+            src="/home_media/dlt.png"
+            alt="adolfo"
+            className="image-properties"
+          />
         </div>
       </div>
       <div className="eoh">

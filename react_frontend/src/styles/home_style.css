@@ -1,6 +1,6 @@
 :root {
     --mainColor: #021d47;
-    --secondaryColor: #ee4a4a;
+    --secondaryColor: #FF5F05;
     --textColor: #ffffff;
 }
 
@@ -22,7 +22,6 @@ div .welcome-content {
     height: auto;
     text-align: left;
     margin-left: 10rem;
-
 } 
 
 .welcome-content h1 {
@@ -45,33 +44,35 @@ div .welcome-content {
 }
 
 
-.button-join {
-    padding: 10px 20px;
+/* buttons for welcome  */
+.button-projects {
+    padding: 20px 30px;
     margin-top: 1rem;
     background-color: var(--secondaryColor);
     color: var(--textColor);
+    font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 1rem;
     margin-left: 2rem;
 }
 
 .button-team {
-    padding: 10px 20px;
+    padding: 20px 30px;
     margin-top: 1rem;
     background-color: white;
     color: black;
+    font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 1rem;
     margin-left: 2rem;
 }
 
 
-
-
+/* eoh container */
 .eoh {
     display: flex;
     justify-content: center;
@@ -115,3 +116,23 @@ div .welcome-content {
     margin-left: 0;
 }
 
+
+/* this is for image */
+.welcome-image {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 50%;
+    height: auto;
+    text-align: right;
+}
+
+.image-properties{
+    width: 700px;
+    height: 700px;
+    border-radius: 25px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+    border: 2px solid var(--secondaryColor);
+}

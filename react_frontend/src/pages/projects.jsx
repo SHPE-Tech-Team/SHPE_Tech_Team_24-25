@@ -1,9 +1,10 @@
 import React from "react";
 import ObjectDetection from "./card_detection/camera.jsx";
 import RealtimePrediction from "./card_detection/data_predi.jsx";
+import TitleCard from "../components/title_card.jsx";
 import { Link } from "react-router-dom";
 import "../styles/App.css";
-import Footer from "../components/footer.jsx"
+import Footer from "../components/footer.jsx";
 
 function Printvid() {
   return (
@@ -48,10 +49,16 @@ function Hero() {
     <div className="hero">
       <div className="hero-images">
         <div className="hero-image left">
-          <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A close-up photograph of computer code displayed on a monitor, featuring syntax-highlighted text on a dark background."></img>
+          <img
+            src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="A close-up photograph of computer code displayed on a monitor, featuring syntax-highlighted text on a dark background."
+          ></img>
         </div>
         <div className="hero-image right">
-          <img src="https://images.pexels.com/photos/8386363/pexels-photo-8386363.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A close-up of a robotic hand reaching upward against a vibrant blue background, symbolizing futuristic technology and innovation."></img>
+          <img
+            src="https://images.pexels.com/photos/8386363/pexels-photo-8386363.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="A close-up of a robotic hand reaching upward against a vibrant blue background, symbolizing futuristic technology and innovation."
+          ></img>
         </div>
       </div>
       <div className="hero-text">
@@ -59,12 +66,16 @@ function Hero() {
         <h2>The Age of Innovation</h2>
         {/* To-Do: Add 2 buttons to explore each project  */}
         <div className="hero-buttons">
-          <a href="#loteria"><button className="loteria-button">AI Loteria</button></a>
-          <a href="#robot"><button className="robot-button">ASL Robot</button></a>
+          <a href="#loteria">
+            <button className="loteria-button">AI Loteria</button>
+          </a>
+          <a href="#robot">
+            <button className="robot-button">ASL Robot</button>
+          </a>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function ProjectLoteria() {
@@ -74,7 +85,14 @@ function ProjectLoteria() {
         <div className="loteria-text">
           <h2>Project 1</h2>
           <h1>AI Loteria</h1>
-          <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Euismod massa donec taciti tristique accumsan nulla phasellus risus. Augue rhoncus a taciti pretium dignissim interdum. Consectetur sollicitudin parturient etiam tempor mauris congue. Suspendisse suspendisse posuere venenatis semper; est mi. Massa luctus at dis velit facilisis pharetra leo. Quis elit erat magnis commodo vulputate potenti.
+          <p>
+            Lorem ipsum odor amet, consectetuer adipiscing elit. Euismod massa
+            donec taciti tristique accumsan nulla phasellus risus. Augue rhoncus
+            a taciti pretium dignissim interdum. Consectetur sollicitudin
+            parturient etiam tempor mauris congue. Suspendisse suspendisse
+            posuere venenatis semper; est mi. Massa luctus at dis velit
+            facilisis pharetra leo. Quis elit erat magnis commodo vulputate
+            potenti.
           </p>
         </div>
         <div className="loteria-video">
@@ -82,7 +100,7 @@ function ProjectLoteria() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function ProjectRobot() {
@@ -92,7 +110,14 @@ function ProjectRobot() {
         <div className="robot-text">
           <h2>Project 2</h2>
           <h1>ASL Robot</h1>
-          <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Euismod massa donec taciti tristique accumsan nulla phasellus risus. Augue rhoncus a taciti pretium dignissim interdum. Consectetur sollicitudin parturient etiam tempor mauris congue. Suspendisse suspendisse posuere venenatis semper; est mi. Massa luctus at dis velit facilisis pharetra leo. Quis elit erat magnis commodo vulputate potenti.
+          <p>
+            Lorem ipsum odor amet, consectetuer adipiscing elit. Euismod massa
+            donec taciti tristique accumsan nulla phasellus risus. Augue rhoncus
+            a taciti pretium dignissim interdum. Consectetur sollicitudin
+            parturient etiam tempor mauris congue. Suspendisse suspendisse
+            posuere venenatis semper; est mi. Massa luctus at dis velit
+            facilisis pharetra leo. Quis elit erat magnis commodo vulputate
+            potenti.
           </p>
         </div>
         <div className="robot-video">
@@ -100,7 +125,7 @@ function ProjectRobot() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // EDIT: Added Software Team Names
@@ -126,7 +151,7 @@ function Team() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function About() {
@@ -138,7 +163,7 @@ function About() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function Contact() {
@@ -150,13 +175,19 @@ function Contact() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 //EDIT: Removed Team, About, and Contact pages from main page
 function Projects() {
   return (
     <div>
+      <TitleCard
+        title={"Projects"}
+        description={
+          "Explore the innovative engineering projects developed by the SHPE Tech Team, showcasing our technical skills and commitment to excellence."
+        }
+      />
       <div style={{ textAlign: "center" }}>
         <Hero />
         <ProjectLoteria />
