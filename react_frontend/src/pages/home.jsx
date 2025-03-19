@@ -13,8 +13,8 @@ function Home() {
             professional development, and community engagement.
           </p>
           <div>
-            <button className="button-join">Join Us</button>
-            <button className="button-team">Join Us</button>
+            <button className="button-join">Projects</button>
+            <button className="button-team">Team</button>
           </div>
         </div>
       </div>
