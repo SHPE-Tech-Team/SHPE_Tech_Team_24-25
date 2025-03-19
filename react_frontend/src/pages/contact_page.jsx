@@ -1,5 +1,6 @@
 import React from "react";
 import Footer from "../components/footer.jsx"
+import TitleCard from "../components/title_card.jsx";
 
 function ContactPage() {
     return (
