@@ -1,47 +1,8 @@
 :root {
-    --mainColor: #13294B;
+    --mainColor: #021d47;
     --secondaryColor: #ee4a4a;
     --textColor: #ffffff;
 }
-
-
-/* .title-card {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 400px;
-    background-color: var(--mainColor);
-    color: var(--textColor);
-}
-
-
-div .title-card-content {
-    position: absolute;
-    top: 10%;
-    right: 50%;
-    width: 50%;
-    height: auto;
-    text-align: left;
-    margin-left: 10rem;
-
-}
-
-.title-card-content h1 {
-    font-size: 5rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 2rem;
-    text-align: left;
-}
-
-
-.title-card-content p {
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 2rem;
-    text-align: left;
-} */
 
 
 
