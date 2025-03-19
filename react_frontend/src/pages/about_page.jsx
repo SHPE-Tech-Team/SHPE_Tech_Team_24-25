@@ -7,7 +7,10 @@ import TitleCard from "../components/title_card.jsx";
 function AboutPage() {
   return (
     <div>
-
+      <TitleCard
+        title="About Us"
+        description="Learn more about the Society of Hispanic Professional Engineers Tech Team at the University of Illinois at Urbana-Champaign."
+      />
       <Footer></Footer>
     </div>
   );
