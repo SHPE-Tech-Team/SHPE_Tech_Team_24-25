@@ -1,0 +1,117 @@
+:root {
+    --mainColor: #021d47;
+    --secondaryColor: #ee4a4a;
+    --textColor: #ffffff;
+}
+
+.welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    background-color: var(--mainColor);
+    color: var(--textColor);
+} 
+
+
+div .welcome-content {
+    position: absolute;
+    top: 10%;
+    right: 50%;
+    width: 50%;
+    height: auto;
+    text-align: left;
+    margin-left: 10rem;
+
+} 
+
+.welcome-content h1 {
+    font-size: 5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+}
+.welcome-content h2 {
+    font-size: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+}
+.welcome-content p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+}
+
+
+.button-join {
+    padding: 10px 20px;
+    margin-top: 1rem;
+    background-color: var(--secondaryColor);
+    color: var(--textColor);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 2rem;
+}
+
+.button-team {
+    padding: 10px 20px;
+    margin-top: 1rem;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 2rem;
+}
+
+
+
+
+.eoh {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eoh-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 95%;
+    height: 700px;
+    background-color: white;
+    color: black;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.eoh-container h1,
+.eoh-container p {
+    text-align: left;
+    margin-left: 0;
+    margin-bottom: 1rem;
+    max-width: 600px;
+}
+
+.button-learn {
+    padding: 10px 20px;
+    margin-top: 1rem;
+    background-color: var(--mainColor);
+    color: var(--textColor);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 0;
+}
+

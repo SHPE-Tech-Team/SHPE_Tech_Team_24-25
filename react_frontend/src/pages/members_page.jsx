@@ -1,32 +1,17 @@
 import React from "react";
-import Footer from "../components/footer.jsx"
+import Footer from "../components/footer.jsx";
+import TitleCard from "../components/title_card.jsx";
 
 function MembersPage() {
-    return (
-      <div className="team">
-        <div className="team-background">
-          <div className="team-text">
-            <h1>Meet the Team</h1>
-            <h2>Software</h2>
-            <div className="members">
-              <p>Jorge Becerra</p>
-              <p>Alonso Tinoco</p>
-              <p>Kevin "LaFlame" Cruz</p>
-              <p>Daniel Quillo</p>
-              <p>Antonio Tapia</p>
-            </div>
-            <h2>Hardware</h2>
-            <div className="members">
-              <p>Jorge Becerra</p>
-              <p>Alonso Tinoco</p>
-              <p>John Doe</p>
-              <p>Jane Doe</p>
-            </div>
-          </div>
-        </div>
-        <Footer></Footer>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <TitleCard
+        title="Team Members"
+        description="Meet the talented engineers behind SHPE Tech Team's innovative projects. Our diverse team brings together expertise in programming, mechanical  engineering, and more."
+      />
+      <Footer></Footer>
+    </div>
+  );
+}
 
 export default MembersPage;
