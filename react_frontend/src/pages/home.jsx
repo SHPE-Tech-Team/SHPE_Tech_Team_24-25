@@ -17,6 +17,13 @@ function Home() {
             <button className="button-team">Team</button>
           </div>
         </div>
+        <div className="welcome-image">
+          <img
+            src="/home_media/dlt.png"
+            alt="adolfo"
+            className="image-properties"
+          />
+        </div>
       </div>
       <div className="eoh">
         <div className="eoh-container">

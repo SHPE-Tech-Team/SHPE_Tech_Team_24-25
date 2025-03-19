@@ -22,7 +22,6 @@ div .welcome-content {
     height: auto;
     text-align: left;
     margin-left: 10rem;
-
 } 
 
 .welcome-content h1 {
@@ -115,3 +114,23 @@ div .welcome-content {
     margin-left: 0;
 }
 
+
+
+.welcome-image {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 50%;
+    height: auto;
+    text-align: right;
+    /* margin-left: 2rem; */
+}
+
+.image-properties{
+    width: 700px;
+    height: 700px;
+    border-radius: 20px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+}
