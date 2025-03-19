@@ -1,27 +1,50 @@
 import { react, useRef } from "react";
 // import {FaBars, FaTimes} from "react-icons/fa"
-import { Link, NavLink} from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "../styles/nav_style.css";
 function NavBar() {
   const useNav = useRef();
+  const navigate = useNavigate();
 
   const showNav = () => {
     useNav.current.classList.toggle("res_nav");
   };
 
   const goHome = () => {
-    window.location.href = "/";
-    // navigate("/");
-  }
+    navigate("/");
+  };
+
   return (
     <header>
       <img className="logo" src="SHPE_logo.avif" alt="SHPE Logo" />
-      <h1 onClick={goHome}>SHPE</h1>
+      <h1 style={{ cursor: "pointer" }} onClick={goHome}>
+        SHPE
+      </h1>
       <nav ref={useNav}>
-        <NavLink to="/projects" className={({ isActive }) => (isActive ? 'active-link' : '')} >Projects</NavLink>
-        <NavLink to="/about" className={({ isActive }) => (isActive ? 'active-link' : '')}>About</NavLink>
-        <NavLink to="/members" className={({ isActive }) => (isActive ? 'active-link' : '')} >Members</NavLink>
-        <NavLink to="/contact" className={({ isActive }) => (isActive ? 'active-link' : '')} >Contact</NavLink>
+        <NavLink
+          to="/projects"
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
+          Projects
+        </NavLink>
+        <NavLink
+          to="/about"
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
+          About
+        </NavLink>
+        <NavLink
+          to="/members"
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
+          Members
+        </NavLink>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
+          Contact
+        </NavLink>
         <button className="nav-btn nav-close" onClick={showNav}>
           OUT
         </button>
