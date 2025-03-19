@@ -5,6 +5,14 @@ import TitleCard from "../components/title_card.jsx";
 import "../styles/about_style.css";
 
 function AboutPage() {
+  function valuesContainers() {
+    return (
+      <div className="values-container">
+        
+      </div>
+    );
+  }
+
   return (
     <div>
       <TitleCard
@@ -12,7 +20,7 @@ function AboutPage() {
         description="Learn more about the Society of Hispanic Professional Engineers Tech Team at the University of Illinois at Urbana-Champaign."
       />
 
-      <div className="about-content">
+      <div className="about-mission">
         <h2>Our Mission</h2>
         <p>
           The Society of Hispanic Professional Engineers is a technical
@@ -31,6 +39,31 @@ function AboutPage() {
           can grow professionally, develop leadership skills, and build a strong
           network of peers and mentors in the engineering field.
         </p>
+      </div>
+      <div className="about-history">
+        <h2>Our History</h2>
+        <p>
+          The SHPE Tech Team at the University of Illinois at Urbana-Champaign
+          was established to provide Hispanic engineering students with hands-on
+          technical experience outside the classroom. What began as a small
+          group of passionate students has grown into a vibrant community of
+          engineers working on innovative projects.
+        </p>
+        <p>
+          Over the years, our team has participated in numerous engineering
+          competitions, hosted workshops, and developed projects that have made
+          a positive impact on our campus and community. Our alumni have gone on
+          to successful careers in various engineering fields, carrying forward
+          the values and skills they developed as part of SHPE.
+        </p>
+        <p>
+          Today, we continue to build on this legacy by embracing new
+          technologies and tackling challenging engineering problems while
+          fostering a supportive community for Hispanic engineers at UIUC.
+        </p>
+      </div>
+      <div className="about-values">
+        <h2>Our Values</h2>
       </div>
       <Footer></Footer>
     </div>

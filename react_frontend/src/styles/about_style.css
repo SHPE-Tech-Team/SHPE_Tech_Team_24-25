@@ -1,4 +1,4 @@
-.about-content {
+.about-mission {
     width: 80%;
     max-width: 1200px;
     margin: 5rem auto;
@@ -6,12 +6,57 @@
     text-align: left;
 }
 
-.about-content h2 {
+.about-mission h2 {
     font-size: 3rem;
     margin-bottom: 2rem;
 }
 
-.about-content p {
+.about-mission p {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #6A6A6A;
+}
+
+
+
+.about-history {
+    width: 80%;
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 0 2rem;
+    text-align: left;
+    border-radius: 25px;
+    background-color: #F7F7F7;
+}
+
+.about-history h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.about-history p {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #6A6A6A;
+}
+
+
+.about-values {
+    width: 80%;
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 0 2rem;
+    text-align: left;
+}
+
+.about-values h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.about-values p {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     line-height: 1.6;
