@@ -5,13 +5,14 @@ import TitleCard from "../components/title_card.jsx";
 import "../styles/about_style.css";
 
 function AboutPage() {
-  function valuesContainers() {
+  const ValuesContainers = ({ title, description }) => {
     return (
-      <div className="values-container">
-        
+      <div className="about-values-container">
+        <h3>{title}</h3>
+        <p>{description}</p>
       </div>
     );
-  }
+  };
 
   return (
     <div>
@@ -64,7 +65,22 @@ function AboutPage() {
       </div>
       <div className="about-values">
         <h2>Our Values</h2>
+        <div className="values-row">
+          <ValuesContainers
+            title="Exellence"
+            description="We strive for excellence in all our technical projects and professional  endeavors, pushing the boundaries of what's possible through innovation  and dedication."
+          />
+          <ValuesContainers
+            title="Collaboration"
+            description="We believe in the power of teamwork and collaboration, bringing together diverse perspectives to solve complex engineering challenges."
+          />
+          <ValuesContainers
+            title="Community"
+            description="We are committed to building a supportive community that empowers  Hispanic engineers to achieve their full potential and make meaningful  contributions to society."
+          />
+        </div>
       </div>
+
       <Footer></Footer>
     </div>
   );
