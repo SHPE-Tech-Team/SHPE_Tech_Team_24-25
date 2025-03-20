@@ -9,14 +9,18 @@
 
 .team-row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .team-row .item {
-    flex: 1;
-    margin: 0 0.5rem;
+    flex: 1 1 calc(33.33% - 1rem);
+    max-width: calc(33.33% - 1rem);
+    margin: 0.5rem;
 }
 
 .button-view-team {
