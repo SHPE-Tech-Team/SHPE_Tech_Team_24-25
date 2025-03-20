@@ -5,10 +5,9 @@ on:
     branches:
       - main
 
+# Add this permissions block
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   build:
@@ -21,9 +20,13 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Specify a Node.js version
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+        with:
+          working-directory: .  # Explicitly set working directory
 
       - name: Build project
         run: npm run build
