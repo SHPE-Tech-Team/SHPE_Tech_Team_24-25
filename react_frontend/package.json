@@ -1,5 +1,6 @@
 {
-  "name": "website",
+  "name": "shpe-tech-team",
+  "homepage": "https://kcruz28.github.io/AI_Loteria_24-25/",
   "version": "0.1.0",
   "type": "module",
   "private": true,
@@ -10,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@vitejs/plugin-react": "^4.3.4",
     "cra-template": "1.2.0",
+    "gh-pages": "^6.3.0",
     "io": "^1.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -21,7 +23,10 @@
   },
   "scripts": {
     "start": "npx vite",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": [
