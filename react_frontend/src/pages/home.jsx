@@ -5,13 +5,15 @@ import Footer from "../components/footer.jsx";
 import { useNavigate } from "react-router-dom";
 
 
-
-
 function Home() {
   const navigate = useNavigate();
+  const viewProjects = () => {
+      navigate("/projects");
+  }
   const viewTeam = () => {
     navigate("/members");
   }
+
   return (
     <div>
       <div className="welcome">
@@ -23,13 +25,17 @@ function Home() {
             professional development, and community engagement.
           </p>
           <div>
-            <button className="button-projects">Projects</button>
-            <button className="button-team">Team</button>
+            <button onClick={viewProjects} className="button-projects">
+              Projects
+            </button>
+            <button onClick={viewTeam} className="button-team">
+              Team
+            </button>
           </div>
         </div>
         <div className="welcome-image">
           <img
-            src=/AI_Loteria_24-25/home_media/dlt.png"
+            src="/AI_Loteria_24-25/home_media/dlt.png"
             alt="adolfo"
             className="image-properties"
           />
@@ -84,4 +90,3 @@ function Home() {
 }
 
 export default Home;
-"
