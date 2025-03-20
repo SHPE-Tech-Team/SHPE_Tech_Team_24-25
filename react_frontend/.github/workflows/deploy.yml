@@ -5,9 +5,10 @@ on:
     branches:
       - main
 
-# Add this permissions block
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -17,25 +18,43 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        
+      - name: Debug current location
+        run: |
+          pwd
+          ls -la
+          
+      - name: Navigate to React directory
+        run: |
+          cd $GITHUB_WORKSPACE/react_frontend || cd react_frontend || echo "Already in correct directory"
+          pwd
+          ls -la
 
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Specify a Node.js version
+          node-version: '16'
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
         with:
-          working-directory: .  # Explicitly set working directory
+          working-directory: react_frontend
 
       - name: Build project
-        run: npm run build
+        run: |
+          cd $GITHUB_WORKSPACE/react_frontend || cd react_frontend
+          npm run build
+          
+      - name: Verify build output
+        run: |
+          cd $GITHUB_WORKSPACE/react_frontend || cd react_frontend
+          ls -la dist || echo "No dist directory found!"
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
         with:
           name: production-files
-          path: ./dist
+          path: react_frontend/dist
 
   deploy:
     name: Deploy
@@ -44,14 +63,22 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
+      - name: Checkout repo for deployment
+        uses: actions/checkout@v3
+      
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: production-files
-          path: ./dist
+          path: ./deploy-dist
+
+      - name: Verify download
+        run: |
+          ls -la ./deploy-dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./deploy-dist
+          force_orphan: true
