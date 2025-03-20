@@ -1,0 +1,34 @@
+.team-section {
+    height: auto;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.team-row .item {
+    flex: 1;
+    margin: 0 0.5rem;
+}
+
+.button-view-team {
+    padding: 10px 25px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    border: 2px solid var(--secondaryColor);
+    box-sizing: border-box;
+    white-space: nowrap;
+    margin-top: 2rem;
+}
