@@ -1,0 +1,38 @@
+.team-section {
+    height: auto;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.team-row .item {
+    flex: 1 1 calc(33.33% - 1rem);
+    max-width: calc(33.33% - 1rem);
+    margin: 0.5rem;
+}
+
+.button-view-team {
+    padding: 10px 25px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    border: 2px solid var(--secondaryColor);
+    box-sizing: border-box;
+    white-space: nowrap;
+    margin-top: 2rem;
+}

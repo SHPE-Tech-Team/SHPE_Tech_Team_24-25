@@ -91,7 +91,7 @@ div .welcome-content {
     margin-top: 5%;
     margin-bottom: 5%;
     border-radius: 20px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
     box-sizing: border-box;
 }
@@ -102,6 +102,11 @@ div .welcome-content {
     margin-left: 0;
     margin-bottom: 1rem;
     max-width: 90%;
+}
+
+.eoh-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
 }
 
 .button-learn {
@@ -135,4 +140,41 @@ div .welcome-content {
     margin-bottom: 1rem;
     margin-right: 2rem;
     border: 2px solid var(--secondaryColor);
+}
+
+/* team section */
+
+.team-section {
+    height: auto;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.team-row .item {
+    flex: 1;
+    margin: 0 0.5rem;
+}
+
+.button-view-team {
+    padding: 10px 25px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    border: 2px solid var(--secondaryColor);
+    box-sizing: border-box;
+    white-space: nowrap;
+    margin-top: 2rem;
 }
