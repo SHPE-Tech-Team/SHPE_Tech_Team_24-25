@@ -1,7 +1,17 @@
 import React from "react";
 import "../styles/home_style.css";
+import MemberCard from "../components/member_card";
+import Footer from "../components/footer.jsx";
+import { useNavigate } from "react-router-dom";
+
+
+
 
 function Home() {
+  const navigate = useNavigate();
+  const viewTeam = () => {
+    navigate("/members");
+  }
   return (
     <div>
       <div className="welcome">
@@ -36,6 +46,39 @@ function Home() {
           <button className="button-learn">Learn More</button>
         </div>
       </div>
+      <div className="team-section">
+        <h2>The Team</h2>
+        <div className="team-row">
+          <MemberCard
+            member={{
+              avatar: "/home_media/dlt.png",
+              name: "John Doe",
+              email: "john.doe@example.com",
+              role: "Developer",
+            }}
+          />
+          <MemberCard
+            member={{
+              avatar: "/home_media/dlt.png",
+              name: "La Flame",
+              email: "john.doe@example.com",
+              role: "Lead Software Developer",
+            }}
+          />
+          <MemberCard
+            member={{
+              avatar: "/home_media/dlt.png",
+              name: "John Doe",
+              email: "john.doe@example.com",
+              role: "Developer",
+            }}
+          />
+        </div>
+        <button onClick={viewTeam} className="button-view-team">
+          View All
+        </button>
+      </div>
+      <Footer />
     </div>
   );
 }
