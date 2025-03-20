@@ -9,7 +9,10 @@ import Footer from "../components/footer.jsx";
 function Printvid() {
   return (
     <video width="600" height="500" controls>
-      <source src={"/home_media/print.mp4"} type="video/mp4" />
+      <source
+        src={"/AI_Loteria_24-25/home_media/print.mp4"}
+        type="video/mp4"
+      />
     </video>
   );
 }

@@ -1,6 +1,5 @@
 {
   "name": "shpe-tech-team",
-  "homepage": "https://kcruz28.github.io/AI_Loteria_24-25/",
   "version": "0.1.0",
   "type": "module",
   "private": true,
@@ -23,10 +22,8 @@
   },
   "scripts": {
     "start": "npx vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+     "build": "vite build",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +50,7 @@
     "concurrently": "^9.1.2",
     "empty-module": "^0.0.2",
     "eslint": "^9.21.0",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "typescript": "^5.8.2"
   }
 }

@@ -29,7 +29,7 @@ function Home() {
         </div>
         <div className="welcome-image">
           <img
-            src="/home_media/dlt.png"
+            src="/AI_Loteria_24-25/home_media/dlt.png"
             alt="adolfo"
             className="image-properties"
           />
@@ -51,7 +51,7 @@ function Home() {
         <div className="team-row">
           <MemberCard
             member={{
-              avatar: "/home_media/dlt.png",
+              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
               name: "John Doe",
               email: "john.doe@example.com",
               role: "Developer",
@@ -59,7 +59,7 @@ function Home() {
           />
           <MemberCard
             member={{
-              avatar: "/home_media/dlt.png",
+              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
               name: "La Flame",
               email: "john.doe@example.com",
               role: "Lead Software Developer",
@@ -67,7 +67,7 @@ function Home() {
           />
           <MemberCard
             member={{
-              avatar: "/home_media/dlt.png",
+              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
               name: "John Doe",
               email: "john.doe@example.com",
               role: "Developer",

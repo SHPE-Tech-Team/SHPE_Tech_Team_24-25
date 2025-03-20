@@ -20,11 +20,11 @@ import "./styles/App.css";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/AI_Loteria_24-25">
       <div className="App">
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/members" element={<MembersPage />} />
