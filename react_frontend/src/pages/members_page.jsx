@@ -17,7 +17,7 @@ function MembersPage() {
         <div className="team-row">
           <MemberCard
             member={{
-              avatar: "/home_media/dlt.png",
+              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
               name: "John Doe",
               email: "john.doe@example.com",
               role: "Developer",
@@ -25,7 +25,7 @@ function MembersPage() {
           />
           <MemberCard
             member={{
-              avatar: "/home_media/dlt.png",
+              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
               name: "La Flame",
               email: "john.doe@example.com",
               role: "Lead Software Developer",
@@ -33,7 +33,7 @@ function MembersPage() {
           />
           <MemberCard
             member={{
-              avatar: "/home_media/dlt.png",
+              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
               name: "John Doe",
               email: "john.doe@example.com",
               role: "Developer",
