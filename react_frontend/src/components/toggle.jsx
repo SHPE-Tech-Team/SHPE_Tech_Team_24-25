@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function MyComponent() {
+function Toggle() {
   const [isToggled, setIsToggled] = useState(false);
 
   const handleToggle = () => {
@@ -19,4 +19,4 @@ function MyComponent() {
   );
 }
 
-export default MyComponent;
+export default Toggle;
