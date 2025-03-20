@@ -29,7 +29,7 @@ function Home() {
         </div>
         <div className="welcome-image">
           <img
-            src="/AI_Loteria_24-25/home_media/dlt.png"
+            src=/AI_Loteria_24-25/home_media/dlt.png"
             alt="adolfo"
             className="image-properties"
           />
@@ -84,3 +84,4 @@ function Home() {
 }
 
 export default Home;
+"

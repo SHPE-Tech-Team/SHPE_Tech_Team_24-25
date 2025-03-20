@@ -3,6 +3,8 @@ import Footer from "../components/footer.jsx";
 import TitleCard from "../components/title_card.jsx";
 import MemberCard from "../components/member_card";
 import "../styles/members_page_style.css";
+import members from "../data/members_data.jsx";
+
 
 function MembersPage() {
   return (
@@ -15,54 +17,9 @@ function MembersPage() {
       <div className="team-section">
         <h2>The Team</h2>
         <div className="team-row">
-          <MemberCard
-            member={{
-              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
-              name: "John Doe",
-              email: "john.doe@example.com",
-              role: "Developer",
-            }}
-          />
-          <MemberCard
-            member={{
-              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
-              name: "La Flame",
-              email: "john.doe@example.com",
-              role: "Lead Software Developer",
-            }}
-          />
-          <MemberCard
-            member={{
-              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
-              name: "John Doe",
-              email: "john.doe@example.com",
-              role: "Developer",
-            }}
-          />
-          <MemberCard
-            member={{
-              avatar: "/home_media/dlt.png",
-              name: "John Doe",
-              email: "john.doe@example.com",
-              role: "Developer",
-            }}
-          />
-          <MemberCard
-            member={{
-              avatar: "/home_media/dlt.png",
-              name: "La Flame",
-              email: "john.doe@example.com",
-              role: "Lead Software Developer",
-            }}
-          />
-          <MemberCard
-            member={{
-              avatar: "/home_media/dlt.png",
-              name: "John Doe",
-              email: "john.doe@example.com",
-              role: "Developer",
-            }}
-          />
+          {members.map((member, index) => (
+            <MemberCard key={index} member={member} />
+          ))}
         </div>
       </div>
       <Footer></Footer>
