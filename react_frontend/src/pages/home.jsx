@@ -65,7 +65,7 @@ function Home() {
           />
           <MemberCard
             member={{
-              avatar: import.meta.env.BASE_URL + "members_images/goat.jpg",
+              avatar: import.meta.env.BASE_URL + "members_images/erik_t.jpg",
               name: "Kevin Cruz (La Flame)",
               email: "kcruz28@illinois.edu",
               role: "Lead Software Developer / Full Stack Developer",
