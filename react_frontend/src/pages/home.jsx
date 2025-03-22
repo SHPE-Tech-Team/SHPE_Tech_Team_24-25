@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/home_style.css";
-import MemberCard from "../components/member_card";
+import MemberCard from "../components/member_card.jsx";
 import Footer from "../components/footer.jsx";
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +35,7 @@ function Home() {
         </div>
         <div className="welcome-image">
           <img
-            src="/AI_Loteria_24-25/home_media/dlt.png"
+            src={import.meta.env.BASE_URL + "home_media/dlt.png"}
             alt="adolfo"
             className="image-properties"
           />
@@ -57,7 +57,7 @@ function Home() {
         <div className="team-row">
           <MemberCard
             member={{
-              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
+              avatar: import.meta.env.BASE_URL + "home_media/dlt.png",
               name: "John Doe",
               email: "john.doe@example.com",
               role: "Developer",
@@ -65,7 +65,7 @@ function Home() {
           />
           <MemberCard
             member={{
-              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
+              avatar: import.meta.env.BASE_URL + "home_media/dlt.png",
               name: "La Flame",
               email: "john.doe@example.com",
               role: "Lead Software Developer",
@@ -73,7 +73,7 @@ function Home() {
           />
           <MemberCard
             member={{
-              avatar: "/AI_Loteria_24-25/home_media/dlt.png",
+              avatar: import.meta.env.BASE_URL + "home_media/dlt.png",
               name: "John Doe",
               email: "john.doe@example.com",
               role: "Developer",

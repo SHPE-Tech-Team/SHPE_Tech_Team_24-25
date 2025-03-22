@@ -22,9 +22,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npx vite",
+    "dev": "vite",
+    "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --base=/AI_Loteria_24-25/",
+    "predeploy": "vite build",
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": [
