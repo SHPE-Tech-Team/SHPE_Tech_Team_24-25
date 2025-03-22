@@ -57,26 +57,26 @@ function Home() {
         <div className="team-row">
           <MemberCard
             member={{
-              avatar: import.meta.env.BASE_URL + "home_media/dlt.png",
-              name: "John Doe",
-              email: "john.doe@example.com",
-              role: "Developer",
+              avatar: import.meta.env.BASE_URL + "members_images/erick.jpg",
+              name: "Erick",
+              email: "xxxxxx@illinois.edu",
+              role: "EOH Lead",
             }}
           />
           <MemberCard
             member={{
-              avatar: import.meta.env.BASE_URL + "home_media/dlt.png",
-              name: "La Flame",
-              email: "john.doe@example.com",
-              role: "Lead Software Developer",
+              avatar: import.meta.env.BASE_URL + "members_images/goat.jpg",
+              name: "Kevin Cruz (La Flame)",
+              email: "kcruz28@illinois.edu",
+              role: "Lead Software Developer / Full Stack Developer",
             }}
           />
           <MemberCard
             member={{
-              avatar: import.meta.env.BASE_URL + "home_media/dlt.png",
-              name: "John Doe",
-              email: "john.doe@example.com",
-              role: "Developer",
+              avatar: import.meta.env.BASE_URL + "members_images/juan.jpg",
+              name: "Juan Fraguso",
+              email: "xxxxxx@illinois.edu",
+              role: "Mechanical",
             }}
           />
         </div>
