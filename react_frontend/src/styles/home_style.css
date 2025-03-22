@@ -4,25 +4,31 @@
     --textColor: #ffffff;
 }
 
+
+
 .welcome {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 800px;
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 800px;
     background-color: var(--mainColor);
     color: var(--textColor);
-} 
+    padding: 2rem 1rem;
+    z-index: 1;
+}
 
-
+/* Update welcome content for responsiveness */
 div .welcome-content {
-    position: absolute;
-    top: 10%;
-    right: 50%;
+    position: relative;
     width: 50%;
     height: auto;
     text-align: left;
-    margin-left: 10rem;
-} 
+    padding: 1rem;
+    box-sizing: border-box;
+}
 
 .welcome-content h1 {
     font-size: 5rem;
@@ -43,6 +49,37 @@ div .welcome-content {
     margin-left: 2rem;
 }
 
+
+
+
+@media (max-width: 1200px) {
+    .image-properties {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome {
+        flex-direction: column;
+    }
+
+    div .welcome-content,
+    .welcome-image {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        padding: 0.5rem;
+    }
+
+    .welcome-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .welcome-content h2 {
+        font-size: 2rem;
+    }
+}
 
 /* buttons for welcome  */
 .button-projects {
@@ -122,24 +159,25 @@ div .welcome-content {
 }
 
 
-/* this is for image */
+
+
 .welcome-image {
-    position: absolute;
-    top: 10%;
-    left: 50%;
+    position: relative;
     width: 50%;
     height: auto;
     text-align: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.image-properties{
-    width: 700px;
-    height: 700px;
+.image-properties {
+    max-width: 100%;
+    height: auto;
     border-radius: 25px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-right: 2rem;
+    margin: 1rem;
     border: 2px solid var(--secondaryColor);
+    object-fit: contain;
 }
 
 /* team section */

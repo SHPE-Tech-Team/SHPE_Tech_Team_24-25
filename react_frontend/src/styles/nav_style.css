@@ -22,6 +22,8 @@ header {
     padding: 0 2rem;
     background-color: var(--mainColor);
     color: var(--textColor);
+    position: relative;
+    z-index: 1000;
 }
 
 header .logo {
@@ -67,6 +69,8 @@ header .nav-btn {
     header .nav-btn {
         visibility: visible;
         opacity: 1;
+        z-index: 1001;
+        position: relative;
     }
 
     header nav {
@@ -83,17 +87,20 @@ header .nav-btn {
         background-color: var(--mainColor);
         transition: 1s;
         transform: translateY(-100vh);
+        z-index: 999;
     }
 
 
     header .res_nav {
         transform: none;
+        z-index: 1005;
     }
 
     nav .nav-close {
         position: absolute;
         top: 2rem;
         right: 2rem;
+        z-index: 1010;
     }
 
     nav a {
