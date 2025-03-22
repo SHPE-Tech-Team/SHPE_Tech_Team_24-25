@@ -20,7 +20,7 @@ import "./styles/App.css";
 
 function App() {
   return (
-    <Router basename="/AI_Loteria_24-25">
+    <Router basename={import.meta.env.BASE_URL}>
       <div className="App">
         <NavBar />
         <Routes>

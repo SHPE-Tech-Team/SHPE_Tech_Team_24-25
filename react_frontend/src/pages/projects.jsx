@@ -6,11 +6,12 @@ import { Link } from "react-router-dom";
 import "../styles/App.css";
 import Footer from "../components/footer.jsx";
 
+
 function Printvid() {
   return (
     <video width="600" height="500" controls>
       <source
-        src={"/AI_Loteria_24-25/home_media/print.mp4"}
+        src={import.meta.env.BASE_URL + "home_media/print.mp4"}
         type="video/mp4"
       />
     </video>
@@ -53,14 +54,14 @@ function Hero() {
       <div className="hero-images">
         <div className="hero-image left">
           <img
-            src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src={import.meta.env.BASE_URL + "projects_media/code.jpeg"}
             alt="A close-up photograph of computer code displayed on a monitor, featuring syntax-highlighted text on a dark background."
           ></img>
         </div>
         <div className="hero-image right">
           <img
-            src="https://images.pexels.com/photos/8386363/pexels-photo-8386363.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="A close-up of a robotic hand reaching upward against a vibrant blue background, symbolizing futuristic technology and innovation."
+            src= {import.meta.env.BASE_URL + "projects_media/robot.jpeg"}
+            alt= "A close-up of a robotic hand reaching upward against a vibrant blue background, symbolizing futuristic technology and innovation."
           ></img>
         </div>
       </div>

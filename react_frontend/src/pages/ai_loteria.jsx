@@ -1,6 +1,5 @@
 import React from "react";
 import CardDeckDetection from "./card_detection/card_deck_prediction.jsx";
-import Toggle from "../components/toggle.jsx";
 import "../styles/ai_loteria_style.css";
 
 
