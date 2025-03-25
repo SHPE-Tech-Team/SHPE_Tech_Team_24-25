@@ -86,6 +86,12 @@ const mechanicalTeam = [
     email: "xxxxxx@illinois.edu",
     role: "Mechanical",
   },
+  {
+    avatar: import.meta.env.BASE_URL + "members_images/alonso.jpg",
+    name: "Jhonny Martinez",
+    email: "xxxxxx@illinois.edu",
+    role: "Autonomous Support Mechical",
+  },
 ];
 
 export {mechanicalTeam, programmingTeam};
