@@ -1,11 +1,11 @@
 task: detect
 mode: train
 model: yolov8n.pt
-data: /Users/laflame/SHPE TECH TEAM AI/AI_Loteria_24-25/flask_backend/flask_server/My-First-Project-2/data.yaml
-epochs: 100
+data: data.yaml
+epochs: 25
 time: null
 patience: 100
-batch: 8
+batch: 16
 imgsz: 640
 save: true
 save_period: -1
