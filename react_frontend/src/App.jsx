@@ -13,6 +13,7 @@ import Projects from "./pages/projects.jsx";
 import Home from "./pages/home.jsx";
 import AI_loteria from "./pages/ai_loteria.jsx";
 import NavBar from "./components/nav.jsx";
+import Vex from "./pages/vex.jsx";
 
 
 import "./styles/App.css";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/members" element={<MembersPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/teddy" element={<AI_loteria />} />
+          <Route path="/vex" element={<Vex />} />
         </Routes>
       </div>
     </Router>
