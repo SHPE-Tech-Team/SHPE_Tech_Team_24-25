@@ -40,6 +40,12 @@ function NavBar() {
           Members
         </NavLink>
         <NavLink
+          to="/vex"
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
+          Vex Members
+        </NavLink>
+        <NavLink
           to="/contact"
           className={({ isActive }) => (isActive ? "active-link" : "")}
         >

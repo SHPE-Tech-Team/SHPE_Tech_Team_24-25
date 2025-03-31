@@ -94,4 +94,15 @@ const mechanicalTeam = [
   },
 ];
 
-export {mechanicalTeam, programmingTeam};
+const vexTeam = [
+  {
+    avatar: import.meta.env.BASE_URL + "members_images/juan.jpg",
+    name: "Johnny Martinez",
+    email: "xxxxxx@illinois.edu",
+    role: "Main Designer",
+  },
+]
+
+
+
+export {mechanicalTeam, programmingTeam, vexTeam};
