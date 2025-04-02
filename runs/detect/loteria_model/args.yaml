@@ -1,16 +1,16 @@
 task: detect
 mode: train
 model: yolov8n.pt
-data: data.yaml
-epochs: 25
+data: /Users/laflame/SHPE TECH TEAM AI/AI_Loteria_24-25/flask_backend/flask_server/Loteria-Dataset-4/data.yaml
+epochs: 100
 time: null
 patience: 100
-batch: 16
+batch: 8
 imgsz: 640
 save: true
 save_period: -1
 cache: false
-device: null
+device: mps
 workers: 8
 project: null
 name: loteria_model
