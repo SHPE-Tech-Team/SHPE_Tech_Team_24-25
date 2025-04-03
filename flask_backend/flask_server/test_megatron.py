@@ -8,7 +8,7 @@ import os
 
 
 def download_dataset():
-    version = 7
+    version = 8
     load_dotenv()
     api_key = os.getenv("API_KEY")
     try:
@@ -52,14 +52,15 @@ def train_model():
 
         results = model.train(
             data=yaml_path,
-            epochs=50,
+            epochs=25,
             imgsz=640,
-            batch=10,
+            batch=-1,
             device=device,
             lr0=0.001,
             optimizer="AdamW",
             weight_decay=0.05,
             name="loteria_model",
+            save_period=5,
         )
 
         model_path = os.path.join(
