@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 import os
 
 
-
 def download_dataset():
     version = 7
     load_dotenv()
@@ -96,6 +95,6 @@ def test_inference(model_path="runs/detect/loteria_model/weights/best.pt"):
 if __name__ == "__main__":
     # Train the model
     trained_model = train_model()
-
+    trained_model.export(format="onnx")
     # Test loading the saved model
     test_inference()
