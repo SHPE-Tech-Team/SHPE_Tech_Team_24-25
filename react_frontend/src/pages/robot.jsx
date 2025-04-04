@@ -12,6 +12,14 @@ export default function Robot() {
             />
             <div className="gallery">
                 <h2>Project Gallery</h2>
+                <h1>Video</h1>
+                <div className="video">
+                    <video width="500" height="600" controls>
+                        <source src="../../../public/home_media/FINAL_ANIMATION_BEAN_DROPPER_AILoteria.mp4" type="video/mp4"></source>
+                    </video>  
+                </div>
+
+                <h1>Images</h1>
                 <div className="mosaic-gallery">
                     <div className="gallery-item wide">
                         <img src="home_media/robotic_arm_side.jpg" alt="Robot Overview" />
