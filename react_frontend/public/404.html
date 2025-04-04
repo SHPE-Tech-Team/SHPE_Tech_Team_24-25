@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // Single Page Apps for GitHub Pages
+    // https://github.com/rafgraph/spa-github-pages
+    (function() {
+      // This works on all devices/browsers, and uses a trick based on redirect to
+      // a special 404.html page with script that routes back to index.html with proper URL
+      var segmentCount = 1; // Represents "/AI_Loteria_24-25/" as one segment
+      var repoName = "AI_Loteria_24-25";
+      
+      var l = window.location;
+      
+      // Extract the path that needs to be preserved
+      var cleanPath;
+      
+      if (l.pathname.indexOf('/' + repoName + '/') === 0) {
+        // We're already within the repo path, extract what follows it
+        cleanPath = l.pathname.substring(('/' + repoName + '/').length);
+      } else if (l.pathname.indexOf('/') === 0) {
+        // We have a path starting with slash but not in repo context
+        cleanPath = l.pathname.substring(1);
+      } else {
+        // Fallback
+        cleanPath = l.pathname;
+      }
+      
+      // Add query string and hash if they exist
+      if (l.search) {
+        cleanPath += l.search;
+      }
+      if (l.hash) {
+        cleanPath += l.hash;
+      }
+      
+      // Store the path for index.html to use
+      sessionStorage.setItem('spa-path', cleanPath);
+      
+      // Redirect to the base URL
+      l.replace(l.origin + '/' + repoName + '/');
+    })();
+  </script>
+</head>
+<body>
+  <h2>Redirecting...</h2>
+  <p>If you are not redirected automatically, click <a href="/">here</a> to go to the homepage.</p>
+</body>
+</html>

@@ -3,7 +3,6 @@ import "../styles/home_style.css";
 import MemberCard from "../components/member_card.jsx";
 import Footer from "../components/footer.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import GroupPicture from "../../public/home_media/tech_team_group_picture.jpg"
 
 
 function Home() {
@@ -34,7 +33,7 @@ function Home() {
             </button>
           </div>
         </div>
-        <div className="welcome-image">
+        <div className="welcome-image hide-on-mobile">
           <img
             src={import.meta.env.BASE_URL + "home_media/dlt.png"}
             alt="SHPE member in front 3D Printer"

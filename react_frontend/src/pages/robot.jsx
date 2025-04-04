@@ -14,27 +14,27 @@ export default function Robot() {
                 <h2>Project Gallery</h2>
                 <div className="mosaic-gallery">
                     <div className="gallery-item wide">
-                        <img src="../../public/home_media/robotic_arm_side.jpg" alt="Robot Overview" />
+                        <img src="home_media/robotic_arm_side.jpg" alt="Robot Overview" />
                         <p className="caption">Full view of our ASL robot hand</p>
                     </div>
                     <div className="gallery-item">
-                        <img src="../../public/home_media/hand_close_up.jpeg" alt="Hand Close-up" />
+                        <img src="home_media/hand_close_up.jpeg" alt="Hand Close-up" />
                         <p className="caption">Detailed view of robotic hand joints</p>
                     </div>
                     <div className="gallery-item tall">
-                        <img src="../../public/home_media/team_testing.jpg" alt="Testing Session" />
+                        <img src="home_media/team_testing.jpg" alt="Testing Session" />
                         <p className="caption">Testing session at Electrical and Computer Engineering Building (ECEB)</p>
                     </div>
                     <div className="gallery-item wide tall">
-                        <img src="../../public/home_media/tech_team_group_picture.jpg" alt="Team" />
+                        <img src="home_media/tech_team_group_picture.jpg" alt="Team" />
                         <p className="caption">Our dedicated team of developers and engineers</p>
                     </div>
                     <div className="gallery-item">
-                        <img src="../../public/home_media/project_development.jpeg" alt="Development" />
+                        <img src="home_media/project_development.jpeg" alt="Development" />
                         <p className="caption">Development process</p>
                     </div>
                     <div className="gallery-item wide">
-                        <img src="../../public/home_media/team_brainstorming.jpeg" alt="Team during a brainstorming session" />
+                        <img src="home_media/team_brainstorming.jpeg" alt="Team during a brainstorming session" />
                         <p className="caption">Team brainstorming session</p>
                     </div>
                 </div>

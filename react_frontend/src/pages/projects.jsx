@@ -37,9 +37,9 @@ function Hero() {
       </div>
       <div className="hero-text">
         <div className="hero-title">
-          <h1>Engineering Open House 2025</h1>
+          <h1 className="eoh-title">Engineering Open House 2025</h1>
         </div>
-        <h2>The Age of Innovation</h2>
+        <h2 className="hero-subtitle">The Age of Innovation</h2>
         <div className="hero-buttons">
           <a href="#loteria">
             <button className="loteria-button">AI Loteria</button>

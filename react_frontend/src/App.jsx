@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter,
   Routes,
   Route,
   Link,
@@ -15,14 +15,13 @@ import Loteria from "./pages/loteria.jsx";
 import Robot from "./pages/robot.jsx"
 import NavBar from "./components/nav.jsx";
 import Vex from "./pages/vex.jsx";
-
-
 import "./styles/App.css";
 
-
 function App() {
+  // Using HashRouter instead of BrowserRouter solves the page refresh issues
+  // HashRouter uses URL hashes which don't trigger server requests on refresh
   return (
-    <Router basename={import.meta.env.BASE_URL}>
+    <HashRouter>
       <div className="App">
         <NavBar />
         <Routes>
@@ -36,7 +35,7 @@ function App() {
           <Route path="/vex" element={<Vex />} />
         </Routes>
       </div>
-    </Router>
+    </HashRouter>
   );
 }
 

@@ -16,10 +16,12 @@ function NavBar() {
 
   return (
     <header>
-      <img className="logo" src="SHPE_logo.avif" alt="SHPE Logo" />
-      <h1 style={{ cursor: "pointer" }} onClick={goHome}>
-        SHPE
-      </h1>
+      <div className="brand-container">
+        <img className="logo" src="SHPE_logo.avif" alt="SHPE Logo" />
+        <h1 style={{ cursor: "pointer" }} onClick={goHome}>
+          SHPE
+        </h1>
+      </div>
       <nav ref={useNav}>
         <NavLink
           to="/projects"
