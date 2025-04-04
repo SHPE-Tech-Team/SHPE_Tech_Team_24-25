@@ -66,7 +66,9 @@ function Hero() {
         </div>
       </div>
       <div className="hero-text">
-        <h1>Engineering Open House 2025</h1>
+        <div className="hero-title">
+          <h1>Engineering Open House 2025</h1>
+        </div>
         <h2>The Age of Innovation</h2>
         {/* To-Do: Add 2 buttons to explore each project  */}
         <div className="hero-buttons">
@@ -86,20 +88,14 @@ function ProjectLoteria() {
   return (
     <div className="loteria" id="loteria">
       <div className="loteria-background">
-        <div className="loteria-text">
+        <div className="loteria-text full-width-on-mobile">
           <h2>Project 1</h2>
           <h1>AI Loteria</h1>
           <p>
-            Lorem ipsum odor amet, consectetuer adipiscing elit. Euismod massa
-            donec taciti tristique accumsan nulla phasellus risus. Augue rhoncus
-            a taciti pretium dignissim interdum. Consectetur sollicitudin
-            parturient etiam tempor mauris congue. Suspendisse suspendisse
-            posuere venenatis semper; est mi. Massa luctus at dis velit
-            facilisis pharetra leo. Quis elit erat magnis commodo vulputate
-            potenti.
+            AI Lotería brings a fresh and fun twist to the classic Mexican game of Lotería by mixing in some cool artificial intelligence technology. Using smart computer vision and machine learning, our system can spot and track cards instantly, making the game more interactive and exciting than ever before. It's all about combining tradition with tech to keep cultural favorites alive in a new and modern way. Come play and see how AI is adding extra fun to an old favorite!
           </p>
         </div>
-        <div className="loteria-video">
+        <div className="loteria-video hide-on-mobile">
           <ObjectDetection />
         </div>
       </div>
@@ -111,20 +107,14 @@ function ProjectRobot() {
   return (
     <div className="robot" id="robot">
       <div className="robot-background">
-        <div className="robot-text">
+        <div className="robot-text full-width-on-mobile">
           <h2>Project 2</h2>
           <h1>ASL Robot</h1>
           <p>
-            Lorem ipsum odor amet, consectetuer adipiscing elit. Euismod massa
-            donec taciti tristique accumsan nulla phasellus risus. Augue rhoncus
-            a taciti pretium dignissim interdum. Consectetur sollicitudin
-            parturient etiam tempor mauris congue. Suspendisse suspendisse
-            posuere venenatis semper; est mi. Massa luctus at dis velit
-            facilisis pharetra leo. Quis elit erat magnis commodo vulputate
-            potenti.
+            The ASL Robot is all about breaking down barriers between the hearing and Deaf communities in a fun and engaging way. Powered by advanced robotics, our robot accurately performs American Sign Language (ASL) gestures. It's a creative and practical way to make communication easier and more inclusive for everyone. Experience firsthand how technology can open up new possibilities, empowering people to connect better in all sorts of situations.
           </p>
         </div>
-        <div className="robot-video">
+        <div className="robot-video hide-on-mobile">
           <Printvid />
         </div>
       </div>

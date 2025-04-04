@@ -394,4 +394,30 @@ body {
   .social-links {
     gap: 20px;
   }
+
+  .full-width-on-mobile {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 0 100% !important;
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 480px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
 }
