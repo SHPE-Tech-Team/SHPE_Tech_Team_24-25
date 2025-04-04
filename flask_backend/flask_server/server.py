@@ -64,14 +64,14 @@ def predict_card_deck():
 
 @app.route("/cloud", methods=["POST"])
 def predict():
-    # Get image from request
+
     file = request.files["image"]
     img = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)
 
-    # Run YOLO inference
+
     results = run(weights="yolov5s.pt", source=img)
 
-    # Format results
+
     detections = results.pandas().xyxy[0].to_dict(orient="records")
     return jsonify(detections)
 
