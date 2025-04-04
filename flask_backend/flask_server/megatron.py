@@ -41,9 +41,25 @@ import threading
 ##### new
 
 class_color = {}
-camera_class_ids = {} 
+camera_class_ids = {}
+tablas = [
+    "tabla 1",
+    "tabla 2",
+    "tabla 3",
+    "tabla 4",
+    "tabla 5",
+    "tabla 6",
+    "tabla 7",
+    "tabla 8",
+    "tabla 9",
+    "tabla 10",
+]
+
+green_cards = set()
 def coordinate_objects(results, frame, shared_classes=None):
     detected_classes = set()
+    
+    total_cards = 16
 
     for result in results:
         boxes = result.boxes
@@ -57,12 +73,14 @@ def coordinate_objects(results, frame, shared_classes=None):
 
                 detected_classes.add(cls)
 
-                color = (0, 0, 255)  # Red
-                if class_color.get(cls) == True:
-                    color = (0, 255, 0)  # Green
-                elif shared_classes and cls in shared_classes:
-                    color = (0, 255, 0)  # Green
-                    class_color[cls] = True  # Remember it was seen by both cameras
+                if cls not in tablas:
+                    color = (0, 0, 255)  # Red
+                    if class_color.get(cls) == True:
+                        color = (0, 255, 0)  # Green
+                    elif shared_classes and cls in shared_classes:
+                        color = (0, 255, 0)  # Green
+                        class_color[cls] = True  # Remember it was seen by both cameras
+                        green_cards.add(cls)
 
                 cv2.circle(frame, (x_mid, y_mid), 20, color, -1)
                 cv2.putText(
@@ -75,7 +93,14 @@ def coordinate_objects(results, frame, shared_classes=None):
                     2,
                 )
 
-                print(f"Camera sees class {cls}, confidence {conf:.2f}, midpoint ({x_mid},{y_mid})")
+                print(
+                    f"Camera sees class {cls}, confidence {conf:.2f}, midpoint ({x_mid},{y_mid})"
+                )
+
+    if green_cards == total_cards:
+        cv2.putText(frame, "LOTERIA", (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 0), 5)
+    # else:
+    #     cv2.putText(frame, f"Cards: {len(green_cards)} /{total_cards}", (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 0, 255), 5)
 
     return detected_classes
 
@@ -125,7 +150,7 @@ def testing_middle_dot():
                 continue
 
             try:
-                results = model(frame, conf=0.85)
+                results = model(frame, conf=0.70)
                 annotated_frame = results[0].plot()
 
                 # Grab other camera's classes
@@ -134,7 +159,9 @@ def testing_middle_dot():
                     shared_classes = camera_class_ids.get(other_camera_id, set())
 
                 # Detect classes in this frame and draw
-                detected_classes = coordinate_objects(results, annotated_frame, shared_classes)
+                detected_classes = coordinate_objects(
+                    results, annotated_frame, shared_classes
+                )
 
                 # Save this frame and its detected classes
                 with frames_lock:
@@ -157,7 +184,7 @@ def testing_middle_dot():
         thread.start()
 
     try:
-        last_frames = {}  #saving in case it is slow
+        last_frames = {}  # saving in case it is slow
 
         while running:
             frames_to_show = {}
