@@ -4,15 +4,51 @@ import App from "./App.jsx";
 import reportWebVitals from "./reportWebVitals.jsx";
 
 try {
-  // Check if we need to redirect to a specific path stored in sessionStorage
+  // Process redirect from 404.html using the new spa-path key
+  const spaPath = sessionStorage.getItem('spa-path');
+  
+  if (spaPath) {
+    console.log("Restoring SPA path:", spaPath);
+    sessionStorage.removeItem('spa-path');
+    
+    try {
+      // For GitHub Pages, we need to reconstruct the full path
+      const isGitHubPages = window.location.hostname.includes('github.io');
+      const repoName = 'AI_Loteria_24-25';
+      
+      // For GitHub Pages, prefix with repo name
+      const fullPath = isGitHubPages 
+        ? `/${repoName}/${spaPath}` 
+        : `/${spaPath}`;
+      
+      // Apply the path to the current location
+      window.history.replaceState(null, '', fullPath);
+    } catch (e) {
+      console.error("Failed to restore path:", e);
+    }
+  }
+  
+  // Process any legacy redirectPath (for backward compatibility)
   const redirectPath = sessionStorage.getItem('redirectPath');
   if (redirectPath) {
+    console.log("Legacy redirect path found:", redirectPath);
     sessionStorage.removeItem('redirectPath');
-    // Use history API to change the URL without a full page reload
-    window.history.replaceState(null, null, redirectPath);
+    
+    if (!redirectPath.match(/^https?:\/\//)) {
+      try {
+        window.history.replaceState(null, null, redirectPath);
+      } catch (e) {
+        console.error("History API error with legacy path:", e);
+      }
+    }
   }
 
-  const root = ReactDOM.createRoot(document.getElementById("root"));
+  const rootElement = document.getElementById("root");
+  if (!rootElement) {
+    throw new Error("Root element not found");
+  }
+
+  const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
       <App />

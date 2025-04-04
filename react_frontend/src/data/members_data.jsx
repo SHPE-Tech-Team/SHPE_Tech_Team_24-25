@@ -51,6 +51,12 @@ const mechanicalTeam = [
     role: "Mechanical",
   },
   {
+    avatar: import.meta.env.BASE_URL + "members_images/elvin.jpeg",
+    name: "Elvin Flores",
+    email: "",
+    role: "Mechanical"
+  },
+  {
     avatar: import.meta.env.BASE_URL + "members_images/adolfo.jpg",
     name: "Adolfo De La Torre",
     email: "",
@@ -61,6 +67,24 @@ const mechanicalTeam = [
     name: "Nico Mendez",
     email: "",
     role: "Mechanical",
+  },
+  {
+    avatar: import.meta.env.BASE_URL + "members_images/andres_v.jpeg",
+    name: "Andres Vallejo",
+    email: "",
+    role: "Mechanical"
+  },
+  {
+    avatar: import.meta.env.BASE_URL + "members_images/juan.jpg",
+    name: "Alfonso De La Rosa",
+    email: "",
+    role: "Mechanical"
+  },
+  {
+    avatar: import.meta.env.BASE_URL + "members_images/mauricio.jpeg",
+    name: "Mauricio Alvarado",
+    email: "",
+    role: "Mechanical"
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/geo_q.jpg",

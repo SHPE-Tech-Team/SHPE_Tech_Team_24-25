@@ -3,7 +3,6 @@ import "../styles/home_style.css";
 import MemberCard from "../components/member_card.jsx";
 import Footer from "../components/footer.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import GroupPicture from "../../public/home_media/tech_team_group_picture.jpg"
 
 
 function Home() {
