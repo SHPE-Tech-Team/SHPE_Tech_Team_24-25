@@ -52,7 +52,7 @@ def train_model():
 
         results = model.train(
             data=yaml_path,
-            epochs=25,
+            epochs=30,
             imgsz=640,
             batch=-1,
             device=device,
@@ -61,6 +61,8 @@ def train_model():
             weight_decay=0.05,
             name="loteria_model",
             save_period=5,
+            amp=True,
+            workers=4
         )
 
         model_path = os.path.join(
