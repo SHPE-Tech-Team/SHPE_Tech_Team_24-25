@@ -67,9 +67,9 @@ function ProjectLoteria() {
             <button className="robot-button">Learn more</button>
           </Link>
         </div>
-        <div className="loteria-video hide-on-mobile">
+        {/* <div className="loteria-video hide-on-mobile">
           <ObjectDetection />
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -89,9 +89,9 @@ function ProjectRobot() {
             <button className="loteria-button">Learn more</button>
           </Link>
         </div>
-        <div className="robot-video hide-on-mobile">
+        {/* <div className="robot-video hide-on-mobile">
           <Printvid />
-        </div>
+        </div> */}
       </div>
     </div>
   );

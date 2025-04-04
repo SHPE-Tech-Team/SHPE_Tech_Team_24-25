@@ -1,26 +1,24 @@
 import React from "react";
 import "../styles/robot_style.css";
 import Footer from "../components/footer.jsx";
+import TitleCard from "../components/title_card.jsx";
 
 export default function Robot() {
     return (
         <div className="body">
-            <div className="title">
-                <h2>Project 2</h2>
-                <h1>ASL Robot</h1>
-            </div>
-            <div className="subtitle">
-                <h3>The ASL Robot is all about breaking down barriers between the hearing and Deaf communities in a fun and engaging way. Powered by advanced robotics, our robot accurately performs American Sign Language (ASL) gestures. It's a creative and practical way to make communication easier and more inclusive for everyone. Experience firsthand how technology can open up new possibilities, empowering people to connect better in all sorts of situations.</h3>
-            </div>
+            <TitleCard
+                title="ASL Robotic Arm"
+                description="Experience our innovative robotic hand that brings American Sign Language (ASL) to life through mechanical engineering. This project combines precision robotics with accessibility, creating a bridge between technology and sign language communication."
+            />
             <div className="gallery">
                 <h2>Project Gallery</h2>
                 <div className="mosaic-gallery">
                     <div className="gallery-item wide">
-                        <img src="/robot_media/robot1.jpg" alt="Robot Overview" />
-                        <p className="caption">Full view of our ASL Robot in action</p>
+                        <img src="../../public/home_media/robotic_arm_side.jpg" alt="Robot Overview" />
+                        <p className="caption">Full view of our ASL robot hand</p>
                     </div>
                     <div className="gallery-item">
-                        <img src="./../public/home_media/hand_close_up.jpeg" alt="Hand Close-up" />
+                        <img src="../../public/home_media/hand_close_up.jpeg" alt="Hand Close-up" />
                         <p className="caption">Detailed view of robotic hand joints</p>
                     </div>
                     <div className="gallery-item tall">

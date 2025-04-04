@@ -5,17 +5,15 @@ import F1 from "../../../runs/detect/loteria_model7/F1_curve.png";
 import ValBatch from "../../../runs/detect/loteria_model7/val_batch0_pred.jpg"
 import ConfusionMatrix from "../../../runs/detect/loteria_model7/confusion_matrix.png"
 import Results from "../../../runs/detect/loteria_model7/results.png"
+import TitleCard from "../components/title_card.jsx";
 
 export default function Loteria() {
     return (
         <div className="body">
-            <div className="title">
-                <h2>Project 1</h2>
-                <h1>AI Loteria</h1>
-            </div>
-            <div className="subtitle">
-                <h3>AI Lotería brings a fresh and fun twist to the classic Mexican game of Lotería by mixing in some cool artificial intelligence technology. Using smart computer vision and machine learning, our system can spot and track cards instantly, making the game more interactive and exciting than ever before. It's all about combining tradition with tech to keep cultural favorites alive in a new and modern way. Come play and see how AI is adding extra fun to an old favorite!</h3>
-            </div>
+            <TitleCard
+                title="AI Loteria"
+                description="Experience our innovative robotic hand that brings American Sign Language (ASL) to life through mechanical engineering. This project combines precision robotics with accessibility, creating a bridge between technology and sign language communication."
+            />
             
             <div className="model-results">
                 <h2>Model Detection Results</h2>
