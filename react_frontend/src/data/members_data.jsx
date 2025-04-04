@@ -30,7 +30,7 @@ const programmingTeam = [
     role: "Dataset Developer / UI Designer",
   },
   {
-    avatar: import.meta.env.BASE_URL + "members_images/ryan.jpg",
+    avatar: import.meta.env.BASE_URL + "members_images/danny.jpeg",
     name: "Danny Quillo",
     email: "",
     role: "UI Designer/ Contact Page Developer",
