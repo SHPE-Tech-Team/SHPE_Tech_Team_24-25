@@ -62,6 +62,8 @@ div .welcome-content {
 @media (max-width: 768px) {
     .welcome {
         flex-direction: column;
+        padding-top: 1rem; /* Reduced padding on top for mobile */
+        min-height: auto; /* Remove fixed height constraint on mobile */
     }
 
     div .welcome-content,
@@ -74,10 +76,19 @@ div .welcome-content {
 
     .welcome-content h1 {
         font-size: 2.5rem;
+        margin-top: 0.5rem; /* Reduced top margin on mobile */
+        margin-bottom: 0.5rem; /* Reduced bottom margin on mobile */
     }
 
     .welcome-content h2 {
         font-size: 2rem;
+        margin-top: 0.5rem; /* Reduced top margin on mobile */
+        margin-bottom: 0.5rem; /* Reduced bottom margin on mobile */
+    }
+
+    .welcome-content p {
+        margin-top: 0.5rem; /* Reduced top margin on mobile */
+        margin-bottom: 0.5rem; /* Reduced bottom margin on mobile */
     }
 }
 
@@ -251,6 +262,10 @@ div .welcome-content {
         width: 90%;
         max-width: 350px;
         margin: 0.5rem auto;
+    }
+
+    .hide-on-mobile {
+        display: none;
     }
 }
 

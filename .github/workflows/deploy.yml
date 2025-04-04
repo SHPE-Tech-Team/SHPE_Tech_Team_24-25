@@ -26,9 +26,17 @@ jobs:
         run: |
           npm ci
           npm run build
+          
+      - name: Create SPA routing files
+        run: |
+          # Create .nojekyll file to bypass Jekyll processing
+          touch react_frontend/dist/.nojekyll
+          
+          # Copy 404.html to the root of the dist folder
+          cp react_frontend/dist/index.html react_frontend/dist/404.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: react_frontend/dist 
+          publish_dir: react_frontend/dist
