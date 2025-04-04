@@ -1,10 +1,10 @@
 import React from "react";
-import "../styles/loteria.css";
+import "../styles/loteria_style.css";
 import Footer from "../components/footer.jsx";
 import F1 from "../../../runs/detect/loteria_model7/F1_curve.png";
 import ValBatch from "../../../runs/detect/loteria_model7/val_batch0_pred.jpg"
 import ConfusionMatrix from "../../../runs/detect/loteria_model7/confusion_matrix.png"
-import Results from "../../..//runs/detect/loteria_model7/results.png"
+import Results from "../../../runs/detect/loteria_model7/results.png"
 
 export default function Loteria() {
     return (

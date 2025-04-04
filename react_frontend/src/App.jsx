@@ -12,6 +12,7 @@ import ContactPage from "./pages/contact_page.jsx";
 import Projects from "./pages/projects.jsx";
 import Home from "./pages/home.jsx";
 import Loteria from "./pages/loteria.jsx";
+import Robot from "./pages/robot.jsx"
 import NavBar from "./components/nav.jsx";
 import Vex from "./pages/vex.jsx";
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/members" element={<MembersPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/loteria" element={<Loteria />} />
+          <Route path="/robot" element={<Robot />} />
           <Route path="/vex" element={<Vex />} />
         </Routes>
       </div>

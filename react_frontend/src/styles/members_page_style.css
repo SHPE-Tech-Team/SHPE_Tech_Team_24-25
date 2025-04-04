@@ -36,3 +36,51 @@
     white-space: nowrap;
     margin-top: 2rem;
 }
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.toggle-button {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(to right, #1a237e, var(--secondaryColor));
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle-slider.toggled {
+    transform: translateX(30px);
+}
+
+.toggle-container span {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.toggle-container .active-text {
+    color: #1a237e;
+}
+
+.toggle-container span:last-child.active-text {
+    color: var(--secondaryColor);
+}

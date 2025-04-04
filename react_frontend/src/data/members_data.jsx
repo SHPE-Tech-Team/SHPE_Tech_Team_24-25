@@ -1,6 +1,6 @@
 const programmingTeam = [
   {
-    avatar: import.meta.env.BASE_URL + "members_images/erik_t.jpg",
+    avatar: import.meta.env.BASE_URL + "members_images/goat.jpg",
     name: "Kevin Cruz (La Flame)",
     email: "kcruz28@illinois.edu",
     role: "Lead Software Developer / Full Stack Developer",
@@ -8,7 +8,7 @@ const programmingTeam = [
   {
     avatar: import.meta.env.BASE_URL + "members_images/jorge.jpg",
     name: "Jorge Becerra",
-    email: "SHEESH",
+    email: "jbece3@illinois.edu",
     role: "Frontend Developer",
   },
   {
@@ -19,26 +19,26 @@ const programmingTeam = [
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/lesly.jpg",
-    name: "Lesly",
-    email: "SHEESH",
+    name: "Lesly Beiza Medrano",
+    email: "",
     role: "Dataset Developer / UI Designer",
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/erik_t.jpg",
     name: "Erik Toledo",
-    email: "SHEESH",
+    email: "",
     role: "Dataset Developer / UI Designer",
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/ryan.jpg",
     name: "Danny Quillo",
-    email: "SHEESH",
+    email: "",
     role: "UI Designer/ Contact Page Developer",
   },
   {
-    avatar: import.meta.env.BASE_URL + "members_images/ryan.jpg",
+    avatar: import.meta.env.BASE_URL + "members_images/antonio.jpeg",
     name: "Antonio Tapia",
-    email: "SHEESH",
+    email: "",
     role: "Markdown Debugger",
   },
 ];
@@ -47,51 +47,57 @@ const mechanicalTeam = [
   {
     avatar: import.meta.env.BASE_URL + "members_images/juan.jpg",
     name: "Juan Fraguso",
-    email: "xxxxxx@illinois.edu",
+    email: "",
     role: "Mechanical",
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/adolfo.jpg",
-    name: "Adolfo",
-    email: "xxxxxx@illinois.edu",
+    name: "Adolfo De La Torre",
+    email: "",
     role: "Mechanical",
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/nico.jpg",
-    name: "Nico",
-    email: "xxxxxx@illinois.edu",
+    name: "Nico Mendez",
+    email: "",
     role: "Mechanical",
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/geo_q.jpg",
     name: "Geo Quadri",
-    email: "xxxxxx@illinois.edu",
+    email: "",
     role: "Mechanical",
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/erik_t.jpg",
     name: "Erik Toledo",
-    email: "xxxxxx@illinois.edu",
+    email: "",
     role: "Mechanical",
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/alonso.jpg",
     name: "Alonso Tinoco",
-    email: "xxxxxx@illinois.edu",
+    email: "",
     role: "Mechanical",
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/ryan.jpg",
-    name: "Ryan",
-    email: "xxxxxx@illinois.edu",
+    name: "Ryan Rebolledo",
+    email: "",
     role: "Mechanical",
   },
   {
-    avatar: import.meta.env.BASE_URL + "members_images/alonso.jpg",
+    avatar: import.meta.env.BASE_URL + "members_images/jhonny.jpg",
     name: "Jhonny Martinez",
-    email: "xxxxxx@illinois.edu",
-    role: "Autonomous Support Mechical",
+    email: "",
+    role: "Autonomous Support Mechanical",
   },
+  {
+    avatar: import.meta.env.BASE_URL + "members_images/andres.jpeg",
+    name: "Andres Gomez",
+    email: "",
+    role: "Mechanical"
+  }
 ];
 
 const vexTeam = [

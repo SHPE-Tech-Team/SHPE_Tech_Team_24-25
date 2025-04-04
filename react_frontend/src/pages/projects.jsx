@@ -85,9 +85,9 @@ function ProjectRobot() {
           <p className="project-description">
             The ASL Robot is all about breaking down barriers between the hearing and Deaf communities in a fun and engaging way. Powered by advanced robotics, our robot accurately performs American Sign Language (ASL) gestures. It's a creative and practical way to make communication easier and more inclusive for everyone. Experience firsthand how technology can open up new possibilities, empowering people to connect better in all sorts of situations.
           </p>
-          <a href="#loteria">
+          <Link to="/robot">
             <button className="loteria-button">Learn more</button>
-          </a>
+          </Link>
         </div>
         <div className="robot-video hide-on-mobile">
           <Printvid />

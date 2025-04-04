@@ -22,9 +22,13 @@ function MembersPage() {
       />
 
       <div className="team-section">
-        <button onClick={handleToggle}>
-          {isToggled ? "Mechanical" : "Programmers"}
-        </button>
+        <div className="toggle-container">
+          <span className={!isToggled ? 'active-text' : ''}>Programmers</span>
+          <button className="toggle-button" onClick={handleToggle}>
+            <div className={`toggle-slider ${isToggled ? 'toggled' : ''}`}></div>
+          </button>
+          <span className={isToggled ? 'active-text' : ''}>Mechanical</span>
+        </div>
         <div className="team-section">
           <h2>The Team</h2>
           <div className="team-row">

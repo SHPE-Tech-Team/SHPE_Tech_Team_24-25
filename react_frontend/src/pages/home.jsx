@@ -2,7 +2,8 @@ import React from "react";
 import "../styles/home_style.css";
 import MemberCard from "../components/member_card.jsx";
 import Footer from "../components/footer.jsx";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import GroupPicture from "../../public/home_media/tech_team_group_picture.jpg"
 
 
 function Home() {
@@ -36,7 +37,7 @@ function Home() {
         <div className="welcome-image">
           <img
             src={import.meta.env.BASE_URL + "home_media/dlt.png"}
-            alt="adolfo"
+            alt="SHPE member in front 3D Printer"
             className="image-properties"
           />
         </div>
@@ -49,7 +50,9 @@ function Home() {
             the Engineering Open House 2025. Join us as we showcase cutting-edge
             technology and engineering solutions.
           </p>
-          <button className="button-learn">Learn More</button>
+          <Link to="/projects">
+            <button className="button-learn">Learn More</button>
+          </Link>
         </div>
       </div>
       <div className="team-section">
@@ -59,13 +62,13 @@ function Home() {
             member={{
               avatar: import.meta.env.BASE_URL + "members_images/erick.jpg",
               name: "Erick",
-              email: "xxxxxx@illinois.edu",
+              email: "eayal5@illinois.edu",
               role: "EOH Lead",
             }}
           />
           <MemberCard
             member={{
-              avatar: import.meta.env.BASE_URL + "members_images/erik_t.jpg",
+              avatar: import.meta.env.BASE_URL + "members_images/goat.jpg",
               name: "Kevin Cruz (La Flame)",
               email: "kcruz28@illinois.edu",
               role: "Lead Software Developer / Full Stack Developer",
@@ -75,7 +78,7 @@ function Home() {
             member={{
               avatar: import.meta.env.BASE_URL + "members_images/juan.jpg",
               name: "Juan Fraguso",
-              email: "xxxxxx@illinois.edu",
+              email: "juanjf2@illinois.edu",
               role: "Mechanical",
             }}
           />
