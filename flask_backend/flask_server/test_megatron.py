@@ -8,7 +8,7 @@ import os
 
 
 def download_dataset():
-    version = 8
+    version = 9
     load_dotenv()
     api_key = os.getenv("API_KEY")
     try:
@@ -76,17 +76,14 @@ def train_model():
 
 
 def test_inference(model_path="runs/detect/loteria_model/weights/best.pt"):
-    """Test the trained model with a simple inference"""
     try:
         if not os.path.exists(model_path):
             print(f"Model file not found at {model_path}")
             return
 
-        # Load the trained model
         model = YOLO(model_path)
         print(f"Model loaded successfully from {model_path}")
 
-        # You can add test inference code here
         print("Model ready for inference")
         return model
     except Exception as e:

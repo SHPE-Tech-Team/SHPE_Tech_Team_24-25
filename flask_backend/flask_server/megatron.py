@@ -9,70 +9,78 @@ import threading
 
 
 ### for backedn
-def get_loteria():
-    model = YOLO("last.pt")
-    cap = cv2.VideoCapture(0)
-    if not cap.isOpened():
-        print("Error With Camera")
-        return
-    try:
-        while True:
-            success, frame = cap.read()
-            if not success:
-                print("Failed to grab frame")
-                break
-            results = model(frame, conf=0.4)
-            annotated_frame = results[0].plot()
-            annotated_frame = coordinate_objects(results, annotated_frame)
-            ret, buffer = cv2.imencode(".jpg", annotated_frame)
-            frame_bytes = buffer.tobytes()
-            yield (
-                b"--frame\r\n"
-                b"Content-Type: image/jpeg\r\n\r\n" + frame_bytes + b"\r\n"
-            )
-            # delay for frame rate
-            time.sleep(0.03)
-    except Exception as e:
-        print(f"Error in video streaming: {e}")
-    finally:
-        cap.release()
+# def get_loteria():
+#     model = YOLO("last.pt")
+#     cap = cv2.VideoCapture(0)
+#     if not cap.isOpened():
+#         print("Error With Camera")
+#         return
+#     try:
+#         while True:
+#             success, frame = cap.read()
+#             if not success:
+#                 print("Failed to grab frame")
+#                 break
+#             results = model(frame, conf=0.4)
+#             annotated_frame = results[0].plot()
+#             annotated_frame = coordinate_objects(results, annotated_frame)
+#             ret, buffer = cv2.imencode(".jpg", annotated_frame)
+#             frame_bytes = buffer.tobytes()
+#             yield (
+#                 b"--frame\r\n"
+#                 b"Content-Type: image/jpeg\r\n\r\n" + frame_bytes + b"\r\n"
+#             )
+#             # delay for frame rate
+#             time.sleep(0.03)
+#     except Exception as e:
+#         print(f"Error in video streaming: {e}")
+#     finally:
+#         cap.release()
 
 
-def coordinate_objects(results, frame):
+##### new
+
+class_color = {}
+camera_class_ids = {} 
+def coordinate_objects(results, frame, shared_classes=None):
+    detected_classes = set()
 
     for result in results:
         boxes = result.boxes
         if boxes is not None:
-            for box in result.boxes:
+            for box in boxes:
                 x1, y1, x2, y2 = map(int, box.xyxy[0])
                 x_mid = int((x1 + x2) / 2)
                 y_mid = int((y1 + y2) / 2)
                 conf = box.conf[0].item()
                 cls = int(box.cls[0].item())
 
-                # Draw a circle at the middle point (red color, 5px radius, filled)
-                cv2.circle(frame, (x_mid, y_mid), 20, (0, 0, 255), -1)
+                detected_classes.add(cls)
 
-                # aurdino.process_frame(frame, results, x_mid, y_mid)
+                color = (0, 0, 255)  # Red
+                if class_color.get(cls) == True:
+                    color = (0, 255, 0)  # Green
+                elif shared_classes and cls in shared_classes:
+                    color = (0, 255, 0)  # Green
+                    class_color[cls] = True  # Remember it was seen by both cameras
 
-                # Optional: Add text label showing coordinates
+                cv2.circle(frame, (x_mid, y_mid), 20, color, -1)
                 cv2.putText(
                     frame,
                     f"({x_mid},{y_mid})",
                     (x_mid + 10, y_mid),
                     cv2.FONT_HERSHEY_SIMPLEX,
                     0.5,
-                    (0, 255, 0),
+                    color,
                     2,
                 )
 
-                print(f"Coordinates: ({x1}, {y1}), ({x2}, {y2})")
-                print(f"middle: ({x_mid}, {y_mid})")
-                print(f"Confidence: {conf}")
-                print(f"Class: {cls}")
+                print(f"Camera sees class {cls}, confidence {conf:.2f}, midpoint ({x_mid},{y_mid})")
+
+    return detected_classes
 
 
-def testing_middle_dot(device=None):
+def testing_middle_dot():
     device = torch.device(
         "cuda"
         if torch.cuda.is_available()
@@ -80,8 +88,10 @@ def testing_middle_dot(device=None):
     )
     print(f"Using device: {device}")
 
-    model = YOLO("best.pt")
-    model.to(device)
+    # model = YOLO("best.onnx", task="detect")
+
+    model = YOLO("best.pt")  # for .pt
+    model.to(device)  # for .pt
 
     cap0 = cv2.VideoCapture(0)
     cap1 = cv2.VideoCapture(1)
@@ -98,7 +108,7 @@ def testing_middle_dot(device=None):
     running = True
 
     # skippinhg frames to reduce load
-    skip_frames = 2  
+    skip_frames = 2
 
     def capture_process(cap, camera_id):
         nonlocal running
@@ -111,25 +121,29 @@ def testing_middle_dot(device=None):
                 break
 
             frame_count += 1
-            if frame_count % skip_frames != 0:  # skipping frames
+            if frame_count % skip_frames != 0:
                 continue
 
             try:
-                
-                results = model(frame, conf=0.9)
+                results = model(frame, conf=0.85)
                 annotated_frame = results[0].plot()
-                coordinate_objects(results, annotated_frame)
 
-                # store frame for display in main thread
+                # Grab other camera's classes
+                other_camera_id = 1 - camera_id
                 with frames_lock:
-                    frames[camera_id] = (
-                        annotated_frame.copy()
-                    ) 
+                    shared_classes = camera_class_ids.get(other_camera_id, set())
+
+                # Detect classes in this frame and draw
+                detected_classes = coordinate_objects(results, annotated_frame, shared_classes)
+
+                # Save this frame and its detected classes
+                with frames_lock:
+                    frames[camera_id] = annotated_frame.copy()
+                    camera_class_ids[camera_id] = detected_classes
 
             except Exception as e:
                 print(f"Error processing frame from camera {camera_id}: {e}")
 
-            # small delay to prevent hogging
             time.sleep(0.001)
 
     threads = []
@@ -139,7 +153,7 @@ def testing_middle_dot(device=None):
         threads.append(threading.Thread(target=capture_process, args=(cap1, 1)))
 
     for thread in threads:
-        thread.daemon = True 
+        thread.daemon = True
         thread.start()
 
     try:
@@ -150,7 +164,6 @@ def testing_middle_dot(device=None):
             with frames_lock:
                 frames_to_show = frames.copy()
                 frames.clear()  # avoid memory build-up
-
 
             for camera_id, frame in frames_to_show.items():
                 last_frames[camera_id] = frame
@@ -165,9 +178,9 @@ def testing_middle_dot(device=None):
                 running = False
                 break
 
-            #releasing memory
+            # releasing memory
             torch.cuda.empty_cache() if device.type == "cuda" else None
-            time.sleep(0.01)  
+            time.sleep(0.01)
 
     except KeyboardInterrupt:
         print("Interrupted by user")
@@ -179,11 +192,9 @@ def testing_middle_dot(device=None):
         for thread in threads:
             thread.join(timeout=1.0)
 
-
         cap0.release()
         cap1.release()
         cv2.destroyAllWindows()
-
 
         torch.cuda.empty_cache() if device.type == "cuda" else None
         print("Cleanup complete")
