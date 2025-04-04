@@ -34,7 +34,7 @@ function Home() {
             </button>
           </div>
         </div>
-        <div className="welcome-image">
+        <div className="welcome-image hide-on-mobile">
           <img
             src={import.meta.env.BASE_URL + "home_media/dlt.png"}
             alt="SHPE member in front 3D Printer"
