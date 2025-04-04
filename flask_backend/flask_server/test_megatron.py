@@ -2,17 +2,19 @@ from roboflow import Roboflow
 from ultralytics import YOLO
 import os
 import sys
+import torch
+from dotenv import load_dotenv
+import os
 
 
-
-
-
-                
 def download_dataset():
+    version = 8
+    load_dotenv()
+    api_key = os.getenv("API_KEY")
     try:
-        rf = Roboflow(api_key="xIGN2O5hVPAzGUvmfhC7")
-        project = rf.workspace("loteria").project("my-first-project-a9nmn")
-        version = project.version(2)
+        rf = Roboflow(api_key=api_key)
+        project = rf.workspace("loteria").project("loteria-dataset")
+        version = project.version(version)
         dataset = version.download("yolov8")
 
         # Extract the actual path from the dataset object
@@ -31,8 +33,10 @@ def download_dataset():
 
 def train_model():
     try:
+        device = "mps" if torch.backends.mps.is_available() else "cpu"
+        print(f"Using device: {device}")
+
         dataset_dir = download_dataset()
-        # Define path to the YAML file which is typically in the downloaded directory
         yaml_path = os.path.join(dataset_dir, "data.yaml")
 
         if not os.path.exists(yaml_path):
@@ -44,23 +48,25 @@ def train_model():
 
         print(f"YAML path confirmed: {yaml_path}")
 
-        # Initialize the YOLO model
-        # Using a pretrained model for better results
-        model = YOLO("yolov8n.pt")  # start from pretrained model
+        model = YOLO("yolov8n.pt")  
 
-        # Train the model
         results = model.train(
-            data=yaml_path, epochs=100, imgsz=640, batch=8, name="loteria_model"
+            data=yaml_path,
+            epochs=25,
+            imgsz=640,
+            batch=-1,
+            device=device,
+            lr0=0.001,
+            optimizer="AdamW",
+            weight_decay=0.05,
+            name="loteria_model",
+            save_period=5,
         )
 
-        # Get path to the saved model (best weights)
         model_path = os.path.join(
             "runs", "detect", "loteria_model", "weights", "best.pt"
         )
         print(f"Model saved at: {model_path}")
-
-        # Explicitly save the model if needed
-        # model.save('loteria_model_final.pt')
 
         print("Training completed successfully!")
         return model
@@ -90,6 +96,6 @@ def test_inference(model_path="runs/detect/loteria_model/weights/best.pt"):
 if __name__ == "__main__":
     # Train the model
     trained_model = train_model()
-
+    trained_model.export(format="onnx")
     # Test loading the saved model
     test_inference()

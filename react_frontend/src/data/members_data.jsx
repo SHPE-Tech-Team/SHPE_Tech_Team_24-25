@@ -18,10 +18,16 @@ const programmingTeam = [
     role: "Frontend Developer",
   },
   {
-    avatar: import.meta.env.BASE_URL + "members_images/ryan.jpg",
-    name: "Antonio Tapia",
+    avatar: import.meta.env.BASE_URL + "members_images/lesly.jpg",
+    name: "Lesly",
     email: "SHEESH",
-    role: "Debugger",
+    role: "Dataset Developer / UI Designer",
+  },
+  {
+    avatar: import.meta.env.BASE_URL + "members_images/erik_t.jpg",
+    name: "Erik Toledo",
+    email: "SHEESH",
+    role: "Dataset Developer / UI Designer",
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/ryan.jpg",
@@ -31,15 +37,9 @@ const programmingTeam = [
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/ryan.jpg",
-    name: "Lesly",
+    name: "Antonio Tapia",
     email: "SHEESH",
-    role: "UX/UI Designer",
-  },
-  {
-    avatar: import.meta.env.BASE_URL + "members_images/erik_t.jpg",
-    name: "Erik Toledo",
-    email: "SHEESH",
-    role: "UX/UI Designer",
+    role: "Markdown Debugger",
   },
 ];
 
@@ -85,6 +85,12 @@ const mechanicalTeam = [
     name: "Ryan",
     email: "xxxxxx@illinois.edu",
     role: "Mechanical",
+  },
+  {
+    avatar: import.meta.env.BASE_URL + "members_images/alonso.jpg",
+    name: "Jhonny Martinez",
+    email: "xxxxxx@illinois.edu",
+    role: "Autonomous Support Mechical",
   },
 ];
 

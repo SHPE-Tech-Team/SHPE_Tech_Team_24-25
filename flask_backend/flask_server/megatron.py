@@ -2,47 +2,18 @@ from ultralytics import YOLO
 import cv2
 import time
 import os
+import torch
+import threading
+
+# import aurdino
 
 
-def train_model(
-    data_path="data.yaml", epochs=100, imgsz=640, batch=16, model_name="yolov8_custom"
-):
-    """
-    Train a YOLO model and save it for later use.
-
-    Args:
-        data_path: Path to data.yaml config file
-        epochs: Number of training epochs
-        imgsz: Image size for training
-        batch: Batch size
-        model_name: Name for the training run
-
-    Returns:
-        Path to the best weights file
-    """
-    # Initialize with pre-trained weights
-    model = YOLO("yolov8n.pt")
-
-    if not os.path.exists(data_path):
-            raise FileNotFoundError(f"Data file not found: {os.path.abspath(data_path)}")
-
-    # Train the model
-    results = model.train(
-        data=data_path, epochs=epochs, imgsz=imgsz, batch=batch, name=model_name
-    )
-
-    # Get path to best weights
-    best_weights_path = os.path.join("runs/detect", model_name, "weights", "best.pt")
-    print(f"Training complete. Best model saved at: {best_weights_path}")
-
-    return best_weights_path
-
-
+### for backedn
 def get_loteria():
-    model = YOLO("yolov8n.pt")
-    cap = cv2.VideoCapture(0) 
+    model = YOLO("last.pt")
+    cap = cv2.VideoCapture(0)
     if not cap.isOpened():
-        print("Error: Camera not accessible")
+        print("Error With Camera")
         return
     try:
         while True:
@@ -52,6 +23,7 @@ def get_loteria():
                 break
             results = model(frame, conf=0.4)
             annotated_frame = results[0].plot()
+            annotated_frame = coordinate_objects(results, annotated_frame)
             ret, buffer = cv2.imencode(".jpg", annotated_frame)
             frame_bytes = buffer.tobytes()
             yield (
@@ -66,27 +38,156 @@ def get_loteria():
         cap.release()
 
 
+def coordinate_objects(results, frame):
+
+    for result in results:
+        boxes = result.boxes
+        if boxes is not None:
+            for box in result.boxes:
+                x1, y1, x2, y2 = map(int, box.xyxy[0])
+                x_mid = int((x1 + x2) / 2)
+                y_mid = int((y1 + y2) / 2)
+                conf = box.conf[0].item()
+                cls = int(box.cls[0].item())
+
+                # Draw a circle at the middle point (red color, 5px radius, filled)
+                cv2.circle(frame, (x_mid, y_mid), 20, (0, 0, 255), -1)
+
+                # aurdino.process_frame(frame, results, x_mid, y_mid)
+
+                # Optional: Add text label showing coordinates
+                cv2.putText(
+                    frame,
+                    f"({x_mid},{y_mid})",
+                    (x_mid + 10, y_mid),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.5,
+                    (0, 255, 0),
+                    2,
+                )
+
+                print(f"Coordinates: ({x1}, {y1}), ({x2}, {y2})")
+                print(f"middle: ({x_mid}, {y_mid})")
+                print(f"Confidence: {conf}")
+                print(f"Class: {cls}")
+
+
+def testing_middle_dot(device=None):
+    device = torch.device(
+        "cuda"
+        if torch.cuda.is_available()
+        else "mps" if torch.backends.mps.is_available() else "cpu"
+    )
+    print(f"Using device: {device}")
+
+    model = YOLO("best.pt")
+    model.to(device)
+
+    cap0 = cv2.VideoCapture(0)
+    cap1 = cv2.VideoCapture(1)
+
+    #  reduce resolution for better performance
+    cap0.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    cap0.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    cap1.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    cap1.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
+    # setting up lock
+    frames = {}
+    frames_lock = threading.Lock()
+    running = True
+
+    # skippinhg frames to reduce load
+    skip_frames = 2  
+
+    def capture_process(cap, camera_id):
+        nonlocal running
+        frame_count = 0
+
+        while running and cap.isOpened():
+            ret, frame = cap.read()
+            if not ret:
+                print(f"Lost connection to Camera {camera_id}")
+                break
+
+            frame_count += 1
+            if frame_count % skip_frames != 0:  # skipping frames
+                continue
+
+            try:
+                
+                results = model(frame, conf=0.9)
+                annotated_frame = results[0].plot()
+                coordinate_objects(results, annotated_frame)
+
+                # store frame for display in main thread
+                with frames_lock:
+                    frames[camera_id] = (
+                        annotated_frame.copy()
+                    ) 
+
+            except Exception as e:
+                print(f"Error processing frame from camera {camera_id}: {e}")
+
+            # small delay to prevent hogging
+            time.sleep(0.001)
+
+    threads = []
+    if cap0.isOpened():
+        threads.append(threading.Thread(target=capture_process, args=(cap0, 0)))
+    if cap1.isOpened():
+        threads.append(threading.Thread(target=capture_process, args=(cap1, 1)))
+
+    for thread in threads:
+        thread.daemon = True 
+        thread.start()
+
+    try:
+        last_frames = {}  #saving in case it is slow
+
+        while running:
+            frames_to_show = {}
+            with frames_lock:
+                frames_to_show = frames.copy()
+                frames.clear()  # avoid memory build-up
+
+
+            for camera_id, frame in frames_to_show.items():
+                last_frames[camera_id] = frame
+
+            # recent frames
+            for camera_id, frame in last_frames.items():
+                cv2.imshow(f"Camera {camera_id}", frame)
+
+            # quit
+            key = cv2.waitKey(10) & 0xFF
+            if key == ord("q"):
+                running = False
+                break
+
+            #releasing memory
+            torch.cuda.empty_cache() if device.type == "cuda" else None
+            time.sleep(0.01)  
+
+    except KeyboardInterrupt:
+        print("Interrupted by user")
+    finally:
+        running = False
+        print("Cleaning up resources...")
+
+        # waiting for threads to finish
+        for thread in threads:
+            thread.join(timeout=1.0)
+
+
+        cap0.release()
+        cap1.release()
+        cv2.destroyAllWindows()
+
+
+        torch.cuda.empty_cache() if device.type == "cuda" else None
+        print("Cleanup complete")
+
+
 if __name__ == "__main__":
-    # To train the model:
-    print(f"Current working directory: {os.getcwd()}")
-
-    # Find the correct path to your data.yaml file
-    # possible_paths = [
-    #     "My-First-Project-2/data.yaml",  # If in same directory as script
-    #     "flask_server/My-First-Project-2/data.yaml",  # If relative to flask_backend
-    #     "../My-First-Project-2/data.yaml",  # If one level up
-    #     "./My-First-Project-2/data.yaml",  # Explicit current directory
-    # ]
-
-    # data_path = None
-    # for path in possible_paths:
-    #     if os.path.exists(path):
-    #         data_path = path
-    #         break
-
-    # if not data_path:
-    #     print("Could not find data.yaml file. Please provide the correct path.")
-    # else:
-    # print(f"Found data.yaml at: {"flask_backend/flask_server/data.yaml"}")
-    saved_model_path = train_model(data_path="flask_backend/flask_server/data.yaml")
-    print(f"Model saved at: {saved_model_path}")
+    testing_middle_dot()

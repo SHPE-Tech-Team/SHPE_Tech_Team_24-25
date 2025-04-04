@@ -5,6 +5,9 @@ from flask_socketio import SocketIO, emit
 import socketio
 import threading
 import os
+import cv2
+import numpy as np
+from ultralytics import YOLO, run
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 import flask_backend.neural_network.detection as detection
@@ -59,10 +62,23 @@ def predict_card_deck():
     )
 
 
+@app.route("/cloud", methods=["POST"])
+def predict():
+
+    file = request.files["image"]
+    img = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)
+
+
+    results = run(weights="yolov5s.pt", source=img)
+
+
+    detections = results.pandas().xyxy[0].to_dict(orient="records")
+    return jsonify(detections)
+
+
 @app.route("/data")
 def fetch_data():
     return jsonify(prediction_data)
-
 
 
 @socketio.on("connect")
