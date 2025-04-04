@@ -23,7 +23,7 @@ COPY ./package.json .
 COPY ./package-lock.json .
 
 RUN npm config set force true
-RUN npm install --omit=optional 
+RUN npm install --omit=optional
 
 COPY . .
 

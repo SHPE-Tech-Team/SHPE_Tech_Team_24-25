@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "../styles/nav_style.css";
-import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaGithub, FaLinkedin, FaSlack } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -33,6 +33,13 @@ function Footer() {
             target="_blank"
           >
             <FaLinkedin size={32} color="#FFFFFF" />
+          </a>
+          <a
+            rel="noreferrer"
+            href="https://shpe-uiuc.slack.com/signup#/domain-signup"
+            target="_blank"
+          >
+            <FaSlack size={32} color="#FFFFFF" />
           </a>
         </div>
       </div>
