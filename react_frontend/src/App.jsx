@@ -11,7 +11,7 @@ import AboutPage from "./pages/about_page.jsx";
 import ContactPage from "./pages/contact_page.jsx";
 import Projects from "./pages/projects.jsx";
 import Home from "./pages/home.jsx";
-import AI_loteria from "./pages/ai_loteria.jsx";
+import Loteria from "./pages/loteria.jsx";
 import NavBar from "./components/nav.jsx";
 import Vex from "./pages/vex.jsx";
 
@@ -30,7 +30,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/members" element={<MembersPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/teddy" element={<AI_loteria />} />
+          <Route path="/loteria" element={<Loteria />} />
           <Route path="/vex" element={<Vex />} />
         </Routes>
       </div>

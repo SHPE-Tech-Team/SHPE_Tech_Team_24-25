@@ -3,7 +3,7 @@ import ObjectDetection from "./card_detection/camera.jsx";
 import RealtimePrediction from "./card_detection/data_predi.jsx";
 import TitleCard from "../components/title_card.jsx";
 import { Link } from "react-router-dom";
-import "../styles/App.css";
+import "../styles/projects_style.css";
 import Footer from "../components/footer.jsx";
 
 
@@ -17,36 +17,6 @@ function Printvid() {
     </video>
   );
 }
-
-function Navbar() {
-  return (
-    <nav className="navbar">
-      <ul className="nav-links">
-        <li>
-          <link to="/"> Home </link>
-        </li>
-        <li>
-          <a href="#">Members</a>
-        </li>
-        <li>
-          <a href="#"> sheehs </a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
-        </li>
-        <li>
-          <a href="#">Hand Project</a>
-        </li>
-        <li>
-          <a href="#">AI Loteria</a>
-        </li>
-      </ul>
-    </nav>
-  );
-}
-
-// Jorge to organize it better and make it prettier
-/// Do figma concept before programming  !!!!!!!!!!!!
 
 function Hero() {
   return (
@@ -70,7 +40,6 @@ function Hero() {
           <h1>Engineering Open House 2025</h1>
         </div>
         <h2>The Age of Innovation</h2>
-        {/* To-Do: Add 2 buttons to explore each project  */}
         <div className="hero-buttons">
           <a href="#loteria">
             <button className="loteria-button">AI Loteria</button>
@@ -91,9 +60,12 @@ function ProjectLoteria() {
         <div className="loteria-text full-width-on-mobile">
           <h2>Project 1</h2>
           <h1>AI Loteria</h1>
-          <p>
+          <p className="project-description">
             AI Lotería brings a fresh and fun twist to the classic Mexican game of Lotería by mixing in some cool artificial intelligence technology. Using smart computer vision and machine learning, our system can spot and track cards instantly, making the game more interactive and exciting than ever before. It's all about combining tradition with tech to keep cultural favorites alive in a new and modern way. Come play and see how AI is adding extra fun to an old favorite!
           </p>
+          <Link to="/loteria">
+            <button className="robot-button">Learn more</button>
+          </Link>
         </div>
         <div className="loteria-video hide-on-mobile">
           <ObjectDetection />
@@ -110,9 +82,12 @@ function ProjectRobot() {
         <div className="robot-text full-width-on-mobile">
           <h2>Project 2</h2>
           <h1>ASL Robot</h1>
-          <p>
+          <p className="project-description">
             The ASL Robot is all about breaking down barriers between the hearing and Deaf communities in a fun and engaging way. Powered by advanced robotics, our robot accurately performs American Sign Language (ASL) gestures. It's a creative and practical way to make communication easier and more inclusive for everyone. Experience firsthand how technology can open up new possibilities, empowering people to connect better in all sorts of situations.
           </p>
+          <a href="#loteria">
+            <button className="loteria-button">Learn more</button>
+          </a>
         </div>
         <div className="robot-video hide-on-mobile">
           <Printvid />
@@ -122,57 +97,6 @@ function ProjectRobot() {
   );
 }
 
-// EDIT: Added Software Team Names
-function Team() {
-  return (
-    <div className="team">
-      <div className="team-background">
-        <div className="team-text">
-          <h1>Meet the Team</h1>
-          <h2>Software</h2>
-          <div className="members">
-            <p>Jorge Becerra</p>
-            <p>Daniel Quillo</p>
-            <p>Kevin "LaFlame" Cruz</p>
-            <p>Antonio Tapia</p>
-          </div>
-          <h2>Hardware</h2>
-          <div className="members">
-            <p>Jorge Becerra</p>
-            <p>John Doe</p>
-            <p>Jane Doe</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div className="about">
-      <div className="about-background">
-        <div className="about-text">
-          <h1>About</h1>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Contact() {
-  return (
-    <div className="contact">
-      <div className="contact-background">
-        <div className="contact-text">
-          <h1>Contact</h1>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-//EDIT: Removed Team, About, and Contact pages from main page
 function Projects() {
   return (
     <div>

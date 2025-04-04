@@ -1,0 +1,139 @@
+html, body {
+    color: black;
+    text-align: center;
+}
+
+.title {
+    margin-top: 30px;
+}
+
+.title h1 {
+    color: black;
+    margin: 0;
+    font-size: 4rem; 
+    padding-bottom: 20px;
+}
+
+.title h2 {
+    color: #C578D6;
+    margin: 0;
+    font-size: 1.5rem; 
+}
+
+.subtitle h3 {
+    color: black;
+    font-size: 1rem;
+    font-weight: 500;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.model-results {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.model-results h2 {
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.results-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.result-item {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.result-item p {
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.performance-metrics {
+    margin-top: 3rem;
+}
+
+.performance-metrics h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.metrics-container {
+    display: flex;
+    justify-content: center;
+}
+
+.metric-item {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.metric-item p {
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.metric-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.model-conclusion {
+    margin-top: 2rem;
+    text-align: center;
+    font-style: italic;
+    color: #555;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .results-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .model-results {
+        padding: 1rem;
+    }
+
+    .metric-item {
+        max-width: 100%;
+        padding: 1rem;
+    }
+    
+    .metric-item img {
+        max-width: 90%;
+    }
+}
