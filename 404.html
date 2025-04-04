@@ -4,10 +4,19 @@
 <meta charset="utf-8">
 <title>Redirecting...</title>
 <script>
+    // Parse the repository name from URL or use default
+    var segmentCount = 1;
+    var repoName = "AI_Loteria_24-25";
+    var l = window.location;
+    
     // Store the current URL path and query parameters
-    sessionStorage.setItem('redirectPath', window.location.pathname + window.location.search);
-    // Redirect to the root
-    window.location.href = '/';
+    var redirectPath = l.pathname.replace(new RegExp('^/' + repoName + '/?'), '/');
+    sessionStorage.setItem('redirectPath', redirectPath + l.search);
+    
+    // Redirect to the base URL (which includes the repository name on GitHub Pages)
+    l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + 
+            '/' + repoName + '/' + 
+            (l.pathname.split('/').length > 2 ? '' : 'index.html'));
 </script>
 </head>
 <body>
