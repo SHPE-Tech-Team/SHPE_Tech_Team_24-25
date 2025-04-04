@@ -12,7 +12,7 @@ export default function Loteria() {
         <div className="body">
             <TitleCard
                 title="AI Loteria"
-                description="Experience our innovative robotic hand that brings American Sign Language (ASL) to life through mechanical engineering. This project combines precision robotics with accessibility, creating a bridge between technology and sign language communication."
+                description="Discover our innovative AI-powered take on the traditional Mexican game Lotería. Using advanced computer vision and machine learning, our system brings real-time card recognition to this beloved cultural game, creating an interactive and engaging experience that bridges tradition with technology."
             />
             
             <div className="model-results">
