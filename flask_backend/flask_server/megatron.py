@@ -52,7 +52,7 @@ tablas = [
     "tabla 7",
     "tabla 8",
     "tabla 9",
-    "tabla 10",
+    "tabla 10"
 ]
 
 green_cards = set()
@@ -150,20 +150,21 @@ def testing_middle_dot():
                 continue
 
             try:
-                results = model(frame, conf=0.70)
+                confidence = 0.70
+                results = model(frame, conf=confidence)
                 annotated_frame = results[0].plot()
 
-                # Grab other camera's classes
+                # grab other camera's classes
                 other_camera_id = 1 - camera_id
                 with frames_lock:
                     shared_classes = camera_class_ids.get(other_camera_id, set())
 
-                # Detect classes in this frame and draw
+                # detect classes in this frame and draw
                 detected_classes = coordinate_objects(
                     results, annotated_frame, shared_classes
                 )
 
-                # Save this frame and its detected classes
+                # save this frame and its detected classes
                 with frames_lock:
                     frames[camera_id] = annotated_frame.copy()
                     camera_class_ids[camera_id] = detected_classes
