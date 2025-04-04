@@ -4,19 +4,28 @@
 <meta charset="utf-8">
 <title>Redirecting...</title>
 <script>
-    // Parse the repository name from URL or use default
-    var segmentCount = 1;
-    var repoName = "AI_Loteria_24-25";
-    var l = window.location;
-    
-    // Store the current URL path and query parameters
-    var redirectPath = l.pathname.replace(new RegExp('^/' + repoName + '/?'), '/');
-    sessionStorage.setItem('redirectPath', redirectPath + l.search);
-    
-    // Redirect to the base URL (which includes the repository name on GitHub Pages)
-    l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + 
-            '/' + repoName + '/' + 
-            (l.pathname.split('/').length > 2 ? '' : 'index.html'));
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    (function(l) {
+        // Parse the repository name from URL or use default
+        var repoName = "AI_Loteria_24-25";
+        
+        // If we're already at the base URL with the repo, don't redirect
+        if (l.pathname.split('/')[1] === repoName) {
+            // Store the current path for the router to use
+            var path = l.pathname.substr(repoName.length + 1) || '';
+            sessionStorage.setItem('redirectPath', '/' + path + l.search + l.hash);
+            
+            // Go to the index page, which will handle routing based on sessionStorage
+            l.replace(l.origin + '/' + repoName + '/');
+        } else {
+            // If we're at a path without the repo name, add it
+            var redirectPath = l.pathname;
+            sessionStorage.setItem('redirectPath', redirectPath + l.search + l.hash);
+            l.replace(l.origin + '/' + repoName + '/');
+        }
+    }(window.location))
 </script>
 </head>
 <body>
