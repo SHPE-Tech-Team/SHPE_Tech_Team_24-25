@@ -67,7 +67,7 @@ function AboutPage() {
         <h2>Our Values</h2>
         <div className="values-row">
           <ValuesContainers
-            title="Exellence"
+            title="Excellence"
             description="We strive for excellence in all our technical projects and professional  endeavors, pushing the boundaries of what's possible through innovation  and dedication."
           />
           <ValuesContainers

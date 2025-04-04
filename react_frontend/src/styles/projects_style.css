@@ -41,6 +41,10 @@
     font-size: 4rem; /* Adjust as needed */
 }
 
+.eoh-title {
+    font-size: 4rem;
+}
+
 .hero-text h2 {
     color: #C578D6;
     margin: 0;
@@ -314,29 +318,47 @@
         padding: 15px 10px;
     }
 
-.footer-nav {
-    gap: 15px;
-    flex-direction: column;
-    align-items: center;
-}
+    .footer-nav {
+        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+    }
 
-.social-links {
-    gap: 20px;
-}
+    .social-links {
+        gap: 20px;
+    }
 
-.full-width-on-mobile {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex: 1 0 100% !important;
-}
+    .full-width-on-mobile {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 1 0 100% !important;
+    }
 
-.hide-on-mobile {
-    display: none;
-}
+    .hide-on-mobile {
+        display: none;
+    }
 
-.hero-title {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .eoh-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-buttons {
+        margin-top: 25px;
+        gap: 30px;
+    }
+
+    .loteria-button, .robot-button {
+        font-size: 16px;
+        padding: 12px 25px;
     }
 }
 
@@ -348,5 +370,23 @@
 @media screen and (max-width: 480px) {
     .hero-title {
         font-size: 1.5rem;
+    }
+
+    .eoh-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        margin-top: 20px;
+        gap: 20px;
+    }
+
+    .loteria-button, .robot-button {
+        font-size: 14px;
+        padding: 10px 20px;
     }
 }
