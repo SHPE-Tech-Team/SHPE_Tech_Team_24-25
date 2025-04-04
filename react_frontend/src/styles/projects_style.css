@@ -64,6 +64,13 @@
     text-align: center;
     text-decoration: none;
     border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.loteria-button:hover {
+    background-color: white;
+    color: #C578D6;
+    box-shadow: 0 2px 8px rgba(197, 120, 214, 0.3);
 }
 
 .robot-button {
@@ -75,6 +82,13 @@
     text-align: center;
     text-decoration: none;
     border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.robot-button:hover {
+    background-color: #C578D6;
+    color: white;
+    box-shadow: 0 2px 8px rgba(197, 120, 214, 0.3);
 }
 
 /* Loteria CSS */
@@ -82,11 +96,14 @@
     display: flex;
     flex-flow: row wrap;
     width: 100%;
-    height: 600px;
+    height: auto;
+    min-height: 600px;
     overflow: hidden;
     background-color: #021d47;
     color: white;
-    gap: 30px;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
 }
 
 .loteria > * {
@@ -94,27 +111,37 @@
 }
 
 .loteria-text {
-    padding-top: 25px;
-    width: 40%;
+    padding: 25px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     order: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .loteria-text h2 {
     font-size: 1rem;
     font-weight: 300;
+    margin-bottom: 10px;
 }
 
 .loteria-text h1 {
     font-size: 36px;
     font-weight: 600;
+    margin-bottom: 20px;
 }
 
 .loteria-text p {
-    padding-top: 20px;
-    padding-left: 20px;
+    padding: 0;
     font-size: 20px;
     font-weight: 300;
-    text-align: left;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 30px;
 }
 
 .loteria-video {
@@ -134,11 +161,14 @@
     display: flex;
     flex-flow: row wrap;
     width: 100%;
-    height: 600px;
+    height: auto;
+    min-height: 600px;
     overflow: hidden;
     background-color: white;
     color: black;
-    gap: 30px;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
 }
 
 .robot > * {
@@ -146,14 +176,22 @@
 }
 
 .robot-text {
-    padding-top: 25px;
-    width: 40%;
-    order: 1;
+    padding: 25px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    order: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .robot-text h2 {
     font-size: 1rem;
     font-weight: 300;
+    margin-bottom: 10px;
 }
 
 .robot-text h1 {
@@ -162,11 +200,12 @@
 }
 
 .robot-text p {
-    padding-top: 20px;
-    padding-left: 20px;
+    padding: 0;
     font-size: 20px;
     font-weight: 300;
-    text-align: left;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 30px;
 }
 
 .robot-video {
