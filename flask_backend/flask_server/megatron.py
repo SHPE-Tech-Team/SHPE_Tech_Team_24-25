@@ -52,13 +52,16 @@ tablas = [
     "tabla 7",
     "tabla 8",
     "tabla 9",
-    "tabla 10"
+    "tabla 10",
 ]
 
+
 green_cards = set()
+
+
 def coordinate_objects(results, frame, shared_classes=None):
     detected_classes = set()
-    
+
     total_cards = 16
 
     for result in results:
@@ -79,7 +82,7 @@ def coordinate_objects(results, frame, shared_classes=None):
                         color = (0, 255, 0)  # Green
                     elif shared_classes and cls in shared_classes:
                         color = (0, 255, 0)  # Green
-                        class_color[cls] = True  # Remember it was seen by both cameras
+                        class_color[cls] = True  # remenber it was seen by both cameras
                         green_cards.add(cls)
 
                 cv2.circle(frame, (x_mid, y_mid), 20, color, -1)
@@ -98,7 +101,9 @@ def coordinate_objects(results, frame, shared_classes=None):
                 )
 
     if green_cards == total_cards:
-        cv2.putText(frame, "LOTERIA", (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 0), 5)
+        cv2.putText(
+            frame, "LOTERIA", (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 0), 5
+        )
     # else:
     #     cv2.putText(frame, f"Cards: {len(green_cards)} /{total_cards}", (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 0, 255), 5)
 
@@ -200,10 +205,17 @@ def testing_middle_dot():
             for camera_id, frame in last_frames.items():
                 cv2.imshow(f"Camera {camera_id}", frame)
 
-            # quit
+            # neeewww
             key = cv2.waitKey(10) & 0xFF
-            if key == ord("q"):
+            if key == ord("r"):
+                green_cards.clear()
+                class_color.clear()
+                print("GAME RESET - All cards cleared")
+                with frames_lock:
+                    camera_class_ids.clear()
+            elif key == ord("q"):
                 running = False
+                print("Quitting application...")
                 break
 
             # releasing memory
