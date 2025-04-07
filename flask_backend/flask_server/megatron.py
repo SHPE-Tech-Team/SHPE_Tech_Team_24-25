@@ -121,6 +121,7 @@ def testing_middle_dot():
     # model = YOLO("best.onnx", task="detect")
 
     model = YOLO("best.pt")  # for .pt
+    # model = YOLO("yolov8n.pt")  # for .pt
     model.to(device)  # for .pt
 
     cap0 = cv2.VideoCapture(0)
@@ -206,7 +207,7 @@ def testing_middle_dot():
                 cv2.imshow(f"Camera {camera_id}", frame)
 
             # neeewww
-            key = cv2.waitKey(10) & 0xFF
+            key = cv2.waitKey(30) & 0xFF
             if key == ord("r"):
                 green_cards.clear()
                 class_color.clear()
