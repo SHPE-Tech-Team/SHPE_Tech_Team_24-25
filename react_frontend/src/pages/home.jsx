@@ -4,15 +4,14 @@ import MemberCard from "../components/member_card.jsx";
 import Footer from "../components/footer.jsx";
 import { Link, useNavigate } from "react-router-dom";
 
-
 function Home() {
   const navigate = useNavigate();
   const viewProjects = () => {
-      navigate("/projects");
-  }
+    navigate("/projects");
+  };
   const viewTeam = () => {
     navigate("/members");
-  }
+  };
 
   return (
     <div>
@@ -40,6 +39,31 @@ function Home() {
             className="image-properties"
           />
         </div>
+      </div>
+
+      {/* ai loteria button */}
+      <div className="ai-loteria-btn-container">
+        <a
+          href="https://huggingface.co/spaces/LaFlame10/AI_Loteria_Detection_YOLO8V"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ai-loteria-btn"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <rect width="24" height="24" rx="6" fill="#fff2e0" />
+            <path
+              d="M12 17.5a1 1 0 0 1-.71-.29l-4.5-4.5a1 1 0 1 1 1.42-1.42l3.09 3.09V7a1 1 0 1 1 2 0v7.38l3.09-3.09a1 1 0 1 1 1.42 1.42l-4.5 4.5A1 1 0 0 1 12 17.5Z"
+              fill="#ff9800"
+            />
+          </svg>
+          Try AI Loteria Detection
+        </a>
       </div>
       <div className="eoh">
         <div className="eoh-container">
