@@ -1,3 +1,52 @@
+/* Brand title responsive styles */
+
+.brand-title {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    letter-spacing: 0.01em;
+    color: #fff;
+    font-family: inherit;
+}
+.brand-main, .brand-sub {
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #fff;
+}
+.brand-sub {
+    margin-left: 0.25em;
+}
+.brand-divider {
+    font-size: 1em;
+    margin: 0 0.2em;
+    color: #fff;
+    font-weight: 400;
+    opacity: 1;
+}
+
+@media (max-width: 600px) {
+    .brand-title {
+        font-size: 1.2rem;
+        gap: 0.15rem;
+    }
+    .brand-main, .brand-sub {
+        font-size: 1em;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: #fff;
+    }
+    .brand-divider {
+        font-size: 1em;
+        margin: 0 0.1em;
+        color: #fff;
+        font-weight: 400;
+        opacity: 1;
+    }
+}
 body {
     font-family: 'Montserrat', sans-serif;
 }

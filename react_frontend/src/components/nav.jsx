@@ -18,8 +18,14 @@ function NavBar() {
     <header>
       <div className="brand-container">
         <img className="logo" src="SHPE_logo.avif" alt="SHPE Logo" />
-        <h1 style={{ cursor: "pointer" }} onClick={goHome}>
-          SHPE
+        <h1
+          className="brand-title"
+          style={{ cursor: "pointer" }}
+          onClick={goHome}
+        >
+          <span className="brand-sub">UIUC</span>
+          <span className="brand-divider">|</span>
+          <span className="brand-main">SHPE</span>
         </h1>
       </div>
       <nav ref={useNav}>
@@ -54,7 +60,7 @@ function NavBar() {
           Contact
         </NavLink>
         <button className="nav-btn nav-close" onClick={showNav}>
-          <FaTimes/>
+          <FaTimes />
         </button>
       </nav>
       <button className="nav-btn" onClick={showNav}>
