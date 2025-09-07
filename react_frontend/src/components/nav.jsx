@@ -36,23 +36,17 @@ function NavBar() {
           Projects
         </NavLink>
         <NavLink
-          to="/about"
-          className={({ isActive }) => (isActive ? "active-link" : "")}
-        >
-          About
-        </NavLink>
-        <NavLink
           to="/members"
           className={({ isActive }) => (isActive ? "active-link" : "")}
         >
           Members
         </NavLink>
-        {/* <NavLink
-          to="/vex"
+        <NavLink
+          to="/about"
           className={({ isActive }) => (isActive ? "active-link" : "")}
         >
-          Vex Members
-        </NavLink> */}
+          About
+        </NavLink>
         <NavLink
           to="/contact"
           className={({ isActive }) => (isActive ? "active-link" : "")}
