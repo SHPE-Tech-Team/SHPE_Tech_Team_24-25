@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
-    base: isProduction ? "/AI_Loteria_24-25/" : "/",
+    base: isProduction ? "/SHPE_Tech_Team_24-25/" : "/",
     build: {
       outDir: "dist",
     },
