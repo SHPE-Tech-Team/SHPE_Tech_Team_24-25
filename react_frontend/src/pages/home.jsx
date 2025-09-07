@@ -41,7 +41,7 @@ function Home() {
         </div>
       </div>
 
-      /// ai loteria button
+      {/* ai loteria button */}
       <div className="ai-loteria-btn-container">
         <a
           href="https://huggingface.co/spaces/LaFlame10/AI_Loteria_Detection_YOLO8V"
