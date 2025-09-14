@@ -133,6 +133,37 @@ const vexTeam = [
   },
 ]
 
+const programmingTeam2025 = [
+  {
+    avatar: "",
+    name: "Samuel Evangelista",
+    email: "sevan8",
+    role: "Lead Software Developer/ Full Stack Developer",
+  },
+  {
+    avatar: "",
+    name: "Jazmin Uribe",
+    email: "juribe2",
+    role: "Front-End Developer",
+  },
+  {
+    
+  }
+]; 
 
+const mechanicalTeam2025 = [
+  {
+    avatar: "",
+    name: "Luis Fernando Lopez",
+    email: "lflop2",
+    role: "Mechanical Engineer",
+  },
+  {
+    avatar: "",
+    name: "Daniela Garcia",
+    email: "dgarc7",
+    role: "Mechanical Engineer",
+  }
+];
 
-export {mechanicalTeam, programmingTeam, vexTeam};
+export {mechanicalTeam, programmingTeam, programmingTeam2025, mechanicalTeam2025, vexTeam};

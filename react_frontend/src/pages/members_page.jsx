@@ -12,6 +12,10 @@ function MembersPage() {
     setIsToggled(!isToggled);
   };
 
+  const [teamYear, setTeamYear] = useState("Team 2024-2025");
+
+
+
   const members = isToggled ? mechanicalTeam : programmingTeam;
 
   return (
@@ -20,6 +24,15 @@ function MembersPage() {
         title="Team Members"
         description="Meet the talented engineers behind SHPE Tech Team's innovative projects. Our diverse team brings together expertise in programming, mechanical engineering, and more."
       />
+
+      <div>
+        <button className="loteria-button" onClick={() => setTeamYear("Team 2024-2025")}>
+          Team 2024-2025
+        </button>
+        <button className="loteria-button" onClick={() => setTeamYear("Team 2025-2026")}>
+          Team 2025-2026
+        </button>
+      </div>
 
       <div className="team-section">
         <div className="toggle-container">
@@ -30,7 +43,7 @@ function MembersPage() {
           <span className={isToggled ? 'active-text' : ''}>Mechanical</span>
         </div>
         <div className="team-section">
-          <h2>The Team</h2>
+          <h2>{teamYear}</h2>
           <div className="team-row">
             {members.map((member, index) => (
               <MemberCard key={index} member={member} />
