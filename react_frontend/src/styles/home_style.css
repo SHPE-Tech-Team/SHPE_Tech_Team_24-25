@@ -225,7 +225,7 @@ div .welcome-content {
     width: 95%;
     height: 700px;
     background-color: white;
-    background-image: url('../../public/home_media/tech_team_group_picture.jpg');
+    background-image: url('../../home_media/tech_team_group_picture.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

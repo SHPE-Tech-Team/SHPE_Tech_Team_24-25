@@ -30,7 +30,7 @@ const programmingTeam = [
     role: "Dataset Developer / UI Designer",
   },
   {
-    avatar: import.meta.env.BASE_URL + "members_images/danny.jpeg",
+    avatar: import.meta.env.BASE_URL + "members_images/daniel.jpg",
     name: "Danny Quillo",
     email: "",
     role: "UI Designer/ Contact Page Developer",
@@ -135,34 +135,49 @@ const vexTeam = [
 
 const programmingTeam2025 = [
   {
-    avatar: "",
+    avatar: import.meta.env.BASE_URL + "members_images/samuel.jpg",
     name: "Samuel Evangelista",
-    email: "sevan8",
+    email: "",
     role: "Lead Software Developer/ Full Stack Developer",
   },
   {
-    avatar: "",
-    name: "Jazmin Uribe",
-    email: "juribe2",
-    role: "Front-End Developer",
+    avatar: import.meta.env.BASE_URL + "members_images/goat.jpg",
+    name: "Kevin Cruz (La Flame)",
+    email: "kcruz28@illinois.edu",
+    role: "Engineering Open House Lead",
   },
   {
-    
+    avatar: import.meta.env.BASE_URL + "members_images/josh.jpg",
+    name: "Josh Pantoja",
+    email: "jpant27",
+    role: "Lead Hardware Engineer",
+  },
+  {
+    avatar: import.meta.env.BASE_URL + "members_images/diego.jpg",
+    name: "Diego Hernandez",
+    email: "",
+    role: "Hardware Engineer",
+  },
+  {
+    avatar: import.meta.env.BASE_URL + "members_images/ezekiel.jpg",
+    name: "Ezekiel Lopez",
+    email: "",
+    role: "Hardware Engineer",
   }
 ]; 
 
 const mechanicalTeam2025 = [
   {
-    avatar: "",
-    name: "Luis Fernando Lopez",
-    email: "lflop2",
-    role: "Mechanical Engineer",
+    avatar: import.meta.env.BASE_URL + "members_images/juan.jpg",
+    name: "Juan Fraguso",
+    email: "",
+    role: "Tech Team Lead",
   },
   {
-    avatar: "",
-    name: "Daniela Garcia",
-    email: "dgarc7",
-    role: "Mechanical Engineer",
+    avatar: import.meta.env.BASE_URL + "members_images/erik_t.jpg",
+    name: "Erik Toledo",
+    email: "",
+    role: "Workspace Optimizer",
   }
 ];
 

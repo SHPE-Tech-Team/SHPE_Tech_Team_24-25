@@ -27,7 +27,7 @@ function MembersPage() {
         description="Meet the talented engineers behind SHPE Tech Team's innovative projects. Our diverse team brings together expertise in programming, mechanical engineering, and more."
       />
 
-      <div>
+      <div className="padding">
         <button className="loteria-button" onClick={() => setTeamYear("Team 2024-2025")}>
           Team 2024-2025
         </button>
