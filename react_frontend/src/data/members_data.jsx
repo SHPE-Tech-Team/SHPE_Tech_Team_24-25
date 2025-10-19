@@ -163,7 +163,13 @@ const programmingTeam2025 = [
     name: "Ezekiel Lopez",
     email: "",
     role: "Hardware Engineer",
-  }
+  }, 
+  {
+    avatar: import.meta.env.BASE_URL + "members_images/xavier.jpeg",
+    name: "Xavier Contrerars",
+    email: "",
+    role: "Software Developer",
+  },
 ]; 
 
 const mechanicalTeam2025 = [

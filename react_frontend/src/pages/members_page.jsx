@@ -3,6 +3,7 @@ import Footer from "../components/footer.jsx";
 import TitleCard from "../components/title_card.jsx";
 import MemberCard from "../components/member_card.jsx";
 import "../styles/members_page_style.css";
+import "../styles/home_style.css";
 import { mechanicalTeam, programmingTeam, programmingTeam2025, mechanicalTeam2025 } from "../data/members_data.jsx";
 
 function MembersPage() {
@@ -28,10 +29,10 @@ function MembersPage() {
       />
 
       <div className="padding">
-        <button className="loteria-button" onClick={() => setTeamYear("Team 2024-2025")}>
+        <button className="button-projects" onClick={() => setTeamYear("Team 2024-2025")}>
           Team 2024-2025
         </button>
-        <button className="loteria-button" onClick={() => setTeamYear("Team 2025-2026")}>
+        <button className="button-projects" onClick={() => setTeamYear("Team 2025-2026")}>
           Team 2025-2026
         </button>
       </div>
