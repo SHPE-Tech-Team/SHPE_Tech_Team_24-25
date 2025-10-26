@@ -184,12 +184,14 @@ const mechanicalTeam2025 = [
     name: "Juan Fraguso",
     email: "",
     role: "Tech Team Lead",
+    linkedin: "https://www.linkedin.com/in/juan-fragoso/"
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/erik_t.jpg",
     name: "Erik Toledo",
     email: "",
     role: "Workspace Optimizer",
+    linkedin: "https://www.linkedin.com/in/etole4/"
   }
 ];
 
