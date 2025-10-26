@@ -24,3 +24,8 @@
     margin: 0 auto;
     display: block;
 }
+
+.linkedin-redirect {
+    text-decoration: none;
+    color: black;
+}

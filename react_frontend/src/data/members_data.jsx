@@ -139,36 +139,42 @@ const programmingTeam2025 = [
     name: "Samuel Evangelista",
     email: "",
     role: "Lead Software Developer/ Full Stack Developer",
+    linkedin: "https://www.linkedin.com/in/samevangelista/"
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/goat.jpg",
     name: "Kevin Cruz (La Flame)",
     email: "kcruz28@illinois.edu",
     role: "Engineering Open House Lead",
+    linkedin: "https://www.linkedin.com/in/kevin-cruz-lopez/"
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/josh.jpg",
     name: "Josh Pantoja",
     email: "jpant27",
     role: "Lead Hardware Engineer",
+    linkedin: "https://www.linkedin.com/in/joshua-apantoja/"
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/diego.jpg",
     name: "Diego Hernandez",
     email: "",
     role: "Hardware Engineer",
+    linkedin: "https://www.linkedin.com/in/diego-hernandez-1902ab275/"
   },
   {
     avatar: import.meta.env.BASE_URL + "members_images/ezekiel.jpg",
     name: "Ezekiel Lopez",
     email: "",
     role: "Hardware Engineer",
+    linkedin: "https://www.linkedin.com/in/ezekiel-lopez-283a9624a/"
   }, 
   {
     avatar: import.meta.env.BASE_URL + "members_images/xavier.jpeg",
     name: "Xavier Contrerars",
     email: "",
     role: "Software Developer",
+    linkedin: "https://www.linkedin.com/in/xavier-contreras23/"
   },
 ]; 
 
