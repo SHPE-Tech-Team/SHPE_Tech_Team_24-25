@@ -5,6 +5,7 @@ import TitleCard from "../components/title_card.jsx";
 import { Link } from "react-router-dom";
 import "../styles/projects_style.css";
 import Footer from "../components/footer.jsx";
+import Timer from "../components/timer.jsx";
 
 
 function Printvid() {
@@ -108,6 +109,7 @@ function Projects() {
       />
       <div style={{ textAlign: "center" }}>
         <Hero />
+        <Timer/>
         <ProjectLoteria />
         <ProjectRobot />
         <Footer></Footer>
