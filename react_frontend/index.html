@@ -3,25 +3,40 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" href="./favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#021d47" />
   <meta name="description" content="Web site created using Vite and React" />
+
+  <!-- IMPORTANT: Only one CSP meta. Do NOT use frame-ancestors in meta (header-only). -->
+  <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  frame-src https://www.google.com https://*.google.com
+            https://www.instagram.com https://*.instagram.com;
+  script-src 'self' https://www.instagram.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com;
+  img-src 'self' data: https://*.cdninstagram.com https://static.cdninstagram.com;
+  connect-src 'self';
+">
+
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
-  <link rel="apple-touch-icon" href="/logo192.png" />
-  <link rel="manifest" href="/manifest.json" />
 
-  <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; img-src 'self' https://shpe-tech-team.github.io/AI_Loteria_24-25 data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+  <!-- Use RELATIVE paths so GH Pages works under /SHPE_Tech_Team_24-25/ -->
+  <link rel="apple-touch-icon" href="./logo192.png" />
+  <link rel="manifest" href="./manifest.json" />
 
   <title>UIUC | SHPE Tech Team</title>
 </head>
+
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
