@@ -34,7 +34,7 @@ function Home() {
         </div>
         <div className="welcome-image hide-on-mobile">
           <img
-            src={import.meta.env.BASE_URL + "home_media/dlt.png"}
+            src={"home_media/dlt.png"}
             alt="SHPE member in front 3D Printer"
             className="image-properties"
           />
@@ -83,18 +83,10 @@ function Home() {
         <div className="team-row">
           <MemberCard
             member={{
-              avatar: import.meta.env.BASE_URL + "members_images/erick.jpg",
-              name: "Erick",
-              email: "eayal5@illinois.edu",
-              role: "EOH Lead",
-            }}
-          />
-          <MemberCard
-            member={{
               avatar: import.meta.env.BASE_URL + "members_images/goat.jpg",
               name: "Kevin Cruz (La Flame)",
               email: "kcruz28@illinois.edu",
-              role: "Lead Software Developer / Full Stack Developer",
+              role: "Engineering Open House Lead",
             }}
           />
           <MemberCard
@@ -102,9 +94,17 @@ function Home() {
               avatar: import.meta.env.BASE_URL + "members_images/juan.jpg",
               name: "Juan Fraguso",
               email: "juanjf2@illinois.edu",
-              role: "Mechanical",
+              role: "Tech Team Lead",
             }}
           />
+            <MemberCard
+              member={{
+                avatar: import.meta.env.BASE_URL + "members_images/samuel.jpg",
+                name: "Samuel Evangelista",
+                email: "sevan8@illinois.edu",
+                role: "Lead Software Engineer ",
+              }}
+            />
         </div>
         <button onClick={viewTeam} className="button-view-team">
           View All

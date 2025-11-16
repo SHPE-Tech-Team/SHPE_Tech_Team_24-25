@@ -6,12 +6,7 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer-background">
-        <div className="footer-nav">
-          <Link to="/projects">Projects</Link>
-          <Link to="/about">About</Link>
-          <Link to="/members">Members</Link>
-          <Link to="/contact">Contact</Link>
-        </div>
+        
         <div className="social-links">
           <a
             rel="noreferrer"

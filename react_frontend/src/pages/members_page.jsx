@@ -3,7 +3,8 @@ import Footer from "../components/footer.jsx";
 import TitleCard from "../components/title_card.jsx";
 import MemberCard from "../components/member_card.jsx";
 import "../styles/members_page_style.css";
-import { mechanicalTeam, programmingTeam } from "../data/members_data.jsx";
+import "../styles/home_style.css";
+import { mechanicalTeam, programmingTeam, programmingTeam2025, mechanicalTeam2025 } from "../data/members_data.jsx";
 
 function MembersPage() {
   const [isToggled, setIsToggled] = useState(false);
@@ -12,7 +13,13 @@ function MembersPage() {
     setIsToggled(!isToggled);
   };
 
-  const members = isToggled ? mechanicalTeam : programmingTeam;
+  const [teamYear, setTeamYear] = useState("Team 2024-2025");
+
+  let members = isToggled ? mechanicalTeam : programmingTeam;
+
+  if (teamYear === "Team 2025-2026") {
+    members = isToggled ? mechanicalTeam2025 : programmingTeam2025;
+  }
 
   return (
     <div>
@@ -20,6 +27,15 @@ function MembersPage() {
         title="Team Members"
         description="Meet the talented engineers behind SHPE Tech Team's innovative projects. Our diverse team brings together expertise in programming, mechanical engineering, and more."
       />
+
+      <div className="padding">
+        <button className="button-projects" onClick={() => setTeamYear("Team 2024-2025")}>
+          Team 2024-2025
+        </button>
+        <button className="button-projects" onClick={() => setTeamYear("Team 2025-2026")}>
+          Team 2025-2026
+        </button>
+      </div>
 
       <div className="team-section">
         <div className="toggle-container">
@@ -30,7 +46,7 @@ function MembersPage() {
           <span className={isToggled ? 'active-text' : ''}>Mechanical</span>
         </div>
         <div className="team-section">
-          <h2>The Team</h2>
+          <h2>{teamYear}</h2>
           <div className="team-row">
             {members.map((member, index) => (
               <MemberCard key={index} member={member} />
