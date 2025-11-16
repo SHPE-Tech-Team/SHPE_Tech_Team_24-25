@@ -1,0 +1,20 @@
+.countdown-text {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 2vw;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    gap: 2vw;
+    font-size: 2vw;
+}
+
+.timer-text {
+    font-size: 4vw;
+    font-weight: bold;
+}
