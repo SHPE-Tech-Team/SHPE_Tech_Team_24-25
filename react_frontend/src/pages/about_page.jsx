@@ -22,6 +22,9 @@ function AboutPage() {
       />
 
       <div className="about-mission">
+        <p>
+          This is a test.
+        </p>
         <h2>Our Mission</h2>
         <p>
           The Society of Hispanic Professional Engineers is a technical
